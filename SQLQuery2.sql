@@ -1,0 +1,2 @@
+﻿    INSERT INTO [VTD].[furnishingsLog] (pipeNumber, odometrDist, pipeLength, distanceFromTransverseWeld, 
+    characterFeatures, designations, marker, distanceToNextFeature, Latitude, Longitude, heightAboveSeaLevel, note) values (666,666,666,666,666,666,666,666,666,666,666,666)
