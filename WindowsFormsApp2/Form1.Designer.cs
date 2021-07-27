@@ -69,6 +69,7 @@ namespace WindowsFormsApp2
             this.textBox16 = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.PipeList = new System.Windows.Forms.TabPage();
+            this.isHaveCategory = new System.Windows.Forms.CheckBox();
             this.textBox112 = new System.Windows.Forms.TextBox();
             this.PipeLogStringDown = new System.Windows.Forms.Button();
             this.PipeLogStringUp = new System.Windows.Forms.Button();
@@ -117,8 +118,14 @@ namespace WindowsFormsApp2
             this.label16 = new System.Windows.Forms.Label();
             this.textBox42 = new System.Windows.Forms.TextBox();
             this.label29 = new System.Windows.Forms.Label();
+            this.textBox140 = new System.Windows.Forms.TextBox();
+            this.textBox141 = new System.Windows.Forms.TextBox();
+            this.label94 = new System.Windows.Forms.Label();
             this.label69 = new System.Windows.Forms.Label();
             this.textBox95 = new System.Windows.Forms.TextBox();
+            this.label95 = new System.Windows.Forms.Label();
+            this.textBox142 = new System.Windows.Forms.TextBox();
+            this.textBox143 = new System.Windows.Forms.TextBox();
             this.DefectList = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.label73 = new System.Windows.Forms.Label();
@@ -377,11 +384,11 @@ namespace WindowsFormsApp2
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(985, 31);
+            this.richTextBox1.Location = new System.Drawing.Point(986, 31);
             this.richTextBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.richTextBox1.Size = new System.Drawing.Size(745, 900);
+            this.richTextBox1.Size = new System.Drawing.Size(745, 899);
             this.richTextBox1.TabIndex = 26;
             this.richTextBox1.Text = "";
             // 
@@ -744,6 +751,7 @@ namespace WindowsFormsApp2
             // 
             // PipeList
             // 
+            this.PipeList.Controls.Add(this.isHaveCategory);
             this.PipeList.Controls.Add(this.textBox112);
             this.PipeList.Controls.Add(this.PipeLogStringDown);
             this.PipeList.Controls.Add(this.PipeLogStringUp);
@@ -756,6 +764,17 @@ namespace WindowsFormsApp2
             this.PipeList.TabIndex = 1;
             this.PipeList.Text = "Трубный журнал";
             this.PipeList.UseVisualStyleBackColor = true;
+            // 
+            // isHaveCategory
+            // 
+            this.isHaveCategory.AutoSize = true;
+            this.isHaveCategory.Location = new System.Drawing.Point(1062, 626);
+            this.isHaveCategory.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.isHaveCategory.Name = "isHaveCategory";
+            this.isHaveCategory.Size = new System.Drawing.Size(421, 24);
+            this.isHaveCategory.TabIndex = 4;
+            this.isHaveCategory.Text = "Категория и предел прочности в трубном журнале";
+            this.isHaveCategory.UseVisualStyleBackColor = true;
             // 
             // textBox112
             // 
@@ -835,12 +854,18 @@ namespace WindowsFormsApp2
             this.tableLayoutPanel2.Controls.Add(this.label16, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.textBox42, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.label29, 0, 14);
-            this.tableLayoutPanel2.Controls.Add(this.label69, 0, 15);
-            this.tableLayoutPanel2.Controls.Add(this.textBox95, 1, 15);
+            this.tableLayoutPanel2.Controls.Add(this.textBox140, 1, 15);
+            this.tableLayoutPanel2.Controls.Add(this.textBox141, 2, 15);
+            this.tableLayoutPanel2.Controls.Add(this.label94, 0, 15);
+            this.tableLayoutPanel2.Controls.Add(this.label69, 0, 17);
+            this.tableLayoutPanel2.Controls.Add(this.textBox95, 1, 17);
+            this.tableLayoutPanel2.Controls.Add(this.label95, 0, 16);
+            this.tableLayoutPanel2.Controls.Add(this.textBox142, 1, 16);
+            this.tableLayoutPanel2.Controls.Add(this.textBox143, 2, 16);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(116, 45);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 16;
+            this.tableLayoutPanel2.RowCount = 18;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
@@ -856,8 +881,10 @@ namespace WindowsFormsApp2
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(916, 612);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(916, 692);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // textBox44
@@ -1293,16 +1320,45 @@ namespace WindowsFormsApp2
             this.label29.TabIndex = 65;
             this.label29.Text = "Примечание";
             // 
+            // textBox140
+            // 
+            this.textBox140.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox140.Location = new System.Drawing.Point(370, 575);
+            this.textBox140.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBox140.Name = "textBox140";
+            this.textBox140.Size = new System.Drawing.Size(358, 26);
+            this.textBox140.TabIndex = 70;
+            // 
+            // textBox141
+            // 
+            this.textBox141.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox141.Location = new System.Drawing.Point(736, 575);
+            this.textBox141.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBox141.Name = "textBox141";
+            this.textBox141.Size = new System.Drawing.Size(176, 26);
+            this.textBox141.TabIndex = 71;
+            this.textBox141.Text = "14";
+            // 
+            // label94
+            // 
+            this.label94.AutoSize = true;
+            this.label94.Location = new System.Drawing.Point(4, 570);
+            this.label94.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label94.Name = "label94";
+            this.label94.Size = new System.Drawing.Size(89, 20);
+            this.label94.TabIndex = 72;
+            this.label94.Text = "Категория";
+            // 
             // label69
             // 
             this.label69.AutoSize = true;
             this.label69.BackColor = System.Drawing.Color.YellowGreen;
             this.label69.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label69.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label69.Location = new System.Drawing.Point(4, 570);
+            this.label69.Location = new System.Drawing.Point(4, 646);
             this.label69.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label69.Name = "label69";
-            this.label69.Size = new System.Drawing.Size(358, 42);
+            this.label69.Size = new System.Drawing.Size(358, 46);
             this.label69.TabIndex = 68;
             this.label69.Text = "No последней строки тр. журнала";
             // 
@@ -1310,12 +1366,41 @@ namespace WindowsFormsApp2
             // 
             this.textBox95.BackColor = System.Drawing.Color.YellowGreen;
             this.textBox95.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox95.Location = new System.Drawing.Point(370, 575);
+            this.textBox95.Location = new System.Drawing.Point(370, 651);
             this.textBox95.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox95.Name = "textBox95";
             this.textBox95.Size = new System.Drawing.Size(358, 26);
             this.textBox95.TabIndex = 69;
             this.textBox95.Text = "0";
+            // 
+            // label95
+            // 
+            this.label95.AutoSize = true;
+            this.label95.Location = new System.Drawing.Point(4, 608);
+            this.label95.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label95.Name = "label95";
+            this.label95.Size = new System.Drawing.Size(153, 20);
+            this.label95.TabIndex = 73;
+            this.label95.Text = "Предел прочности";
+            // 
+            // textBox142
+            // 
+            this.textBox142.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox142.Location = new System.Drawing.Point(370, 613);
+            this.textBox142.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBox142.Name = "textBox142";
+            this.textBox142.Size = new System.Drawing.Size(358, 26);
+            this.textBox142.TabIndex = 74;
+            // 
+            // textBox143
+            // 
+            this.textBox143.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox143.Location = new System.Drawing.Point(736, 613);
+            this.textBox143.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBox143.Name = "textBox143";
+            this.textBox143.Size = new System.Drawing.Size(176, 26);
+            this.textBox143.TabIndex = 75;
+            this.textBox143.Text = "15";
             // 
             // DefectList
             // 
@@ -1323,7 +1408,7 @@ namespace WindowsFormsApp2
             this.DefectList.Location = new System.Drawing.Point(4, 29);
             this.DefectList.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.DefectList.Name = "DefectList";
-            this.DefectList.Size = new System.Drawing.Size(1752, 941);
+            this.DefectList.Size = new System.Drawing.Size(1747, 935);
             this.DefectList.TabIndex = 2;
             this.DefectList.Text = "Журнал аномалий";
             this.DefectList.UseVisualStyleBackColor = true;
@@ -2096,7 +2181,7 @@ namespace WindowsFormsApp2
             this.ArrangementElements.Location = new System.Drawing.Point(4, 29);
             this.ArrangementElements.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ArrangementElements.Name = "ArrangementElements";
-            this.ArrangementElements.Size = new System.Drawing.Size(1752, 941);
+            this.ArrangementElements.Size = new System.Drawing.Size(1747, 935);
             this.ArrangementElements.TabIndex = 3;
             this.ArrangementElements.Text = "Журнал элементов обустройства";
             this.ArrangementElements.UseVisualStyleBackColor = true;
@@ -2615,7 +2700,7 @@ namespace WindowsFormsApp2
             this.pipeType.Location = new System.Drawing.Point(4, 29);
             this.pipeType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pipeType.Name = "pipeType";
-            this.pipeType.Size = new System.Drawing.Size(1752, 941);
+            this.pipeType.Size = new System.Drawing.Size(1747, 935);
             this.pipeType.TabIndex = 4;
             this.pipeType.Text = "Тип тр. и кат. уч.";
             this.pipeType.UseVisualStyleBackColor = true;
@@ -3564,6 +3649,13 @@ namespace WindowsFormsApp2
         private System.Windows.Forms.Label label93;
         private System.Windows.Forms.Label label85;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
+        private System.Windows.Forms.CheckBox isHaveCategory;
+        private System.Windows.Forms.TextBox textBox140;
+        private System.Windows.Forms.TextBox textBox141;
+        private System.Windows.Forms.Label label94;
+        private System.Windows.Forms.Label label95;
+        private System.Windows.Forms.TextBox textBox142;
+        private System.Windows.Forms.TextBox textBox143;
     }
 }
 
