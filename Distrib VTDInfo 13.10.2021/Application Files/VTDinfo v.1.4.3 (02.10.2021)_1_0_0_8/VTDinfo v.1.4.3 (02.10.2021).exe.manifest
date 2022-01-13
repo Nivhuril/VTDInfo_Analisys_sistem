@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="VTDinfo v.1.4.3 (02.10.2021).exe" version="1.0.0.8" publicKeyToken="e9e592f7e2889964" language="neutral" processorArchitecture="msil" type="win32" />
+  <description asmv2:iconFile="rocket_space_icon_185991.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="VTDinfo v.1.4.3 (02.10.2021)" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="VTDinfo v.1.4.3 (02.10.2021).exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet version="1" class="System.Security.NamedPermissionSet" Name="LocalIntranet" Description="Default rights given to applications on the local intranet" Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!-- Параметры манифеста UAC
+             Если вы хотите изменить уровень контроля учетных записей Windows, замените узел 
+             requestedExecutionLevel на один из следующих.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+            При указании элемента requestedExecutionLevel будет отключена виртуализация файлов и реестра. 
+            Удалите этот элемент, если виртуализация требуется приложению для обратной
+            совместимости.
+        -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="VTDinfo v.1.4.3 (02.10.2021).exe" size="566760">
+      <assemblyIdentity name="VTDinfo v.1.4.3 (02.10.2021)" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>4+g4CbBhu9KJdn7eZZdFuDrFTY+AO1O1YyrbznoRmS8=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="rocket_space_icon_185991.ico" size="67646">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>HROlLT9+3jNu2BX828cfx7n+GtWUX/gIOnnsdjI5l6c=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="VTDinfo v.1.4.3 (02.10.2021).exe.config" size="470">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>jd59tohSRz0wUBTrRnEyfSGSFrZi6WKvleIevRAC+rU=</dsig:DigestValue>
+    </hash>
+  </file>
+  <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">
+    <application>
+      <!-- Список версий Windows, на которых это приложение было протестировано
+           и будет работать. Раскомментируйте соответствующие элементы, чтобы ОС Windows 
+           автоматически выбрала наиболее совместимое окружение. -->
+      <!-- Windows Vista -->
+      <!--<supportedOS Id="{e2011457-1546-43c5-a5fe-008deee3d3f0}" />-->
+      <!-- Windows 7 -->
+      <!--<supportedOS Id="{35138b9a-5d96-4fbd-8e2d-a2440225f93a}" />-->
+      <!-- Windows 8 -->
+      <!--<supportedOS Id="{4a2f28e3-53b9-4441-ba9c-d69d4a4a6e38}" />-->
+      <!-- Windows 8.1 -->
+      <!--<supportedOS Id="{1f676c76-80e1-4239-95bb-83d0f6d0da78}" />-->
+      <!-- Windows 10 -->
+      <!--<supportedOS Id="{8e0f7a12-bfb3-4fe8-b9a5-48fd50a15a9a}" />-->
+    </application>
+  </compatibility>
+<publisherIdentity name="CN=DESKTOP-JJ06G1O\Sergey" issuerKeyHash="af8f0fe46b9c1069231008c6d93dbd8f6475680a" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>rZv1pRWhSkHOLo4Bk9LZniQtVsGqiYACMy3Qv3DNLz8=</DigestValue></Reference></SignedInfo><SignatureValue>BM2QsP2eSlBQrlS0wWKDikngFuClzPtp+V///puegkX+5SW2PSkKRwAIVqxmH4AXoT064tGYXACUzL+h3FaDAN9LaPs/gNdfe/lD4sXYH64XduliXsYfUJ4nXsGYHCHK9roKESJqyDRFA24sdpp9x31w7VoX8yxpdtg3rrfmBrU=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>rVqhNC48uTs+BvN4xATy/cM21mP5p7buJsUKndDusXCFej5aIpwDyGyvD+eVcewFezpk5oS9s0WWJLmGGuEo1fpptPQPAmUKlKwZMCe1p8PwiqKXL8df/hcTnsprSckh0e/iLs7ZnleooNdfpihlXUqI+w0DQ4lmChEHK4A6Izk=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="3f2fcd70bfd02d33028089aac1562d249ed9d293018e2ece414aa115a5f59bad" Description="" Url=""><as:assemblyIdentity name="VTDinfo v.1.4.3 (02.10.2021).exe" version="1.0.0.8" publicKeyToken="e9e592f7e2889964" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=DESKTOP-JJ06G1O\Sergey</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>laLLBI0El5oTGTFy9uJhvsZRX1qI25HVu74cSTqrt88=</DigestValue></Reference></SignedInfo><SignatureValue>T+OQWSw+iX5L+0ifn8nZ8DIS959DPSe3p0qBOzW46fmOOoFsXxGpd3BkM0ZVlIuvc6I4zG0/nuT4Q34lOP73g2xRzfCjqWts4sS5rCtJ/gLaX3VQpJfi9N6MaqSoItatw1S4nUNWyOg8ihXGqlQ9rk5fD7+PsChbWZXjeSt7zi4=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>rVqhNC48uTs+BvN4xATy/cM21mP5p7buJsUKndDusXCFej5aIpwDyGyvD+eVcewFezpk5oS9s0WWJLmGGuEo1fpptPQPAmUKlKwZMCe1p8PwiqKXL8df/hcTnsprSckh0e/iLs7ZnleooNdfpihlXUqI+w0DQ4lmChEHK4A6Izk=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB8TCCAVqgAwIBAgIQauEpgaxlhJJFqkQ4cRqY5TANBgkqhkiG9w0BAQsFADA3MTUwMwYDVQQDHiwARABFAFMASwBUAE8AUAAtAEoASgAwADYARwAxAE8AXABTAGUAcgBnAGUAeTAeFw0yMTA3MjExNDM3MTdaFw0yMjA3MjEyMDM3MTdaMDcxNTAzBgNVBAMeLABEAEUAUwBLAFQATwBQAC0ASgBKADAANgBHADEATwBcAFMAZQByAGcAZQB5MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCtWqE0Ljy5Oz4G83jEBPL9wzbWY/mntu4mxQqd0O6xcIV6PloinAPIbK8P55Vx7AV7OmTmhL2zRZYkuYYa4SjV+mm09A8CZQqUrBkwJ7Wnw/CKopcvx1/+FxOeymtJySHR7+IuztmeV6ig11+mKGVdSoj7DQNDiWYKEQcrgDojOQIDAQABMA0GCSqGSIb3DQEBCwUAA4GBABaQT7KPYlPZQAikEPeMLZ2BkjJSmxhOPQBFQMdWH0QaQ8AIgn1cFAFx13tqjwbBsrdp+nbFx2R94rwNJkjxGYcOkOzYUJjxCP99qAgNM5lZP6b1IV2PnNTdipwgml/i/bemWj891hUzKuegl9n6zczqFr1NmEQq9W1YCiNE+xJy</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

@@ -1,5 +1,5 @@
 ﻿
-namespace WindowsFormsApp2
+namespace VTDinfo
 {
     partial class Form2
     {
