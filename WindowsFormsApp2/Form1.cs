@@ -8826,7 +8826,8 @@ namespace VTDinfo
             richTextBox7.AppendText(Convert.ToString(c));
         }
 
-        private void richTextBox7_TextChanged(object sender, EventArgs e)
+
+        private void ConvertIusT_Click(object sender, EventArgs e)
         {
 
         }

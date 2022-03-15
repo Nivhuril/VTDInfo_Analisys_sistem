@@ -895,6 +895,8 @@ namespace VTDinfo
             this.textBox381 = new System.Windows.Forms.TextBox();
             this.checkBox16 = new System.Windows.Forms.CheckBox();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.IusT = new System.Windows.Forms.TabPage();
+            this.ConvertIusT = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage13.SuspendLayout();
             this.tableLayoutPanel28.SuspendLayout();
@@ -975,6 +977,7 @@ namespace VTDinfo
             this.tableLayoutPanel23.SuspendLayout();
             this.tableLayoutPanel13.SuspendLayout();
             this.tableLayoutPanel33.SuspendLayout();
+            this.IusT.SuspendLayout();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -990,6 +993,7 @@ namespace VTDinfo
             this.tabControl1.Controls.Add(this.tabPage8);
             this.tabControl1.Controls.Add(this.tabPage12);
             this.tabControl1.Controls.Add(this.tabPage7);
+            this.tabControl1.Controls.Add(this.IusT);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -1518,7 +1522,7 @@ namespace VTDinfo
             this.richTextBox7.Size = new System.Drawing.Size(422, 174);
             this.richTextBox7.TabIndex = 13;
             this.richTextBox7.Text = "";
-            this.richTextBox7.TextChanged += new System.EventHandler(this.richTextBox7_TextChanged);
+            
             // 
             // tableLayoutPanel32
             // 
@@ -9928,6 +9932,26 @@ namespace VTDinfo
             this.saveFileDialog1.FileName = "MG";
             this.saveFileDialog1.InitialDirectory = "C:\\Result";
             // 
+            // IusT
+            // 
+            this.IusT.Controls.Add(this.ConvertIusT);
+            this.IusT.Location = new System.Drawing.Point(4, 22);
+            this.IusT.Name = "IusT";
+            this.IusT.Size = new System.Drawing.Size(1176, 635);
+            this.IusT.TabIndex = 7;
+            this.IusT.Text = "ИУС Т";
+            this.IusT.UseVisualStyleBackColor = true;
+            // 
+            // ConvertIusT
+            // 
+            this.ConvertIusT.Location = new System.Drawing.Point(27, 28);
+            this.ConvertIusT.Name = "ConvertIusT";
+            this.ConvertIusT.Size = new System.Drawing.Size(129, 34);
+            this.ConvertIusT.TabIndex = 0;
+            this.ConvertIusT.Text = "Сформировать ШСЗ ИУС Т";
+            this.ConvertIusT.UseVisualStyleBackColor = true;
+            this.ConvertIusT.Click += new System.EventHandler(this.ConvertIusT_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -10046,6 +10070,7 @@ namespace VTDinfo
             this.tableLayoutPanel13.PerformLayout();
             this.tableLayoutPanel33.ResumeLayout(false);
             this.tableLayoutPanel33.PerformLayout();
+            this.IusT.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -10917,6 +10942,8 @@ namespace VTDinfo
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.TabPage IusT;
+        private System.Windows.Forms.Button ConvertIusT;
     }
 }
 
