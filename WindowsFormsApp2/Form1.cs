@@ -295,7 +295,7 @@ namespace VTDinfo
             //public string pipeNumber;//номер трубы
             public string defectType;//тип дефекта
             public string defectCode;//код дефекта
-            //public double distanceFromTransverseWeld;//расстояние от первого поперечного шва
+            public double distanceFromTransverseWeldIUST;//расстояние от первого поперечного шва
             public double distanceFromLongitudinalWeld;//расстояние от продольного шва
             public double start_angle;//начальный угол дефекта
             //public double length;//длина
@@ -3665,8 +3665,8 @@ namespace VTDinfo
                     AnomalyLogLine.depthInMm = 0;
                 }
                 //AnomalyLogLine.depthInMm = Convert.ToDouble(txt.Replace(".", ","));//глубина дефекта в миллиметрах
-                //AnomalyLogLine.extOrInt = Convert.ToString(ObjWorkSheet2.Cells[i + 1, NumbersOfColumns.column2Number12].Text);//характер локаизации(внутри или снаружи)
-                //AnomalyLogLine.KBD = Convert.ToString(ObjWorkSheet2.Cells[i + 1, NumbersOfColumns.column2Number13].Text);//КБД
+                AnomalyLogLine.extOrInt = Convert.ToString(ObjWorkSheet2.Cells[i + 1, 14].Text);//характер локаизации(внутри или снаружи)
+                AnomalyLogLine.KBD = Convert.ToString(ObjWorkSheet2.Cells[i + 1, NumbersOfColumns.column2Number13].Text);//КБД
                 AnomalyLogLine.defectAssessment = Convert.ToString(ObjWorkSheet2.Cells[i + 1, NumbersOfColumns.column2Number14].Text);//оценка дефекта
                 AnomalyLogLine.Latitude = Convert.ToString(ObjWorkSheet2.Cells[i + 1, NumbersOfColumns.column2Number15].Text);//Широта
                 AnomalyLogLine.Longitude = Convert.ToString(ObjWorkSheet2.Cells[i + 1, NumbersOfColumns.column2Number16].Text);//Долгота
@@ -3690,7 +3690,11 @@ namespace VTDinfo
                 }
                 else
                 {
-                    anomalyLogLineS.Add(AnomalyLogLine);//добавляем заполненный экземпляр класса к списку
+                    if (AnomalyLogLine.featuresCharacter.Contains("Труб")==false)
+                    {
+                        anomalyLogLineS.Add(AnomalyLogLine);//добавляем заполненный экземпляр класса к списку
+                    }
+                    
                 }
                 incrementor++;//сделаем прогресс-индикатор, чтобы было не так скучно ждать.
                 i++;
@@ -7523,6 +7527,95 @@ namespace VTDinfo
 
             /*}*/
         }
+        private void exportAnomalylogToIUST(MGVTD mGVTD)//Создание Excel файла для экспорта в Сонар
+        {
+            object Nothing = System.Reflection.Missing.Value;
+            var app = new Microsoft.Office.Interop.Excel.Application();
+            app.Visible = true;
+            Microsoft.Office.Interop.Excel.Workbook workBook = app.Workbooks.Add(Nothing);
+            Microsoft.Office.Interop.Excel.Worksheet worksheet = (Microsoft.Office.Interop.Excel.Worksheet)workBook.Sheets[1];
+
+            worksheet.Name = "SonarFormat";
+
+            // Write data
+            worksheet.Cells[1, 1] = "№";//
+            worksheet.Cells[1, 2] = "Номер трубы";//
+            worksheet.Cells[1, 3] = "Тип дефекта";//          
+            worksheet.Cells[1, 4] = "Код дефекта";//
+            worksheet.Cells[1, 5] = "Расстояние от кольцевого шва";//
+            worksheet.Cells[1, 6] = "Расстояние от продольного шва";//
+            worksheet.Cells[1, 7] = "Начальный угол";//
+            worksheet.Cells[1, 8] = "Длина, мм";//
+            worksheet.Cells[1, 9] = "Ширина, мм";//
+            worksheet.Cells[1, 10] = "Глубина, мм";//
+            worksheet.Cells[1, 11] = "Положение";//наружный-внутренний
+            worksheet.Cells[1, 12] = "Расположение дефекта на трубе";//
+            worksheet.Cells[1, 13] = "Уровень опасности";//
+            worksheet.Cells[1, 14] = "Требуется дополнительное обследование";//
+            worksheet.Cells[1, 15] = "Комментарий";//
+            int strNunber = 2;
+            for (int i = 0; i < mGVTD.anomalyLogLineS.Count; i++)
+            {
+                worksheet.Cells[strNunber, 1] = i;//"№";//
+                worksheet.Cells[strNunber, 2] = mGVTD.anomalyLogLineS[i].pipeNumber;//"Номер трубы"
+                worksheet.Cells[strNunber, 3] = mGVTD.anomalyLogLineS[i].defectType;//"Тип дефекта";          
+                worksheet.Cells[strNunber, 4] = mGVTD.anomalyLogLineS[i].defectCode;// "Код дефекта";
+                worksheet.Cells[strNunber, 5] = Math.Round(mGVTD.anomalyLogLineS[i].distanceFromTransverseWeldIUST, 3);// "Расстояние от кольцевого шва";
+                worksheet.Cells[strNunber, 6] = Math.Round(mGVTD.anomalyLogLineS[i].distanceFromLongitudinalWeld, 3);// "Расстояние от продольного шва";
+                worksheet.Cells[strNunber, 7] = mGVTD.anomalyLogLineS[i].start_angle;// "Начальный угол";
+
+                if (mGVTD.anomalyLogLineS[i].length>0)
+                {
+                    if (mGVTD.anomalyLogLineS[i].defectCode.Contains("ANCW") ==false)
+                    {
+                        worksheet.Cells[strNunber, 8] = Math.Round( mGVTD.anomalyLogLineS[i].length,3);// "Длина, мм";
+                    }                    
+                }
+                if (mGVTD.anomalyLogLineS[i].widht>0)
+                {
+                    worksheet.Cells[strNunber, 9] = Math.Round(mGVTD.anomalyLogLineS[i].widht, 3);// "Ширина, мм";
+                }
+                if (mGVTD.anomalyLogLineS[i].depthInMm>0)
+                {
+                    worksheet.Cells[strNunber, 10] = Math.Round(mGVTD.anomalyLogLineS[i].depthInMm, 3);// "Глубина, мм";
+                }
+                
+                worksheet.Cells[strNunber, 11] = mGVTD.anomalyLogLineS[i].inside_or_outside;// "Положение";//наружный-внутренний
+                worksheet.Cells[strNunber, 12] = mGVTD.anomalyLogLineS[i].defect_location;// "Расположение дефекта на трубе";
+                worksheet.Cells[strNunber, 13] = mGVTD.anomalyLogLineS[i].danger_level;// "Уровень опасности";
+                worksheet.Cells[strNunber, 14] = "";// "Требуется дополнительное обследование";
+                worksheet.Cells[strNunber, 15] = mGVTD.anomalyLogLineS[i].note;// "Комментарий";
+
+                strNunber++;
+            }
+
+            /*string filename = textBox_adres.Text + mGVTD.pipelineInfo.pipelineName + "-" + PlotBoundaries.pipeNumberOnePipeLog+"-"+ PlotBoundaries.pipeNumberOnePipeLog+"xlsx";
+            worksheet.SaveAs(fileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange, Type.Missing, Type.Missing, Type.Missing);
+            workBook.Close(false, Type.Missing, Type.Missing);
+            app.Quit();*/
+
+            // Show save file dialog
+            //SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            /*if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {*/
+
+            String dir = textBox_adres.Text;
+            if (!Directory.Exists(dir))
+            {
+                Directory.CreateDirectory(dir);
+            }
+            saveFileDialog1.FileName = textBox_adres.Text + mGVTD.pipelineInfo.pipelineName + "-"  + " Журнал_дефектов_ИУС_Т).xlsx";
+            //richTextBox4.AppendText(Environment.NewLine + saveFileDialog1.FileName);
+            worksheet.SaveAs(saveFileDialog1.FileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange, Type.Missing, Type.Missing, Type.Missing);
+            //worksheet2.SaveAs(saveFileDialog1.FileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange, Type.Missing, Type.Missing, Type.Missing);
+
+            //workBook.Close(false, Type.Missing, Type.Missing);
+            //app.Quit();
+
+
+            /*}*/
+        }
+
         private void exportTo1C(MGVTD mGVTD, plotBoundaries PlotBoundaries)//Создание Excel файла для экспорта в Сонар
         {
             object Nothing = System.Reflection.Missing.Value;
@@ -8839,7 +8932,8 @@ namespace VTDinfo
         {
             mGVTD = SetPipeLengthToAnomalyLog(mGVTD);
             mGVTD = SetVolumesToAnomalyLogForIUST(mGVTD);
-            MessageBox.Show("OK!");
+            //MessageBox.Show("OK!");
+            exportAnomalylogToIUST(mGVTD);
         }
 
         private void testButton_Click(object sender, EventArgs e)

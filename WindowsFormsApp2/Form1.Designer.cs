@@ -895,6 +895,8 @@ namespace VTDinfo
             this.textBox381 = new System.Windows.Forms.TextBox();
             this.checkBox16 = new System.Windows.Forms.CheckBox();
             this.IusT = new System.Windows.Forms.TabPage();
+            this.button17 = new System.Windows.Forms.Button();
+            this.button16 = new System.Windows.Forms.Button();
             this.button15 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
             this.testButton = new System.Windows.Forms.Button();
@@ -902,8 +904,7 @@ namespace VTDinfo
             this.textBox436 = new System.Windows.Forms.TextBox();
             this.ConvertIusT = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.button16 = new System.Windows.Forms.Button();
-            this.button17 = new System.Windows.Forms.Button();
+            this.richTextBox8 = new System.Windows.Forms.RichTextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage13.SuspendLayout();
             this.tableLayoutPanel28.SuspendLayout();
@@ -9934,6 +9935,7 @@ namespace VTDinfo
             // 
             // IusT
             // 
+            this.IusT.Controls.Add(this.richTextBox8);
             this.IusT.Controls.Add(this.button17);
             this.IusT.Controls.Add(this.button16);
             this.IusT.Controls.Add(this.button15);
@@ -9948,6 +9950,26 @@ namespace VTDinfo
             this.IusT.TabIndex = 7;
             this.IusT.Text = "ИУС Т";
             this.IusT.UseVisualStyleBackColor = true;
+            // 
+            // button17
+            // 
+            this.button17.Location = new System.Drawing.Point(251, 210);
+            this.button17.Name = "button17";
+            this.button17.Size = new System.Drawing.Size(277, 23);
+            this.button17.TabIndex = 7;
+            this.button17.Text = "GetdistanceFromLongitudinalWeld";
+            this.button17.UseVisualStyleBackColor = true;
+            this.button17.Click += new System.EventHandler(this.button17_Click);
+            // 
+            // button16
+            // 
+            this.button16.Location = new System.Drawing.Point(251, 167);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(277, 23);
+            this.button16.TabIndex = 6;
+            this.button16.Text = "GetDistanceFromTranswersWeldGPAS";
+            this.button16.UseVisualStyleBackColor = true;
+            this.button16.Click += new System.EventHandler(this.button16_Click);
             // 
             // button15
             // 
@@ -10009,25 +10031,13 @@ namespace VTDinfo
             this.saveFileDialog1.FileName = "MG";
             this.saveFileDialog1.InitialDirectory = "C:\\Result";
             // 
-            // button16
+            // richTextBox8
             // 
-            this.button16.Location = new System.Drawing.Point(251, 167);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(277, 23);
-            this.button16.TabIndex = 6;
-            this.button16.Text = "GetDistanceFromTranswersWeldGPAS";
-            this.button16.UseVisualStyleBackColor = true;
-            this.button16.Click += new System.EventHandler(this.button16_Click);
-            // 
-            // button17
-            // 
-            this.button17.Location = new System.Drawing.Point(251, 210);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(277, 23);
-            this.button17.TabIndex = 7;
-            this.button17.Text = "GetdistanceFromLongitudinalWeld";
-            this.button17.UseVisualStyleBackColor = true;
-            this.button17.Click += new System.EventHandler(this.button17_Click);
+            this.richTextBox8.Location = new System.Drawing.Point(558, 167);
+            this.richTextBox8.Name = "richTextBox8";
+            this.richTextBox8.Size = new System.Drawing.Size(509, 369);
+            this.richTextBox8.TabIndex = 8;
+            this.richTextBox8.Text = "";
             // 
             // Form1
             // 
@@ -11029,6 +11039,7 @@ namespace VTDinfo
         private System.Windows.Forms.Button button15;
         private System.Windows.Forms.Button button16;
         private System.Windows.Forms.Button button17;
+        private System.Windows.Forms.RichTextBox richTextBox8;
     }
 }
 

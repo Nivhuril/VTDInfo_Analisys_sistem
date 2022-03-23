@@ -123,16 +123,20 @@ namespace VTDinfo
         {
             double result = 0;
             int indexOfChar = 0;
-            distanceFromTransverseWeld = distanceFromTransverseWeld.Replace(" ", "").Replace(".", ",");
-            if (distanceFromTransverseWeld.Contains("/"))
+            if (distanceFromTransverseWeld.Length>0)
             {
-                indexOfChar = distanceFromTransverseWeld.IndexOf("/");
+                distanceFromTransverseWeld = distanceFromTransverseWeld.Replace(" ", "").Replace(".", ",");
+                if (distanceFromTransverseWeld.Contains("/"))
+                {
+                    indexOfChar = distanceFromTransverseWeld.IndexOf("/");
+                }
+                if (distanceFromTransverseWeld.Contains("-"))
+                {
+                    indexOfChar = distanceFromTransverseWeld.IndexOf("-");
+                }
+                result = 1000*Convert.ToDouble(distanceFromTransverseWeld.Substring(0, indexOfChar - 1));
             }
-            if (distanceFromTransverseWeld.Contains("-"))
-            {
-                indexOfChar = distanceFromTransverseWeld.IndexOf("-");
-            }
-            result = Convert.ToDouble(distanceFromTransverseWeld.Substring(0, indexOfChar-1));
+            
             return result;
         }
         public double convertJointToHour(string inputAngle)//конвертация из формата чч:мм в десятичные часы.
@@ -201,6 +205,26 @@ namespace VTDinfo
             }
             return result;
         }
+        public string GetDangerLevel(string defectAssessment)
+        {
+            string result = "";
+            DefectsTypes types = new DefectsTypes();
+            types.defect_location = "";
+            if (String.Equals(defectAssessment, "A"))
+            {
+                result = "Закритический";
+            }
+            if (String.Equals(defectAssessment, "B"))
+            {
+                result = "Критический";
+            }
+            if (String.Equals(defectAssessment, "C"))
+            {
+                result = "Допустимый";
+            }
+            return result;
+        }
+
         public string GetExtOrInt(string extOrInt)
         {
             string result = "";
@@ -208,11 +232,11 @@ namespace VTDinfo
             types.defect_location = "";
             if (String.Equals(extOrInt, "EXT"))
             {
-                types.defect_location = "Наружный";
+                result = "Наружный";
             }
             if (String.Equals(extOrInt, "INT"))
             {
-                types.defect_location = "Внутренний";
+                result = "Внутренний";
             }
             return result;
         }
@@ -238,7 +262,8 @@ namespace VTDinfo
         public string GetDefectLocation(MGVTD input, int defectNumber)
         {
             string result = "";
-            double distanceFromJoint = Math.Min(input.anomalyLogLineS[defectNumber].distanceFromLongitudinalWeld, input.anomalyLogLineS[defectNumber].pipeLength- input.anomalyLogLineS[defectNumber].distanceFromLongitudinalWeld);
+            double distanceFromJoint = Math.Min(input.anomalyLogLineS[defectNumber].distanceFromTransverseWeldIUST, 1000*input.anomalyLogLineS[defectNumber].pipeLength-input.anomalyLogLineS[defectNumber].distanceFromTransverseWeldIUST);
+            richTextBox8.AppendText(Environment.NewLine + input.anomalyLogLineS[defectNumber].pipeLength);
             if (distanceFromJoint==0)
             {
                 result = "Сварной шов";
@@ -253,9 +278,26 @@ namespace VTDinfo
             }
             return result;
         }
-        public MGVTD SetVolumesToAnomalyLogForIUST(MGVTD input)
+        public MGVTD DeletePipesFromDefectLog(MGVTD input)
         {
             MGVTD result = input;
+            result.anomalyLogLineS.Clear();
+
+            for (int i = 0; i < input.anomalyLogLineS.Count; i++)
+            {
+                if (input.anomalyLogLineS[i].featuresCharacter.Contains("Труба")==false)
+                {
+                    result.anomalyLogLineS.Add(input.anomalyLogLineS[i]);
+                }
+            }
+
+            return result;
+        }
+            public MGVTD SetVolumesToAnomalyLogForIUST(MGVTD input)
+        {
+
+            MGVTD result = input;
+
             for (int i = 0; i < input.anomalyLogLineS.Count; i++)//расставляем в журнале аномалий ориентацию сварного шва
             {
                 for (int j = 0; j < input.MGPipeS.Count; j++)
@@ -263,19 +305,21 @@ namespace VTDinfo
                     if (String.Equals(input.anomalyLogLineS[i].pipeNumber, input.MGPipeS[j].pipeNumber))
                     {
                         input.anomalyLogLineS[i].clockOrientation = GetStartAngle(input.MGPipeS[j].clockOrientation);
-                        //MessageBox.Show("GetStartAngle");
+                        
                         input.anomalyLogLineS[i].distanceFromLongitudinalWeld = GetdistanceFromLongitudinalWeld(input.anomalyLogLineS[i].featuresOrientation, input.anomalyLogLineS[i].clockOrientation, input.pipelineInfo.pipeDiameter);
-                        //MessageBox.Show("GetdistanceFromLongitudinalWeld");
+
+                        input.anomalyLogLineS[i].distanceFromTransverseWeldIUST = GetDistanceFromTranswersWeldGPAS(input.anomalyLogLineS[i].distanceFromTransverseWeld);
+
                         input.anomalyLogLineS[i].defectType = GetDefectTypeGPAS(input.anomalyLogLineS[i].featuresCharacter).defectType;
-                        //MessageBox.Show("GetDefectTypeGPAS");
+                        
                         input.anomalyLogLineS[i].defectCode = GetDefectTypeGPAS(input.anomalyLogLineS[i].featuresCharacter).defectCode;
-                        //MessageBox.Show("GetDefectTypeGPAS");
+                        
                         input.anomalyLogLineS[i].start_angle = GetStartAngle(input.anomalyLogLineS[i].featuresOrientation);
-                        //MessageBox.Show("GetStartAngle");
+                        
                         input.anomalyLogLineS[i].inside_or_outside = GetExtOrInt(input.anomalyLogLineS[i].extOrInt);
-                        //MessageBox.Show("GetExtOrInt");
+                        
                         input.anomalyLogLineS[i].defect_location = GetDefectLocation(input, i);
-                        //MessageBox.Show("GetDefectLocation");
+                        input.anomalyLogLineS[i].danger_level = GetDangerLevel(input.anomalyLogLineS[i].defectAssessment);
                     }
                 }
             }
