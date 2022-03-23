@@ -288,6 +288,25 @@ namespace VTDinfo
             public string note;//Примечание
             public string defectRepareDate;//дата устранения дефекта
             public bool isLostMetal = false;
+            
+            //Для ИУС Т
+
+            public int defectNumber;//номер дефекта по порядку
+            //public string pipeNumber;//номер трубы
+            public string defectType;//тип дефекта
+            public string defectCode;//код дефекта
+            //public double distanceFromTransverseWeld;//расстояние от первого поперечного шва
+            public double distanceFromLongitudinalWeld;//расстояние от продольного шва
+            public double start_angle;//начальный угол дефекта
+            //public double length;//длина
+            //public double widht;//ширина
+            //public double depthInMm;//глубина дефекта в миллиметрах
+            public string inside_or_outside;//внутренний, наружный, внутристенный
+            public string defect_location;//расположение дефекта (основной металл, сварной шов, околошовная зона)
+            public string danger_level;//уровень опасности (закритический, критический, допустимый)
+
+            public double clockOrientation;//Ориент., ч:мин
+            public double pipeLength;//длина трубы
         }  
         public class furnishingsLog//класс для хранения строки журнала элементов обустройства
         {
@@ -2534,7 +2553,7 @@ namespace VTDinfo
 
                 mGPipe.distanceFromReferencePoints = Convert.ToString(ObjWorkSheet2.Cells[i + 1, NumbersOfColumns.columnNumber5].Text);
                 mGPipe.characterFeatures = Convert.ToString(ObjWorkSheet2.Cells[i + 1, NumbersOfColumns.columnNumber6].Text);
-                //mGPipe.clockOrientation = Convert.ToString(ObjWorkSheet2.Cells[i + 1, NumbersOfColumns.columnNumber7].Text);
+                mGPipe.clockOrientation = Convert.ToString(ObjWorkSheet2.Cells[i + 1, NumbersOfColumns.columnNumber7].Text);
 
 
                 /*txt = Convert.ToString(ObjWorkSheet2.Cells[i + 1, NumbersOfColumns.columnNumber8].Text);
@@ -6011,9 +6030,7 @@ namespace VTDinfo
             }
             return allPlots;
         }
-        
-        
-
+       
         private plotBoundaries lookingOfPlotBoundaries(MGVTD mGVTD, string pipeNumberOne, string pipeNumberTwo)//ищем имена и порядковые номера первой и последней труб в ведомости аномалий, попавших в заданный интервал трубного журнала. 
         {
             double apperKm = 0.001;
@@ -8075,14 +8092,10 @@ namespace VTDinfo
 
         private void textBox349_TextChanged(object sender, EventArgs e)
         {
-
         }
-
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
         }
-
         private void button9_Click(object sender, EventArgs e)
         {
             mGVTD = OperatingReadToClassPipeLogAutoFinBHTTS(fileNamePipeLog, NumbersOfColumns);//трубный журнал и журнал аномалий
@@ -8093,10 +8106,7 @@ namespace VTDinfo
 
         private void ArrangementElements_Click(object sender, EventArgs e)
         {
-
-
         }
-
         private void button8_Click(object sender, EventArgs e)
         {
             string filename = DIrectory.Text+ "VTD.xlsx";
@@ -8796,8 +8806,6 @@ namespace VTDinfo
         List<ListOfTees> InfoOfTees = new List<ListOfTees>();
         private async void button1_Click_2(object sender, EventArgs e)
         {
-
-
             fileName = DIrectory.Text + "VTD.xlsx";
             await Task.Run(new Action(()=> InfoOfTees = GetListOfNumbersTees(fileName)));//читаем таблицу принадлежности тройников GetListOfTees
             string fileName2 = DIrectory.Text + "tees.xlsx";
@@ -8829,7 +8837,35 @@ namespace VTDinfo
 
         private void ConvertIusT_Click(object sender, EventArgs e)
         {
+            mGVTD = SetPipeLengthToAnomalyLog(mGVTD);
+            mGVTD = SetVolumesToAnomalyLogForIUST(mGVTD);
+            MessageBox.Show("OK!");
+        }
 
+        private void testButton_Click(object sender, EventArgs e)
+        {
+            textBox437.Text = GetDefectTypeGPAS(textBox436.Text).defectType+"_"+ GetDefectTypeGPAS(textBox436.Text).defectCode;
+        }
+
+        private void button13_Click(object sender, EventArgs e)//3.04 / -8.54
+        {
+            textBox437.Text = Convert.ToString(convertJointToHour(textBox436.Text));
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            textBox437.Text = Convert.ToString(GetStartAngle(textBox436.Text));
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+            textBox437.Text = Convert.ToString(GetDistanceFromTranswersWeldGPAS(textBox436.Text));
+        }
+
+        private void button17_Click(object sender, EventArgs e)
+        {
+            //GetdistanceFromLongitudinalWeld
+            textBox437.Text = Convert.ToString(GetdistanceFromLongitudinalWeld(textBox436.Text, 0, 1420));
         }
     }
 }

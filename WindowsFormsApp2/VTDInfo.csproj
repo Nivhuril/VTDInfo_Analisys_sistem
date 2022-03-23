@@ -84,7 +84,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DefectsTypes.cs" />
+    <Compile Include="DefectsTypes.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,6 +101,7 @@
     </Compile>
     <Compile Include="JointAngle.cs" />
     <Compile Include="ListOfTees.cs" />
+    <Compile Include="PipeForIusT.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

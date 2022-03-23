@@ -894,9 +894,16 @@ namespace VTDinfo
             this.label227 = new System.Windows.Forms.Label();
             this.textBox381 = new System.Windows.Forms.TextBox();
             this.checkBox16 = new System.Windows.Forms.CheckBox();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.IusT = new System.Windows.Forms.TabPage();
+            this.button15 = new System.Windows.Forms.Button();
+            this.button13 = new System.Windows.Forms.Button();
+            this.testButton = new System.Windows.Forms.Button();
+            this.textBox437 = new System.Windows.Forms.TextBox();
+            this.textBox436 = new System.Windows.Forms.TextBox();
             this.ConvertIusT = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.button16 = new System.Windows.Forms.Button();
+            this.button17 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage13.SuspendLayout();
             this.tableLayoutPanel28.SuspendLayout();
@@ -1522,7 +1529,6 @@ namespace VTDinfo
             this.richTextBox7.Size = new System.Drawing.Size(422, 174);
             this.richTextBox7.TabIndex = 13;
             this.richTextBox7.Text = "";
-            
             // 
             // tableLayoutPanel32
             // 
@@ -9926,14 +9932,15 @@ namespace VTDinfo
             this.checkBox16.Text = "против ХГ";
             this.checkBox16.UseVisualStyleBackColor = true;
             // 
-            // saveFileDialog1
-            // 
-            this.saveFileDialog1.DefaultExt = "C:\\Result";
-            this.saveFileDialog1.FileName = "MG";
-            this.saveFileDialog1.InitialDirectory = "C:\\Result";
-            // 
             // IusT
             // 
+            this.IusT.Controls.Add(this.button17);
+            this.IusT.Controls.Add(this.button16);
+            this.IusT.Controls.Add(this.button15);
+            this.IusT.Controls.Add(this.button13);
+            this.IusT.Controls.Add(this.testButton);
+            this.IusT.Controls.Add(this.textBox437);
+            this.IusT.Controls.Add(this.textBox436);
             this.IusT.Controls.Add(this.ConvertIusT);
             this.IusT.Location = new System.Drawing.Point(4, 22);
             this.IusT.Name = "IusT";
@@ -9941,6 +9948,50 @@ namespace VTDinfo
             this.IusT.TabIndex = 7;
             this.IusT.Text = "ИУС Т";
             this.IusT.UseVisualStyleBackColor = true;
+            // 
+            // button15
+            // 
+            this.button15.Location = new System.Drawing.Point(251, 119);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(277, 23);
+            this.button15.TabIndex = 5;
+            this.button15.Text = "GetStartAngle";
+            this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.button15_Click);
+            // 
+            // button13
+            // 
+            this.button13.Location = new System.Drawing.Point(251, 77);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(277, 23);
+            this.button13.TabIndex = 4;
+            this.button13.Text = "convertJointToHour";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
+            // 
+            // testButton
+            // 
+            this.testButton.Location = new System.Drawing.Point(251, 28);
+            this.testButton.Name = "testButton";
+            this.testButton.Size = new System.Drawing.Size(277, 23);
+            this.testButton.TabIndex = 3;
+            this.testButton.Text = "GetDefectTypeGPAS";
+            this.testButton.UseVisualStyleBackColor = true;
+            this.testButton.Click += new System.EventHandler(this.testButton_Click);
+            // 
+            // textBox437
+            // 
+            this.textBox437.Location = new System.Drawing.Point(558, 119);
+            this.textBox437.Name = "textBox437";
+            this.textBox437.Size = new System.Drawing.Size(524, 20);
+            this.textBox437.TabIndex = 2;
+            // 
+            // textBox436
+            // 
+            this.textBox436.Location = new System.Drawing.Point(556, 27);
+            this.textBox436.Name = "textBox436";
+            this.textBox436.Size = new System.Drawing.Size(526, 20);
+            this.textBox436.TabIndex = 1;
             // 
             // ConvertIusT
             // 
@@ -9951,6 +10002,32 @@ namespace VTDinfo
             this.ConvertIusT.Text = "Сформировать ШСЗ ИУС Т";
             this.ConvertIusT.UseVisualStyleBackColor = true;
             this.ConvertIusT.Click += new System.EventHandler(this.ConvertIusT_Click);
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.DefaultExt = "C:\\Result";
+            this.saveFileDialog1.FileName = "MG";
+            this.saveFileDialog1.InitialDirectory = "C:\\Result";
+            // 
+            // button16
+            // 
+            this.button16.Location = new System.Drawing.Point(251, 167);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(277, 23);
+            this.button16.TabIndex = 6;
+            this.button16.Text = "GetDistanceFromTranswersWeldGPAS";
+            this.button16.UseVisualStyleBackColor = true;
+            this.button16.Click += new System.EventHandler(this.button16_Click);
+            // 
+            // button17
+            // 
+            this.button17.Location = new System.Drawing.Point(251, 210);
+            this.button17.Name = "button17";
+            this.button17.Size = new System.Drawing.Size(277, 23);
+            this.button17.TabIndex = 7;
+            this.button17.Text = "GetdistanceFromLongitudinalWeld";
+            this.button17.UseVisualStyleBackColor = true;
+            this.button17.Click += new System.EventHandler(this.button17_Click);
             // 
             // Form1
             // 
@@ -10071,6 +10148,7 @@ namespace VTDinfo
             this.tableLayoutPanel33.ResumeLayout(false);
             this.tableLayoutPanel33.PerformLayout();
             this.IusT.ResumeLayout(false);
+            this.IusT.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -10944,6 +11022,13 @@ namespace VTDinfo
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.TabPage IusT;
         private System.Windows.Forms.Button ConvertIusT;
+        private System.Windows.Forms.Button testButton;
+        private System.Windows.Forms.TextBox textBox437;
+        private System.Windows.Forms.TextBox textBox436;
+        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.Button button16;
+        private System.Windows.Forms.Button button17;
     }
 }
 

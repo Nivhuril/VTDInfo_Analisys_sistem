@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace VTDinfo
 {
-    internal class JointAngle
+    public class JointAngle//определяем количествоориентацию продольных швов
     {
         public double angle1 { get; set; }
         public double angle2 { get; set; }
         bool isOneJoint;
+        bool isNoJoiont;
         public double convertJointToHour(string inputAngle)//конвертация из формата чч:мм в десятичные часы.
         {
             double result = 0;
@@ -27,7 +28,7 @@ namespace VTDinfo
             jointAngles.angle1 = 0;
             jointAngles.angle1 = 6;
             isOneJoint = false;
-
+            isNoJoiont = false;
             if (angle.Contains("/"))
             {
                 int indexOfChar = angle.IndexOf("/");
@@ -36,12 +37,20 @@ namespace VTDinfo
                 jointAngles.angle1 = convertJointToHour(ang1);
                 jointAngles.angle2 = convertJointToHour(ang2);
                 isOneJoint = false;
+                isNoJoiont = false;
             }
-            else
+            else if(angle.Contains(":"))
             {
                 jointAngles.angle1 = convertJointToHour(angle.Trim());
                 jointAngles.angle2 = 0;
                 isOneJoint = true;
+                isNoJoiont = false;
+            }
+            else//для труб с невыявленным швом
+            {
+                jointAngles.angle1 = 0;
+                jointAngles.angle2 = 0;                
+                isNoJoiont = true;
             }
             return jointAngles;
         }
