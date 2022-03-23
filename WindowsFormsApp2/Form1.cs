@@ -7606,7 +7606,14 @@ namespace VTDinfo
             }
             saveFileDialog1.FileName = textBox_adres.Text + mGVTD.pipelineInfo.pipelineName + "-"  + " Журнал_дефектов_ИУС_Т).xlsx";
             //richTextBox4.AppendText(Environment.NewLine + saveFileDialog1.FileName);
-            worksheet.SaveAs(saveFileDialog1.FileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange, Type.Missing, Type.Missing, Type.Missing);
+            try
+            {
+                worksheet.SaveAs(saveFileDialog1.FileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange, Type.Missing, Type.Missing, Type.Missing);
+            }
+            catch (Exception)
+            {
+                
+            }
             //worksheet2.SaveAs(saveFileDialog1.FileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange, Type.Missing, Type.Missing, Type.Missing);
 
             //workBook.Close(false, Type.Missing, Type.Missing);

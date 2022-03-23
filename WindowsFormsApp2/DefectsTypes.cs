@@ -238,6 +238,10 @@ namespace VTDinfo
             {
                 result = "Внутренний";
             }
+            if (String.Equals(extOrInt, "NA"))
+            {
+                result = "Наружный";
+            }
             return result;
         }
         public MGVTD SetPipeLengthToAnomalyLog(MGVTD input)//расставим в журнале аномалий длины труб
