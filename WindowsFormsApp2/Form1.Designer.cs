@@ -50,6 +50,10 @@ namespace VTDinfo
             this.label241 = new System.Windows.Forms.Label();
             this.label238 = new System.Windows.Forms.Label();
             this.tabControl5 = new System.Windows.Forms.TabControl();
+            this.tabPage16 = new System.Windows.Forms.TabPage();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.textBox438 = new System.Windows.Forms.TextBox();
+            this.getVtdData = new System.Windows.Forms.Button();
             this.tabPage14 = new System.Windows.Forms.TabPage();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel25 = new System.Windows.Forms.TableLayoutPanel();
@@ -77,6 +81,11 @@ namespace VTDinfo
             this.tableLayoutPanel31 = new System.Windows.Forms.TableLayoutPanel();
             this.button_DrawGraph = new System.Windows.Forms.Button();
             this.richTextBox7 = new System.Windows.Forms.RichTextBox();
+            this.tableLayoutPanel36 = new System.Windows.Forms.TableLayoutPanel();
+            this.textBoxGraphStop = new System.Windows.Forms.TextBox();
+            this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
+            this.hScrollBar2 = new System.Windows.Forms.HScrollBar();
+            this.textBoxGraphStart = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel32 = new System.Windows.Forms.TableLayoutPanel();
             this.label226 = new System.Windows.Forms.Label();
             this.label246 = new System.Windows.Forms.Label();
@@ -895,6 +904,7 @@ namespace VTDinfo
             this.textBox381 = new System.Windows.Forms.TextBox();
             this.checkBox16 = new System.Windows.Forms.CheckBox();
             this.IusT = new System.Windows.Forms.TabPage();
+            this.richTextBox8 = new System.Windows.Forms.RichTextBox();
             this.button17 = new System.Windows.Forms.Button();
             this.button16 = new System.Windows.Forms.Button();
             this.button15 = new System.Windows.Forms.Button();
@@ -904,7 +914,17 @@ namespace VTDinfo
             this.textBox436 = new System.Windows.Forms.TextBox();
             this.ConvertIusT = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.richTextBox8 = new System.Windows.Forms.RichTextBox();
+            this.label249 = new System.Windows.Forms.Label();
+            this.textBox439 = new System.Windows.Forms.TextBox();
+            this.textBox440 = new System.Windows.Forms.TextBox();
+            this.label251 = new System.Windows.Forms.Label();
+            this.textBox441 = new System.Windows.Forms.TextBox();
+            this.label252 = new System.Windows.Forms.Label();
+            this.textBox442 = new System.Windows.Forms.TextBox();
+            this.label253 = new System.Windows.Forms.Label();
+            this.textBox443 = new System.Windows.Forms.TextBox();
+            this.label254 = new System.Windows.Forms.Label();
+            this.label250 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage13.SuspendLayout();
             this.tableLayoutPanel28.SuspendLayout();
@@ -912,6 +932,8 @@ namespace VTDinfo
             this.groupBox9.SuspendLayout();
             this.tableLayoutPanel29.SuspendLayout();
             this.tabControl5.SuspendLayout();
+            this.tabPage16.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.tabPage14.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.tableLayoutPanel25.SuspendLayout();
@@ -921,6 +943,7 @@ namespace VTDinfo
             this.tableLayoutPanel35.SuspendLayout();
             this.groupBox10.SuspendLayout();
             this.tableLayoutPanel31.SuspendLayout();
+            this.tableLayoutPanel36.SuspendLayout();
             this.tableLayoutPanel32.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -1208,6 +1231,7 @@ namespace VTDinfo
             // 
             // tabControl5
             // 
+            this.tabControl5.Controls.Add(this.tabPage16);
             this.tabControl5.Controls.Add(this.tabPage14);
             this.tabControl5.Controls.Add(this.tabPage15);
             this.tabControl5.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1216,6 +1240,58 @@ namespace VTDinfo
             this.tabControl5.SelectedIndex = 0;
             this.tabControl5.Size = new System.Drawing.Size(428, 218);
             this.tabControl5.TabIndex = 10;
+            // 
+            // tabPage16
+            // 
+            this.tabPage16.Controls.Add(this.groupBox7);
+            this.tabPage16.Location = new System.Drawing.Point(4, 22);
+            this.tabPage16.Name = "tabPage16";
+            this.tabPage16.Size = new System.Drawing.Size(420, 192);
+            this.tabPage16.TabIndex = 2;
+            this.tabPage16.Text = "Загрузка";
+            this.tabPage16.UseVisualStyleBackColor = true;
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.BackColor = System.Drawing.Color.LightYellow;
+            this.groupBox7.Controls.Add(this.label250);
+            this.groupBox7.Controls.Add(this.textBox443);
+            this.groupBox7.Controls.Add(this.label254);
+            this.groupBox7.Controls.Add(this.textBox442);
+            this.groupBox7.Controls.Add(this.label253);
+            this.groupBox7.Controls.Add(this.textBox441);
+            this.groupBox7.Controls.Add(this.label252);
+            this.groupBox7.Controls.Add(this.textBox440);
+            this.groupBox7.Controls.Add(this.label251);
+            this.groupBox7.Controls.Add(this.textBox439);
+            this.groupBox7.Controls.Add(this.label249);
+            this.groupBox7.Controls.Add(this.textBox438);
+            this.groupBox7.Controls.Add(this.getVtdData);
+            this.groupBox7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox7.Location = new System.Drawing.Point(0, 0);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(420, 192);
+            this.groupBox7.TabIndex = 0;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Выбор участка для обработки";
+            // 
+            // textBox438
+            // 
+            this.textBox438.Location = new System.Drawing.Point(6, 35);
+            this.textBox438.Name = "textBox438";
+            this.textBox438.Size = new System.Drawing.Size(174, 20);
+            this.textBox438.TabIndex = 1;
+            this.textBox438.Text = "1";
+            // 
+            // getVtdData
+            // 
+            this.getVtdData.Location = new System.Drawing.Point(186, 17);
+            this.getVtdData.Name = "getVtdData";
+            this.getVtdData.Size = new System.Drawing.Size(226, 38);
+            this.getVtdData.TabIndex = 0;
+            this.getVtdData.Text = "Загрузить данные ВТД";
+            this.getVtdData.UseVisualStyleBackColor = true;
+            this.getVtdData.Click += new System.EventHandler(this.getVtdData_Click);
             // 
             // tabPage14
             // 
@@ -1501,12 +1577,13 @@ namespace VTDinfo
             this.tableLayoutPanel31.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
             this.tableLayoutPanel31.Controls.Add(this.button_DrawGraph, 0, 0);
             this.tableLayoutPanel31.Controls.Add(this.richTextBox7, 0, 1);
+            this.tableLayoutPanel31.Controls.Add(this.tableLayoutPanel36, 1, 0);
             this.tableLayoutPanel31.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel31.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel31.Name = "tableLayoutPanel31";
             this.tableLayoutPanel31.RowCount = 2;
-            this.tableLayoutPanel31.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel31.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
+            this.tableLayoutPanel31.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 24.88889F));
+            this.tableLayoutPanel31.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 75.11111F));
             this.tableLayoutPanel31.Size = new System.Drawing.Size(428, 225);
             this.tableLayoutPanel31.TabIndex = 13;
             // 
@@ -1525,11 +1602,63 @@ namespace VTDinfo
             // 
             this.tableLayoutPanel31.SetColumnSpan(this.richTextBox7, 2);
             this.richTextBox7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox7.Location = new System.Drawing.Point(3, 48);
+            this.richTextBox7.Location = new System.Drawing.Point(3, 59);
             this.richTextBox7.Name = "richTextBox7";
-            this.richTextBox7.Size = new System.Drawing.Size(422, 174);
+            this.richTextBox7.Size = new System.Drawing.Size(422, 163);
             this.richTextBox7.TabIndex = 13;
             this.richTextBox7.Text = "";
+            // 
+            // tableLayoutPanel36
+            // 
+            this.tableLayoutPanel36.ColumnCount = 2;
+            this.tableLayoutPanel36.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel36.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel36.Controls.Add(this.textBoxGraphStop, 1, 0);
+            this.tableLayoutPanel36.Controls.Add(this.hScrollBar1, 0, 1);
+            this.tableLayoutPanel36.Controls.Add(this.hScrollBar2, 1, 1);
+            this.tableLayoutPanel36.Controls.Add(this.textBoxGraphStart, 0, 0);
+            this.tableLayoutPanel36.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel36.Location = new System.Drawing.Point(88, 3);
+            this.tableLayoutPanel36.Name = "tableLayoutPanel36";
+            this.tableLayoutPanel36.RowCount = 2;
+            this.tableLayoutPanel36.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel36.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel36.Size = new System.Drawing.Size(337, 50);
+            this.tableLayoutPanel36.TabIndex = 14;
+            // 
+            // textBoxGraphStop
+            // 
+            this.textBoxGraphStop.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxGraphStop.Location = new System.Drawing.Point(171, 3);
+            this.textBoxGraphStop.Name = "textBoxGraphStop";
+            this.textBoxGraphStop.Size = new System.Drawing.Size(163, 20);
+            this.textBoxGraphStop.TabIndex = 3;
+            // 
+            // hScrollBar1
+            // 
+            this.hScrollBar1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.hScrollBar1.Location = new System.Drawing.Point(0, 25);
+            this.hScrollBar1.Name = "hScrollBar1";
+            this.hScrollBar1.Size = new System.Drawing.Size(168, 25);
+            this.hScrollBar1.TabIndex = 0;
+            this.hScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBar1_Scroll);
+            // 
+            // hScrollBar2
+            // 
+            this.hScrollBar2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.hScrollBar2.Location = new System.Drawing.Point(168, 25);
+            this.hScrollBar2.Name = "hScrollBar2";
+            this.hScrollBar2.Size = new System.Drawing.Size(169, 25);
+            this.hScrollBar2.TabIndex = 1;
+            this.hScrollBar2.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBar2_Scroll);
+            // 
+            // textBoxGraphStart
+            // 
+            this.textBoxGraphStart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxGraphStart.Location = new System.Drawing.Point(3, 3);
+            this.textBoxGraphStart.Name = "textBoxGraphStart";
+            this.textBoxGraphStart.Size = new System.Drawing.Size(162, 20);
+            this.textBoxGraphStart.TabIndex = 2;
             // 
             // tableLayoutPanel32
             // 
@@ -9951,6 +10080,14 @@ namespace VTDinfo
             this.IusT.Text = "ИУС Т";
             this.IusT.UseVisualStyleBackColor = true;
             // 
+            // richTextBox8
+            // 
+            this.richTextBox8.Location = new System.Drawing.Point(558, 167);
+            this.richTextBox8.Name = "richTextBox8";
+            this.richTextBox8.Size = new System.Drawing.Size(509, 369);
+            this.richTextBox8.TabIndex = 8;
+            this.richTextBox8.Text = "";
+            // 
             // button17
             // 
             this.button17.Location = new System.Drawing.Point(251, 210);
@@ -10031,13 +10168,100 @@ namespace VTDinfo
             this.saveFileDialog1.FileName = "MG";
             this.saveFileDialog1.InitialDirectory = "C:\\Result";
             // 
-            // richTextBox8
+            // label249
             // 
-            this.richTextBox8.Location = new System.Drawing.Point(558, 167);
-            this.richTextBox8.Name = "richTextBox8";
-            this.richTextBox8.Size = new System.Drawing.Size(509, 369);
-            this.richTextBox8.TabIndex = 8;
-            this.richTextBox8.Text = "";
+            this.label249.AutoSize = true;
+            this.label249.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label249.Location = new System.Drawing.Point(6, 17);
+            this.label249.Name = "label249";
+            this.label249.Size = new System.Drawing.Size(70, 13);
+            this.label249.TabIndex = 2;
+            this.label249.Text = "ID участка";
+            // 
+            // textBox439
+            // 
+            this.textBox439.Location = new System.Drawing.Point(149, 59);
+            this.textBox439.Name = "textBox439";
+            this.textBox439.Size = new System.Drawing.Size(263, 20);
+            this.textBox439.TabIndex = 6;
+            // 
+            // textBox440
+            // 
+            this.textBox440.Location = new System.Drawing.Point(149, 85);
+            this.textBox440.Name = "textBox440";
+            this.textBox440.Size = new System.Drawing.Size(263, 20);
+            this.textBox440.TabIndex = 8;
+            // 
+            // label251
+            // 
+            this.label251.AutoSize = true;
+            this.label251.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label251.Location = new System.Drawing.Point(8, 62);
+            this.label251.Name = "label251";
+            this.label251.Size = new System.Drawing.Size(77, 13);
+            this.label251.TabIndex = 7;
+            this.label251.Text = "Газопровод";
+            // 
+            // textBox441
+            // 
+            this.textBox441.Location = new System.Drawing.Point(149, 111);
+            this.textBox441.Name = "textBox441";
+            this.textBox441.Size = new System.Drawing.Size(263, 20);
+            this.textBox441.TabIndex = 10;
+            // 
+            // label252
+            // 
+            this.label252.AutoSize = true;
+            this.label252.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label252.Location = new System.Drawing.Point(8, 88);
+            this.label252.Name = "label252";
+            this.label252.Size = new System.Drawing.Size(56, 13);
+            this.label252.TabIndex = 9;
+            this.label252.Text = "Участок";
+            // 
+            // textBox442
+            // 
+            this.textBox442.Location = new System.Drawing.Point(149, 137);
+            this.textBox442.Name = "textBox442";
+            this.textBox442.Size = new System.Drawing.Size(263, 20);
+            this.textBox442.TabIndex = 12;
+            // 
+            // label253
+            // 
+            this.label253.AutoSize = true;
+            this.label253.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label253.Location = new System.Drawing.Point(8, 114);
+            this.label253.Name = "label253";
+            this.label253.Size = new System.Drawing.Size(60, 13);
+            this.label253.TabIndex = 11;
+            this.label253.Text = "Диаметр";
+            // 
+            // textBox443
+            // 
+            this.textBox443.Location = new System.Drawing.Point(149, 163);
+            this.textBox443.Name = "textBox443";
+            this.textBox443.Size = new System.Drawing.Size(263, 20);
+            this.textBox443.TabIndex = 14;
+            // 
+            // label254
+            // 
+            this.label254.AutoSize = true;
+            this.label254.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label254.Location = new System.Drawing.Point(8, 140);
+            this.label254.Name = "label254";
+            this.label254.Size = new System.Drawing.Size(39, 13);
+            this.label254.TabIndex = 13;
+            this.label254.Text = "P втд";
+            // 
+            // label250
+            // 
+            this.label250.AutoSize = true;
+            this.label250.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label250.Location = new System.Drawing.Point(8, 166);
+            this.label250.Name = "label250";
+            this.label250.Size = new System.Drawing.Size(137, 13);
+            this.label250.TabIndex = 15;
+            this.label250.Text = "Количество дефектов";
             // 
             // Form1
             // 
@@ -10056,6 +10280,9 @@ namespace VTDinfo
             this.tableLayoutPanel29.ResumeLayout(false);
             this.tableLayoutPanel29.PerformLayout();
             this.tabControl5.ResumeLayout(false);
+            this.tabPage16.ResumeLayout(false);
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
             this.tabPage14.ResumeLayout(false);
             this.groupBox8.ResumeLayout(false);
             this.tableLayoutPanel25.ResumeLayout(false);
@@ -10068,6 +10295,8 @@ namespace VTDinfo
             this.tableLayoutPanel35.ResumeLayout(false);
             this.groupBox10.ResumeLayout(false);
             this.tableLayoutPanel31.ResumeLayout(false);
+            this.tableLayoutPanel36.ResumeLayout(false);
+            this.tableLayoutPanel36.PerformLayout();
             this.tableLayoutPanel32.ResumeLayout(false);
             this.tableLayoutPanel32.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -11040,6 +11269,26 @@ namespace VTDinfo
         private System.Windows.Forms.Button button16;
         private System.Windows.Forms.Button button17;
         private System.Windows.Forms.RichTextBox richTextBox8;
+        private System.Windows.Forms.TabPage tabPage16;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.TextBox textBox438;
+        private System.Windows.Forms.Button getVtdData;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel36;
+        private System.Windows.Forms.HScrollBar hScrollBar1;
+        private System.Windows.Forms.HScrollBar hScrollBar2;
+        private System.Windows.Forms.TextBox textBoxGraphStop;
+        private System.Windows.Forms.TextBox textBoxGraphStart;
+        private System.Windows.Forms.TextBox textBox443;
+        private System.Windows.Forms.Label label254;
+        private System.Windows.Forms.TextBox textBox442;
+        private System.Windows.Forms.Label label253;
+        private System.Windows.Forms.TextBox textBox441;
+        private System.Windows.Forms.Label label252;
+        private System.Windows.Forms.TextBox textBox440;
+        private System.Windows.Forms.Label label251;
+        private System.Windows.Forms.TextBox textBox439;
+        private System.Windows.Forms.Label label249;
+        private System.Windows.Forms.Label label250;
     }
 }
 

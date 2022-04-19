@@ -51,8 +51,8 @@ namespace VTDinfo
             public int Longitude_BHTTS;//Долгота
             public int heightAboveSeaLevel_BHTTS;//H, м
             public int defectVanishDate_BHTTS;//дата устранения дефекта
-         
-          
+
+
 
             public int pipelineSectionCategory_BHTTS;//!!!категория участка трубопровода - заполняется при обработке массива
             public int steelGrade_BHTTS;//!!!марка стали - заполняется при обработке массива
@@ -167,7 +167,7 @@ namespace VTDinfo
             public List<double> corossionDamageList = new List<double>();//поврежденность трубы от коррозии
             public List<double> DentDamageList = new List<double>();//поврежденность трубы от вмятин
             public List<double> JoinDamageList = new List<double>();//поврежденность трубы от дефектов КСС
-            
+
             public double MaximumCorrProcent;//максимальная глубина коррозии в процентах, выявленная на данной трубе
             public double MaximumDamageCorr;//максимальная поврежденность от коррозии выявленная на данной трубе
             public double MaximumDentDepth;//максимальная глубина вмятин, выявленная на данной трубе
@@ -186,7 +186,7 @@ namespace VTDinfo
                 double maxCorrDem = 0;//вычисляем максимальную поврежденность от коррозии
                 for (int j = 0; j < mGVTD.MGPipeS[i].corossionDamageList.Count; j++)
                 {
-                    if (mGVTD.MGPipeS[i].corossionDamageList[j]> maxCorrDem)
+                    if (mGVTD.MGPipeS[i].corossionDamageList[j] > maxCorrDem)
                     {
                         maxCorrDem = mGVTD.MGPipeS[i].corossionDamageList[j];
                     }
@@ -218,24 +218,24 @@ namespace VTDinfo
         }
 
         MGVTD GetMaximumValuesCorrerionInProcent(MGVTD mGVTD)//поиск максимальной коррозии на трубе
-        {            
+        {
             for (int i = 0; i < mGVTD.anomalyLogLineS.Count; i++)
             {
-                  if (mGVTD.anomalyLogLineS[i].featuresCharacter.Contains("орроз"))
+                if (mGVTD.anomalyLogLineS[i].featuresCharacter.Contains("орроз"))
                 {
                     for (int j = 0; j < mGVTD.MGPipeS.Count; j++)
                     {
                         if (String.Equals(mGVTD.anomalyLogLineS[i].pipeNumber, mGVTD.MGPipeS[j].pipeNumber))
                         {
-                            if (mGVTD.MGPipeS[j].MaximumCorrProcent< mGVTD.anomalyLogLineS[i].depthInProcent)
+                            if (mGVTD.MGPipeS[j].MaximumCorrProcent < mGVTD.anomalyLogLineS[i].depthInProcent)
                             {
-                                    mGVTD.MGPipeS[j].MaximumCorrProcent = mGVTD.anomalyLogLineS[i].depthInProcent;
-                            } 
+                                mGVTD.MGPipeS[j].MaximumCorrProcent = mGVTD.anomalyLogLineS[i].depthInProcent;
+                            }
                         }
                     }
                 }
             }
-            
+
 
 
             return mGVTD;
@@ -288,7 +288,7 @@ namespace VTDinfo
             public string note;//Примечание
             public string defectRepareDate;//дата устранения дефекта
             public bool isLostMetal = false;
-            
+
             //Для ИУС Т
 
             public int defectNumber;//номер дефекта по порядку
@@ -307,7 +307,7 @@ namespace VTDinfo
 
             public double clockOrientation;//Ориент., ч:мин
             public double pipeLength;//длина трубы
-        }  
+        }
         public class furnishingsLog//класс для хранения строки журнала элементов обустройства
         {
             public string itemNumber;//номер пункта
@@ -348,9 +348,9 @@ namespace VTDinfo
             public List<pipeCharacteristics> pipeCharacteristicsLog = new List<pipeCharacteristics>();//характеристики труб
             public List<pipelineSectionCategoryLog> pipelineSectionCategoryLogs = new List<pipelineSectionCategoryLog>();//Категории участков трубопровода
         }
-        
+
         public MGVTD mGVTD = new MGVTD();//создаём экзампляр класса для хранения данных обследования ВТД
-        
+
         public class BHTTS_pipelog_String//строка трубного журнала БХТТС
         {
             public string featuresNumber_BHTTS;//Номер особенности///1
@@ -378,11 +378,11 @@ namespace VTDinfo
         //поврежденность участка от коррозии dk++
         //поврежденность участка от трещин (0)++
         //поврежденность участка от овализации(0)++
-        public int allPipeWhithDent=0;//количество труб с вмятинами++
+        public int allPipeWhithDent = 0;//количество труб с вмятинами++
         public double summDentDamag = 0;//суммарная поврежденность от вмятин++
         //поврежденность участка от вмятин dr++
         //public double allconnectingPartsWhithDefects;//поврежденность тройников++
-        public double technicalConditionIndicatorOfPipesAndSDT=0;//показатель технического состояния труб и СДТ++
+        public double technicalConditionIndicatorOfPipesAndSDT = 0;//показатель технического состояния труб и СДТ++
         public int allPipeWhithJointDefects = 0;//количество труб с дефектами КСС++
         public double summJointDefectsDamag = 0;//суммарная поврежденность КСС
         //показатель технического состояния кольцевых швов по результатам ВТД (pш)
@@ -449,8 +449,8 @@ namespace VTDinfo
             int string4Number2 = Convert.ToInt16(numericUpDown2.Text);//последняя строка таблицы с типами труб
             int string4Number8 = Convert.ToInt16(numericUpDown3.Text);//первая строка таблицы с категориями трубопровода
             int string4Number9 = Convert.ToInt16(numericUpDown4.Text);//последняя строка таблицы с категориями трубопровода
-            
-            
+
+
             //столбцы с типом трубы
             int column4Number3 = Convert.ToInt16(textBox124.Text);
             int column4Number4 = Convert.ToInt16(textBox125.Text);
@@ -724,7 +724,7 @@ namespace VTDinfo
                 textBox170.Text = WorksheetName2.Replace(".xlsx", "");
             }
 
-            
+
 
             //получаем номера столбцов для "трубного журлала"
             int columnNumber1 = Convert.ToInt16(textBox169.Text);//номер трубы
@@ -754,7 +754,7 @@ namespace VTDinfo
 
             textBox171.Text = Convert.ToString(ObjWorkSheet2.Cells[2, columnNumber14].Text);//Категория
             textBox174.Text = Convert.ToString(ObjWorkSheet2.Cells[2, columnNumber15].Text);//Предел прочности
-                       
+
 
             //заполняем ссылки на номера столбцов для "трубного журлала"
             NumbersOfColumns.columnNumber1 = Convert.ToInt16(textBox169.Text);//номер трубы
@@ -794,12 +794,12 @@ namespace VTDinfo
             }
             catch (Exception)
             {
-                ObjWorkSheet3 = (Microsoft.Office.Interop.Excel.Worksheet)ObjWorkBook.Sheets[WorksheetName3.Replace(".xlsx","")];
+                ObjWorkSheet3 = (Microsoft.Office.Interop.Excel.Worksheet)ObjWorkBook.Sheets[WorksheetName3.Replace(".xlsx", "")];
                 textBox196.Text = WorksheetName3.Replace(".xlsx", "");
             }
-            
-            
-            
+
+
+
             //номера столбцов для "журлала аномалий"
             int column2Number1 = Convert.ToInt16(textBox195.Text);//дист по одом
             //int column2Number2 = Convert.ToInt16(textBox194.Text);//толщ
@@ -811,7 +811,7 @@ namespace VTDinfo
             int column2Number8 = Convert.ToInt16(textBox188.Text);//Длина
             int column2Number9 = Convert.ToInt16(textBox187.Text);//ширина
             int column2Number10 = Convert.ToInt16(textBox186.Text);//d %
-           
+
 
             int column2Number11 = Convert.ToInt16(textBox185.Text);//d мм
 
@@ -845,7 +845,7 @@ namespace VTDinfo
             //textBox63.Text = Convert.ToString(ObjWorkSheet3.Cells[3, column2Number18].Text);
             textBox215.Text = Convert.ToString(ObjWorkSheet3.Cells[numb, column2Number19].Text);//дата устранения
             textBox177.Text = Convert.ToString(ObjWorkSheet3.Cells[numb, column2Number20].Text);//для номера трубы
-           
+
 
 
             //номера столбцов для "журлала аномалий"
@@ -870,7 +870,7 @@ namespace VTDinfo
             NumbersOfColumns.column2Number19 = Convert.ToInt16(textBox216.Text);//дата устранения
             NumbersOfColumns.column2Number20 = Convert.ToInt16(textBox176.Text);//для номера трубы
 
-           
+
 
             ObjExcel.Quit();
 
@@ -882,7 +882,7 @@ namespace VTDinfo
             Microsoft.Office.Interop.Excel.Application ObjExcel = new Microsoft.Office.Interop.Excel.Application();
             //Открываем книгу.                                                                                                                                                        
             Microsoft.Office.Interop.Excel.Workbook ObjWorkBook = ObjExcel.Workbooks.Open(fileNameLineObjects, 0, true, 5, "", "", false, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "", true, false, 0, true, false, false);
-                        
+
             //Выбираем таблицу(лист).
             Microsoft.Office.Interop.Excel.Worksheet ObjWorkSheet4;
             string WorksheetName4 = textBox231.Text;//получаем название вкладки из формы импотра
@@ -898,7 +898,7 @@ namespace VTDinfo
             }
 
 
-            
+
 
             //номера столбцов для "журнала элементов обустройства"
             //int column3Number1 = Convert.ToInt16(textBox96.Text);
@@ -974,7 +974,7 @@ namespace VTDinfo
                             result.MGPipeS[j].itIsTee = true;
                         }
                     }
-                    
+
                 }
                 else if (mGVTD.furnishingsLogS[i].characterFeatures.Contains("ройн"))
                 {
@@ -1030,61 +1030,61 @@ namespace VTDinfo
             NumbersOfColumns.column4Number12 = Convert.ToInt16(textBox134.Text);
             NumbersOfColumns.column4Number13 = Convert.ToInt16(textBox135.Text);
 
-            
-            
-                int d = 1;
-                bool looking = true;
-                bool firstIsFind = false;//маркер, что нашли первый участок
-                while (looking)//ищем начало и конец первого журнала
-                {
-                    string pipeName = Convert.ToString(ObjWorkSheet33.Cells[d, NumbersOfColumns.column4Number3].Text);
-                    if (pipeName.Contains("олщ"))
-                    {
-                        startPosition = d + 1;
-                        firstIsFind = true;
-                    }
-                    if (firstIsFind)
-                    {
-                        if (String.IsNullOrWhiteSpace(pipeName))
-                        {
-                            finishPosition = d - 1;
-                            looking = false;
-                        }
-                    }
-                    d++;
-                }
 
-                d = finishPosition;
-                looking = true;
-                firstIsFind = false;//маркер, что нашли первый участок
-                while (looking)//ищем начало и коней второго журнала
+
+            int d = 1;
+            bool looking = true;
+            bool firstIsFind = false;//маркер, что нашли первый участок
+            while (looking)//ищем начало и конец первого журнала
+            {
+                string pipeName = Convert.ToString(ObjWorkSheet33.Cells[d, NumbersOfColumns.column4Number3].Text);
+                if (pipeName.Contains("олщ"))
                 {
-                    string pipeName = Convert.ToString(ObjWorkSheet33.Cells[d, NumbersOfColumns.column4Number3].Text);
-                    if (pipeName.Contains("руб"))
-                    {
-                        startPosition2 = d + 1;
-                        firstIsFind = true;
-                    }
-                    if (firstIsFind)
-                    {
-                        if (String.IsNullOrWhiteSpace(pipeName))
-                        {
-                            finishPosition2 = d - 1;
-                            looking = false;
-                        }
-                    }
-                    d++;
+                    startPosition = d + 1;
+                    firstIsFind = true;
                 }
-                NumbersOfColumns.string4Number1 = startPosition;
-                NumbersOfColumns.string4Number2 = finishPosition;
-                NumbersOfColumns.string4Number8 = startPosition2;
-                NumbersOfColumns.string4Number9 = finishPosition2;
-                numericUpDown1.Value = Convert.ToInt32(startPosition);
-                numericUpDown2.Value = Convert.ToInt32(finishPosition);
-                numericUpDown4.Value = Convert.ToInt32(startPosition2);
-                numericUpDown3.Value = Convert.ToInt32(finishPosition2);
-                ObjExcel.Quit();
-            
+                if (firstIsFind)
+                {
+                    if (String.IsNullOrWhiteSpace(pipeName))
+                    {
+                        finishPosition = d - 1;
+                        looking = false;
+                    }
+                }
+                d++;
+            }
+
+            d = finishPosition;
+            looking = true;
+            firstIsFind = false;//маркер, что нашли первый участок
+            while (looking)//ищем начало и коней второго журнала
+            {
+                string pipeName = Convert.ToString(ObjWorkSheet33.Cells[d, NumbersOfColumns.column4Number3].Text);
+                if (pipeName.Contains("руб"))
+                {
+                    startPosition2 = d + 1;
+                    firstIsFind = true;
+                }
+                if (firstIsFind)
+                {
+                    if (String.IsNullOrWhiteSpace(pipeName))
+                    {
+                        finishPosition2 = d - 1;
+                        looking = false;
+                    }
+                }
+                d++;
+            }
+            NumbersOfColumns.string4Number1 = startPosition;
+            NumbersOfColumns.string4Number2 = finishPosition;
+            NumbersOfColumns.string4Number8 = startPosition2;
+            NumbersOfColumns.string4Number9 = finishPosition2;
+            numericUpDown1.Value = Convert.ToInt32(startPosition);
+            numericUpDown2.Value = Convert.ToInt32(finishPosition);
+            numericUpDown4.Value = Convert.ToInt32(startPosition2);
+            numericUpDown3.Value = Convert.ToInt32(finishPosition2);
+            ObjExcel.Quit();
+
 
         }
 
@@ -1182,37 +1182,37 @@ namespace VTDinfo
 
             richTextBox7.AppendText(Environment.NewLine + "Выполняется обработка журнала учтенных объектов...");
             richTextBox7.AppendText(Environment.NewLine + "->*");
-            
+
             int incrementor = 0;//переменная для прогресс - индикатора
             bool noFinalString = true;
             int i = 5;
             while (noFinalString)
             {
-               
-                    pipeSectionLog PipeSectionLog = new pipeSectionLog();//создаём экземпляр класса строки журнала
 
-                    try
-                    {
-                        PipeSectionLog.pipelineID = Convert.ToInt16(ObjWorkSheet2.Cells[i, 1].Text);
-                    }
-                    catch (Exception)
-                    {
-                        PipeSectionLog.pipelineID = 0;
-                        noFinalString = false;                    
-                    }
-               // richTextBox7.AppendText(Environment.NewLine + Convert.ToString(i));
-                               
-                    PipeSectionLog.LPUMG_name = Convert.ToString(ObjWorkSheet2.Cells[i, 2].Text);//
-                    PipeSectionLog.pipelineName = Convert.ToString(ObjWorkSheet2.Cells[i, 3].Text);//
-                    PipeSectionLog.pipelineSection = Convert.ToString(ObjWorkSheet2.Cells[i, 4].Text);//
-                    PipeSectionLog.isVTD = Convert.ToString(ObjWorkSheet2.Cells[i, 27].Text);//
+                pipeSectionLog PipeSectionLog = new pipeSectionLog();//создаём экземпляр класса строки журнала
+
+                try
+                {
+                    PipeSectionLog.pipelineID = Convert.ToInt16(ObjWorkSheet2.Cells[i, 1].Text);
+                }
+                catch (Exception)
+                {
+                    PipeSectionLog.pipelineID = 0;
+                    noFinalString = false;
+                }
+                // richTextBox7.AppendText(Environment.NewLine + Convert.ToString(i));
+
+                PipeSectionLog.LPUMG_name = Convert.ToString(ObjWorkSheet2.Cells[i, 2].Text);//
+                PipeSectionLog.pipelineName = Convert.ToString(ObjWorkSheet2.Cells[i, 3].Text);//
+                PipeSectionLog.pipelineSection = Convert.ToString(ObjWorkSheet2.Cells[i, 4].Text);//
+                PipeSectionLog.isVTD = Convert.ToString(ObjWorkSheet2.Cells[i, 27].Text);//
                 i++;
-                    incrementor++;//сделаем прогресс-индикатор, чтобы было не так скучно ждать.
-                    if (incrementor == 50)
-                    {
-                        richTextBox7.AppendText("*");
-                        incrementor = 0;
-                    }
+                incrementor++;//сделаем прогресс-индикатор, чтобы было не так скучно ждать.
+                if (incrementor == 50)
+                {
+                    richTextBox7.AppendText("*");
+                    incrementor = 0;
+                }
 
                 if (String.IsNullOrEmpty(PipeSectionLog.LPUMG_name))
                 {
@@ -1223,10 +1223,10 @@ namespace VTDinfo
                     pipeSectionS.Add(PipeSectionLog);//добавляем заполненный экземпляр класса к списку
                 }
             }
-            
-            
 
-            richTextBox7.AppendText(Environment.NewLine + "Массив данных из журнала учтенных объектов прочитан. Количество строк: "+ pipeSectionS.Count);
+
+
+            richTextBox7.AppendText(Environment.NewLine + "Массив данных из журнала учтенных объектов прочитан. Количество строк: " + pipeSectionS.Count);
             richTextBox7.AppendText(Environment.NewLine + "==========================================");
             return pipeSectionS;
         }
@@ -1240,7 +1240,7 @@ namespace VTDinfo
 
         private void get_MG_ID(List<pipeSectionLog> pipeSectionS)
         {
-            richTextBox7.AppendText(Environment.NewLine + CheckedItem.LPUMG_name + "_"+ CheckedItem.pipelineName + "_" + CheckedItem.pipelineSection);
+            richTextBox7.AppendText(Environment.NewLine + CheckedItem.LPUMG_name + "_" + CheckedItem.pipelineName + "_" + CheckedItem.pipelineSection);
 
             for (int i = 0; i < pipeSectionS.Count; i++)
             {
@@ -1248,7 +1248,7 @@ namespace VTDinfo
                 if (String.Equals(CheckedItem.LPUMG_name, pipeSectionS[i].LPUMG_name) & String.Equals(CheckedItem.pipelineName, pipeSectionS[i].pipelineName) & String.Equals(CheckedItem.pipelineSection, pipeSectionS[i].pipelineSection))
                 {
                     MG_ID.Text = Convert.ToString(pipeSectionS[i].pipelineID);
-                    if (String.IsNullOrWhiteSpace(pipeSectionS[i].isVTD)==false)
+                    if (String.IsNullOrWhiteSpace(pipeSectionS[i].isVTD) == false)
                     {
                         MG_ID.BackColor = Color.Green;
                     }
@@ -1259,14 +1259,14 @@ namespace VTDinfo
                     CheckedItem.pipelineID = pipeSectionS[i].pipelineID;
                 }
             }
-            
-            
-            
+
+
+
 
         }
         private void setComboBoxes(List<pipeSectionLog> pipeSectionS)//добавляем в комбобокс с перечнем ЛПУМГ названия ЛПУМГ
         {
-            LPUMG_Check.SelectedIndex = -1;            
+            LPUMG_Check.SelectedIndex = -1;
             MG_Check.SelectedIndex = -1;
             pipelineSection_Check.SelectedIndex = -1;
             LPUMG_Check.Text = "";
@@ -1443,15 +1443,15 @@ namespace VTDinfo
             return PipelineInfo;
         }
         private pipelineInfo operatingReadToClassPipeInfoSOD()//ДЛЯ СОД!!!метод для чтения из файла отчета ВТД информации о трубопроводе
-        {            
+        {
             pipelineInfo PipelineInfo = new pipelineInfo();
 
-            
+
             PipelineInfo.operatingPressure = Convert.ToDouble(textBox147.Text);
             PipelineInfo.pipeDiameter = Convert.ToDouble(textBox146.Text);
             PipelineInfo.pipelineName = textBox230.Text;
             PipelineInfo.pipelineSection = textBox232.Text;
-            PipelineInfo.comissioningYear= textBox383.Text;
+            PipelineInfo.comissioningYear = textBox383.Text;
             PipelineInfo.examinationDate = textBox382.Text;
             PipelineInfo.contractor = "АО \"Газпром оргэнергогаз\" филиал \"Саратоворгдиагностиика\"";
             richTextBox3.AppendText(Environment.NewLine + "================================================");
@@ -1861,7 +1861,7 @@ namespace VTDinfo
                 try
                 {
                     FurnishingsLog.odometrDist = Convert.ToDouble(txt.Replace(".", ","));//длина
-                    
+
                 }
                 catch (Exception)
                 {
@@ -1874,7 +1874,7 @@ namespace VTDinfo
                 try
                 {
                     FurnishingsLog.pipeLength = Convert.ToDouble(txt.Replace(".", ","));//длина
-                    
+
                 }
                 catch (Exception)
                 {
@@ -1890,7 +1890,7 @@ namespace VTDinfo
                 try
                 {
                     FurnishingsLog.distanceToNextFeature = Convert.ToDouble(txt.Replace(".", ","));//длина
-                    
+
                 }
                 catch (Exception)
                 {
@@ -1904,7 +1904,7 @@ namespace VTDinfo
                 try
                 {
                     FurnishingsLog.heightAboveSeaLevel = Convert.ToDouble(txt.Replace(".", ","));//длина
-                    
+
                 }
                 catch (Exception)
                 {
@@ -1913,7 +1913,7 @@ namespace VTDinfo
                 //FurnishingsLog.heightAboveSeaLevel = Convert.ToString(ObjWorkSheet2.Cells[i + 1, NumbersOfColumns.column3Number12].Text);//H, м
                 FurnishingsLog.note = Convert.ToString(ObjWorkSheet2.Cells[i + 1, NumbersOfColumns.column3Number13].Text);//Примечание
 
-                
+
                 if (String.IsNullOrWhiteSpace(FurnishingsLog.characterFeatures))
                 {
                     mark = false;//дошли до конца трубного журлала
@@ -1957,8 +1957,8 @@ namespace VTDinfo
             ObjWorkSheet2 = (Microsoft.Office.Interop.Excel.Worksheet)ObjWorkBook.Sheets[WorksheetName];
 
             List<furnishingsLog> furnishingsLogS = new List<furnishingsLog>();
-            richTextBox3.Invoke(new Action(()=> richTextBox3.AppendText(Environment.NewLine + "Выполняется обработка журнала элементов обустройства...")));
-            richTextBox3.Invoke(new Action(()=> richTextBox3.AppendText(Environment.NewLine + "->*")));
+            richTextBox3.Invoke(new Action(() => richTextBox3.AppendText(Environment.NewLine + "Выполняется обработка журнала элементов обустройства...")));
+            richTextBox3.Invoke(new Action(() => richTextBox3.AppendText(Environment.NewLine + "->*")));
             //AppendText(Environment.NewLine + "Выполняется обработка журнала элементов обустройства...");
             //richTextBox3.AppendText(Environment.NewLine + "->*");
             //int pipeListCount = Convert.ToInt16(textBox111.Text);//получаем длину журнала из формы
@@ -1997,7 +1997,7 @@ namespace VTDinfo
                     FurnishingsLog.pipeLength = 0;
                 }*/
                 //FurnishingsLog.pipeLength = Convert.ToString(ObjWorkSheet2.Cells[i + 1, NumbersOfColumns.column3Number4].Text);//длина трубы
-               // FurnishingsLog.distanceFromTransverseWeld = Convert.ToString(ObjWorkSheet2.Cells[i + 1, NumbersOfColumns.column3Number5].Text);//расстояние от поперечного шва, м
+                // FurnishingsLog.distanceFromTransverseWeld = Convert.ToString(ObjWorkSheet2.Cells[i + 1, NumbersOfColumns.column3Number5].Text);//расстояние от поперечного шва, м
                 FurnishingsLog.characterFeatures = Convert.ToString(ObjWorkSheet2.Cells[i + 1, NumbersOfColumns.column3Number6].Text);// характер особенности
                 FurnishingsLog.designations = Convert.ToString(ObjWorkSheet2.Cells[i + 1, NumbersOfColumns.column3Number7].Text);//обозначение
                 //FurnishingsLog.marker = Convert.ToString(ObjWorkSheet2.Cells[i + 1, NumbersOfColumns.column3Number8].Text);//маркер
@@ -2044,15 +2044,15 @@ namespace VTDinfo
                 incrementor++;//сделаем прогресс-индикатор, чтобы было не так скучно ждать.
                 if (incrementor > 9)
                 {
-                    richTextBox3.Invoke(new Action(()=> richTextBox3.AppendText("*")));
+                    richTextBox3.Invoke(new Action(() => richTextBox3.AppendText("*")));
                     //richTextBox1.AppendText("*");
                     incrementor = 0;
                 }
                 i++;
             }
             //textBox111.Text = Convert.ToString(i);//записываем в поле номер последней строки
-            richTextBox3.Invoke(new Action(()=> richTextBox3.AppendText(Environment.NewLine + "Массив данных из журнала элементов обустройства прочитан, количество строк:" + furnishingsLogS.Count)));
-            richTextBox3.Invoke(new Action(()=> richTextBox3.AppendText(Environment.NewLine + "==========================================")));
+            richTextBox3.Invoke(new Action(() => richTextBox3.AppendText(Environment.NewLine + "Массив данных из журнала элементов обустройства прочитан, количество строк:" + furnishingsLogS.Count)));
+            richTextBox3.Invoke(new Action(() => richTextBox3.AppendText(Environment.NewLine + "==========================================")));
 
             //richTextBox3.AppendText(Environment.NewLine + "Массив данных из журнала элементов обустройства прочитан, количество строк:" + furnishingsLogS.Count);
             //richTextBox3.AppendText(Environment.NewLine + "==========================================");
@@ -2074,7 +2074,7 @@ namespace VTDinfo
 
             List<furnishingsLog> furnishingsLogS = new List<furnishingsLog>();
 
-            richTextBox5.Invoke(new Action(()=> richTextBox5.AppendText(Environment.NewLine + "Выполняется обработка журнала элементов обустройства...")));
+            richTextBox5.Invoke(new Action(() => richTextBox5.AppendText(Environment.NewLine + "Выполняется обработка журнала элементов обустройства...")));
             richTextBox5.Invoke(new Action(() => richTextBox5.AppendText(Environment.NewLine + "->*")));
             //richTextBox5.AppendText(Environment.NewLine + "Выполняется обработка журнала элементов обустройства...");
             //richTextBox5.AppendText(Environment.NewLine + "->*");
@@ -2161,13 +2161,13 @@ namespace VTDinfo
                 incrementor++;//сделаем прогресс-индикатор, чтобы было не так скучно ждать.
                 if (incrementor > 9)
                 {
-                    richTextBox5.Invoke(new Action(()=>richTextBox5.AppendText("*")));                    
+                    richTextBox5.Invoke(new Action(() => richTextBox5.AppendText("*")));
                     incrementor = 0;
                 }
                 i++;
             }
             //textBox111.Text = Convert.ToString(i);//записываем в поле номер последней строки
-            richTextBox5.Invoke(new Action(()=> richTextBox5.AppendText(Environment.NewLine + "Массив данных из журнала элементов обустройства прочитан, количество строк:" + furnishingsLogS.Count)));
+            richTextBox5.Invoke(new Action(() => richTextBox5.AppendText(Environment.NewLine + "Массив данных из журнала элементов обустройства прочитан, количество строк:" + furnishingsLogS.Count)));
             richTextBox5.Invoke(new Action(() => richTextBox5.AppendText(Environment.NewLine + "==========================================")));
             ObjExcel.Quit();
             return furnishingsLogS;
@@ -2196,7 +2196,7 @@ namespace VTDinfo
                     //FurnishingsLog.designations = mGVTD.MGPipeS[j].designations;//обозначение
                     FurnishingsLog.note = mGVTD.MGPipeS[j].note;//Примечание
                     furnishingsLogS.Add(FurnishingsLog);
-                    
+
                 }
             }
             richTextBox5.Invoke(new Action(() => richTextBox5.AppendText(Environment.NewLine + "Журнал элементов обустройства заполнен, количество строк:" + furnishingsLogS.Count)));
@@ -2204,7 +2204,7 @@ namespace VTDinfo
             richTextBox6.Invoke(new Action(() => richTextBox6.AppendText(Environment.NewLine + "Журнал элементов обустройства заполнен, количество строк:" + furnishingsLogS.Count)));
             richTextBox6.Invoke(new Action(() => richTextBox6.AppendText(Environment.NewLine + "==========================================")));
 
-           
+
             return furnishingsLogS;
 
         }
@@ -2231,7 +2231,7 @@ namespace VTDinfo
             //int pipeListCount = Convert.ToInt16(textBox111.Text);//получаем длину журнала из формы
             int incrementor = 0;//переменная для прогресс - индикатора
 
-            
+
 
             for (int i = NumbersOfColumns.string4Number1; i < NumbersOfColumns.string4Number2 + 1; i++)
             {
@@ -2278,7 +2278,7 @@ namespace VTDinfo
                 incrementor++;//сделаем прогресс-индикатор, чтобы было не так скучно ждать.
                 if (incrementor > 4)
                 {
-                   // richTextBox1.AppendText("*");
+                    // richTextBox1.AppendText("*");
                     richTextBox1.Invoke(new Action(() => richTextBox1.AppendText(Environment.NewLine + "*")));
                     incrementor = 0;
                 }
@@ -2593,9 +2593,9 @@ namespace VTDinfo
                     mGPipe.heightAboveSeaLevel = 0;
                 }*/
                 mGPipe.note = Convert.ToString(ObjWorkSheet2.Cells[i + 1, NumbersOfColumns.columnNumber13].Text);
-                if (String.IsNullOrEmpty(Convert.ToString(ObjWorkSheet2.Cells[i + 1, NumbersOfColumns.columnNumber14].Text))==false)
+                if (String.IsNullOrEmpty(Convert.ToString(ObjWorkSheet2.Cells[i + 1, NumbersOfColumns.columnNumber14].Text)) == false)
                 {
-                    string localCategory= Convert.ToString(ObjWorkSheet2.Cells[i + 1, NumbersOfColumns.columnNumber14].Text);
+                    string localCategory = Convert.ToString(ObjWorkSheet2.Cells[i + 1, NumbersOfColumns.columnNumber14].Text);
                     if (localCategory.Contains("I"))
                     {
                         mGPipe.pipelineSectionCategory = "1";
@@ -2630,8 +2630,8 @@ namespace VTDinfo
                     }
                     catch (Exception)
                     {
-                        mGPipe.tensileStrength = 550;                        
-                    }                     
+                        mGPipe.tensileStrength = 550;
+                    }
                 }
                 else
                 {
@@ -2656,7 +2656,7 @@ namespace VTDinfo
                     richTextBox1.Invoke(new Action(() => richTextBox1.AppendText("*")));
                     incrementor = 0;
                 }
-                i++;   
+                i++;
             }
 
             //textBox95.Text = Convert.ToString(i);//записываем в поле количество труб
@@ -2682,8 +2682,8 @@ namespace VTDinfo
             string WorksheetName2 = textBox170.Text;//получаем название вкладки из формы импотра (трубный журнал)
             ObjWorkSheet2 = (Microsoft.Office.Interop.Excel.Worksheet)ObjWorkBook.Sheets[WorksheetName2];
 
-            
-            richTextBox3.Invoke(new Action(()=> richTextBox3.AppendText(Environment.NewLine+ "Выполняется обработка трубного журнала...")));
+
+            richTextBox3.Invoke(new Action(() => richTextBox3.AppendText(Environment.NewLine + "Выполняется обработка трубного журнала...")));
             richTextBox3.Invoke(new Action(() => richTextBox3.AppendText(Environment.NewLine + "->*")));
 
             //richTextBox3.AppendText(Environment.NewLine + "Выполняется обработка трубного журнала...");
@@ -2710,7 +2710,7 @@ namespace VTDinfo
                 catch (Exception)
                 {
                     mGPipe.odometrDist = 0;
-                    richTextBox3.Invoke(new Action(()=>richTextBox3.AppendText(Environment.NewLine+"^")));
+                    richTextBox3.Invoke(new Action(() => richTextBox3.AppendText(Environment.NewLine + "^")));
                     //richTextBox3.AppendText(Environment.NewLine + "^");
                 }
 
@@ -2739,7 +2739,7 @@ namespace VTDinfo
                 }
                 txt = Convert.ToString(ObjWorkSheet2.Cells[i + 1, NumbersOfColumns.columnNumber7].Text);
 
-                    mGPipe.clockOrientation = txt.Replace(".", ",");
+                mGPipe.clockOrientation = txt.Replace(".", ",");
 
                 //mGPipe.distanceFromReferencePoints = Convert.ToString(ObjWorkSheet2.Cells[i + 1, NumbersOfColumns.columnNumber5].Text);
                 mGPipe.characterFeatures = Convert.ToString(ObjWorkSheet2.Cells[i + 1, NumbersOfColumns.columnNumber6].Text);
@@ -2843,19 +2843,19 @@ namespace VTDinfo
                 incrementor++;//сделаем прогресс-индикатор, чтобы было не так скучно ждать.
                 if (incrementor == 100)
                 {
-                    richTextBox3.Invoke(new Action(()=> richTextBox3.AppendText("*")));
+                    richTextBox3.Invoke(new Action(() => richTextBox3.AppendText("*")));
                     //richTextBox3.AppendText("*");
                     incrementor = 0;
                 }
                 i++;
             }
-            textBox95.Invoke(new Action(()=> textBox95.Text=Convert.ToString(i)));
+            textBox95.Invoke(new Action(() => textBox95.Text = Convert.ToString(i)));
             //textBox95.Text = Convert.ToString(i);//записываем в поле количество труб
-            richTextBox3.Invoke(new Action(()=>richTextBox3.AppendText(Environment.NewLine+ "Массив данных из трубного журнала прочитан, количество труб: " + OMGPipeS.Count)));
+            richTextBox3.Invoke(new Action(() => richTextBox3.AppendText(Environment.NewLine + "Массив данных из трубного журнала прочитан, количество труб: " + OMGPipeS.Count)));
 
             //richTextBox3.AppendText(Environment.NewLine + "Массив данных из трубного журнала прочитан, количество труб: " + OMGPipeS.Count);
 
-            richTextBox3.Invoke(new Action(()=> richTextBox3.AppendText(Environment.NewLine+ "==========================================")));
+            richTextBox3.Invoke(new Action(() => richTextBox3.AppendText(Environment.NewLine + "==========================================")));
             //richTextBox3.AppendText(Environment.NewLine + "==========================================");
             ObjExcel.Quit();
             return OMGPipeS;
@@ -2872,7 +2872,7 @@ namespace VTDinfo
             Microsoft.Office.Interop.Excel.Worksheet ObjWorkSheet2;
             string WorksheetName2 = textBox250.Text;//получаем название вкладки из формы импотра (трубный журнал)
             ObjWorkSheet2 = (Microsoft.Office.Interop.Excel.Worksheet)ObjWorkBook.Sheets[WorksheetName2];
-            richTextBox5.Invoke(new Action(()=> richTextBox5.AppendText(Environment.NewLine + "Выполняется обработка трубного журнала...")));
+            richTextBox5.Invoke(new Action(() => richTextBox5.AppendText(Environment.NewLine + "Выполняется обработка трубного журнала...")));
 
             //richTextBox5.AppendText(Environment.NewLine + "Выполняется обработка трубного журнала...");
             richTextBox5.Invoke(new Action(() => richTextBox5.AppendText(Environment.NewLine + "->*")));
@@ -3054,23 +3054,24 @@ namespace VTDinfo
 
 
             //textBox95.Text = Convert.ToString(i);//записываем в поле количество труб
-            richTextBox5.Invoke(new Action(()=> richTextBox5.AppendText(Environment.NewLine + "Массив данных из трубного журнала прочитан, количество труб: " + OMGPipeS.Count)));
+            richTextBox5.Invoke(new Action(() => richTextBox5.AppendText(Environment.NewLine + "Массив данных из трубного журнала прочитан, количество труб: " + OMGPipeS.Count)));
             richTextBox5.Invoke(new Action(() => richTextBox5.AppendText(Environment.NewLine + "==========================================")));
             //richTextBox5.AppendText(Environment.NewLine + "Массив данных из трубного журнала прочитан, количество труб: " + OMGPipeS.Count);
             //richTextBox5.AppendText(Environment.NewLine + "==========================================");
             ObjExcel.Quit();
             return OMGPipeS;
         }
-        
-        private MGVTD GetCritikalThiknessForAll (MGVTD mGVTD)
+
+        private MGVTD GetCritikalThiknessForAll(MGVTD mGVTD)
         {
             for (int i = 0; i < mGVTD.MGPipeS.Count; i++)
             {
                 mGVTD.MGPipeS[i].critikalThikness = GetCritikalThikness(mGVTD.pipelineInfo.operatingPressure, mGVTD.pipelineInfo.pipeDiameter, mGVTD.MGPipeS[i].tensileStrength, Convert.ToInt32(mGVTD.MGPipeS[i].pipelineSectionCategory));
-
-                double Vcorr = (0.01*mGVTD.MGPipeS[i].MaximumCorrProcent* mGVTD.MGPipeS[i].thikness) / (2021- Convert.ToDouble(mGVTD.pipelineInfo.comissioningYear));
+                //richTextBox7.AppendText(Environment.NewLine + "CritikalThikness " + mGVTD.MGPipeS[i].critikalThikness+"_"+ mGVTD.pipelineInfo.operatingPressure + "Diam " + mGVTD.pipelineInfo.pipeDiameter+"_"+ mGVTD.MGPipeS[i].tensileStrength+"_"+ mGVTD.MGPipeS[i].pipelineSectionCategory);
+                double Vcorr = (0.01 * mGVTD.MGPipeS[i].MaximumCorrProcent * mGVTD.MGPipeS[i].thikness) / (DateTime.Now.Year - Convert.ToDouble(mGVTD.pipelineInfo.comissioningYear));
                 double minimumThikness = mGVTD.MGPipeS[i].thikness - 0.01 * mGVTD.MGPipeS[i].MaximumCorrProcent * mGVTD.MGPipeS[i].thikness;
-                if (Vcorr>0)
+                //richTextBox7.AppendText(Environment.NewLine + "Vcorr " + Vcorr + "MaxCorrProc " + mGVTD.MGPipeS[i].MaximumCorrProcent+" thikn"+ mGVTD.MGPipeS[i].thikness);
+                if (Vcorr > 0)
                 {
                     mGVTD.MGPipeS[i].residualResource = (minimumThikness - mGVTD.MGPipeS[i].critikalThikness) / Vcorr;
                 }
@@ -3078,21 +3079,21 @@ namespace VTDinfo
                 {
                     mGVTD.MGPipeS[i].residualResource = 20;
                 }
-                if (mGVTD.MGPipeS[i].residualResource<10)
+                if (mGVTD.MGPipeS[i].residualResource < 10)
                 {
-                    richTextBox7.AppendText(Environment.NewLine + "Труба № " + mGVTD.MGPipeS[i].pipeNumber+" имеет ост. ресурс: "+Math.Round(mGVTD.MGPipeS[i].residualResource,1 )+ " лет. Макс. глуб. коррозии: " + mGVTD.MGPipeS[i].MaximumCorrProcent+" %");
+                    richTextBox7.AppendText(Environment.NewLine + "Труба № " + mGVTD.MGPipeS[i].pipeNumber + " имеет ост. ресурс: " + Math.Round(mGVTD.MGPipeS[i].residualResource, 1) + " лет. Макс. глуб. коррозии: " + mGVTD.MGPipeS[i].MaximumCorrProcent + " %");
                 }
             }
             return mGVTD;
         }
-        private double GetCritikalThikness(double p, double Dh, double Ri, int kategory)
+        private double GetCritikalThikness(double p, double Dh, double Ri, int kategory)//давление, диаметр, сопр. разр., категория участка
         {
-            double result=0;
-            double n = 1.2;
-            double k1 = 1.1;            
-            double m = 0.825;
-            double kn = 1.1;
-            if (kategory==1|kategory==2)
+            double result = 0;
+            double n = 1.2;//коэфф. над. по нагр
+            double k1 = 1.1;//Коэфф. над. по метериалу
+            double m = 0.825;//коэфф.
+            double kn = 1.1;//коэфф. над. по назначению
+            if (kategory == 1 | kategory == 2)
             {
                 m = 0.825;
             }
@@ -3104,8 +3105,7 @@ namespace VTDinfo
             {
                 m = 0.99;
             }
-
-            if (Dh<1000)
+            if (Dh < 1000)
             {
                 kn = 1.1;
             }
@@ -3122,11 +3122,14 @@ namespace VTDinfo
                 kn = 1.21;
             }
 
-            double R = (Ri * m) / (k1*kn);
-            result = (n * p * Dh) / (2*(R+n*p));
+            //result = (n*p*Dh) / (2*((Ri*m)/((k1+kn)+n*p)));
+            //result = n * p * Dh / (2 * (Ri * m) / (k1 * kn) + n * p);
+            result = (n * p * Dh) / (2 * (Ri + n * p));
+            //double R = (Ri * m) / (k1 * kn);
+            //result = (n * p * Dh) / (2 * (R + n * p));
             return result;
         }
-        private MGVTD OperatingReadToClassPipeLogHimself(string fileName,string worksheetName)//для БХТТС с автофинишем/КОРОТКИЙ!!!метод для чтения из файла отчета ВТД информации о трубопроводе
+        private MGVTD OperatingReadToClassPipeLogHimself(string fileName, string worksheetName)//для БХТТС с автофинишем/КОРОТКИЙ!!!метод для чтения из файла отчета ВТД информации о трубопроводе
         {
             //Создаём приложение.
             Microsoft.Office.Interop.Excel.Application ObjExcel = new Microsoft.Office.Interop.Excel.Application();
@@ -3139,14 +3142,14 @@ namespace VTDinfo
             string WorksheetName2 = worksheetName;//получаем название вкладки из формы импотра (трубный журнал) "SonarFormat"
             ObjWorkSheet2 = (Microsoft.Office.Interop.Excel.Worksheet)ObjWorkBook.Sheets[WorksheetName2];
             MGVTD result = new MGVTD();
-            richTextBox7.Invoke(new Action(()=> richTextBox7.AppendText(Environment.NewLine + "Выполняется обработка трубного журнала...")));
+            richTextBox7.Invoke(new Action(() => richTextBox7.AppendText(Environment.NewLine + "Выполняется обработка трубного журнала...")));
             richTextBox7.Invoke(new Action(() => richTextBox7.AppendText(Environment.NewLine + "->*")));
             //richTextBox7.Invoke(new Action(() =>));
             //int pipeListCount = Convert.ToInt16(textBox95.Text);//получаем длину журнала из формы
             int incrementor = 0;//переменная для прогресс - индикатора
             List<MGPipe> MGPipes = new List<MGPipe>();//трубный журнал
-            List <anomalyLogLine> anomalyLog = new List<anomalyLogLine>();
-            List <furnishingsLog> furnishingsLog = new List<furnishingsLog>();
+            List<anomalyLogLine> anomalyLog = new List<anomalyLogLine>();
+            List<furnishingsLog> furnishingsLog = new List<furnishingsLog>();
 
 
             pipelineInfo info = new pipelineInfo();
@@ -3161,22 +3164,22 @@ namespace VTDinfo
             result.pipelineInfo = info;
 
             int i = 2;
-            bool mark = true;            
+            bool mark = true;
             while (mark)
             {
 
 
 
-                MGPipe MG_Pipe = new MGPipe();                
+                MGPipe MG_Pipe = new MGPipe();
                 anomalyLogLine anomalyLog_Line = new anomalyLogLine();
                 furnishingsLog furnishings_Log = new furnishingsLog();
                 //MG_Pipe.pipelineSectionCategory = "1";
                 //MG_Pipe.tensileStrength = 550;
-                string featuresNumber_BHTTS=Convert.ToString(ObjWorkSheet2.Cells[i, 1].Text);//Номер особенности///1
-                string pipeNumber_BHTTS= Convert.ToString(ObjWorkSheet2.Cells[i, 2].Text);//номер трубы///2
+                string featuresNumber_BHTTS = Convert.ToString(ObjWorkSheet2.Cells[i, 1].Text);//Номер особенности///1
+                string pipeNumber_BHTTS = Convert.ToString(ObjWorkSheet2.Cells[i, 2].Text);//номер трубы///2
 
-                if (String.IsNullOrEmpty(Convert.ToString(ObjWorkSheet2.Cells[i, 1].Text))& String.IsNullOrEmpty(Convert.ToString(ObjWorkSheet2.Cells[i, 2].Text))==false)//если "Номер особенности" пустой, значит строка содержит сведения о трубе
-                {                   
+                if (String.IsNullOrEmpty(Convert.ToString(ObjWorkSheet2.Cells[i, 1].Text)) & String.IsNullOrEmpty(Convert.ToString(ObjWorkSheet2.Cells[i, 2].Text)) == false)//если "Номер особенности" пустой, значит строка содержит сведения о трубе
+                {
                     //MG_Pipe.pipeID = ConvertToInt(ObjWorkSheet2.Cells[i, 2].Text);//
                     MG_Pipe.pipeNumber = Convert.ToString(ObjWorkSheet2.Cells[i, 2].Text);//номер трубы
                     MG_Pipe.odometrDist = ConvertToDouble(ObjWorkSheet2.Cells[i, 3].Text);//дистанция по одометру
@@ -3198,7 +3201,7 @@ namespace VTDinfo
                     MG_Pipe.yieldPoint = ConvertToDouble(ObjWorkSheet2.Cells[i, 18].Text);//!!!предел текучести - заполняется при обработке массива
                     MG_Pipe.tensileStrength = ConvertToDouble(ObjWorkSheet2.Cells[i, 19].Text);//!!!предел прочности - заполняется при обработке массива
                     MGPipes.Add(MG_Pipe);
-                    if (String.IsNullOrEmpty(Convert.ToString(ObjWorkSheet2.Cells[i, 14].Text))==false)//Запись для журнала элементоов обустройства
+                    if (String.IsNullOrEmpty(Convert.ToString(ObjWorkSheet2.Cells[i, 14].Text)) == false)//Запись для журнала элементоов обустройства
                     {
                         //furnishings_Log.itemNumber= Convert.ToString(ObjWorkSheet2.Cells[i, 17].Text);//номер пункта
                         furnishings_Log.pipeNumber = Convert.ToString(ObjWorkSheet2.Cells[i, 2].Text);//номер трубы
@@ -3214,7 +3217,7 @@ namespace VTDinfo
                         //furnishings_Log.heightAboveSeaLevel;//H, м
                         furnishings_Log.note = Convert.ToString(ObjWorkSheet2.Cells[i, 14].Text);//Примечание
                         furnishingsLog.Add(furnishings_Log);
-                     }
+                    }
                 }
                 else if (String.IsNullOrEmpty(Convert.ToString(ObjWorkSheet2.Cells[i, 1].Text)) == false & String.IsNullOrEmpty(Convert.ToString(ObjWorkSheet2.Cells[i, 2].Text)) == false)//значит это дефект
                 {
@@ -3239,7 +3242,7 @@ namespace VTDinfo
                     anomalyLog_Line.note = Convert.ToString(ObjWorkSheet2.Cells[i, 14].Text);//Примечание
                     anomalyLog_Line.defectRepareDate = Convert.ToString(ObjWorkSheet2.Cells[i, 20].Text);//дата устранения дефекта
                     anomalyLog.Add(anomalyLog_Line);
-                 }
+                }
 
                 if (String.IsNullOrWhiteSpace(featuresNumber_BHTTS) & String.IsNullOrWhiteSpace(pipeNumber_BHTTS))
                 {
@@ -3252,7 +3255,7 @@ namespace VTDinfo
                 incrementor++;//сделаем прогресс-индикатор, чтобы было не так скучно ждать.
                 if (incrementor == 100)
                 {
-                    
+
                     richTextBox7.Invoke(new Action(() => richTextBox7.AppendText("*")));
                     incrementor = 0;
                 }
@@ -3604,7 +3607,7 @@ namespace VTDinfo
                 try
                 {
                     AnomalyLogLine.thikness = Convert.ToDouble(txt.Replace(".", ","));//длина
-                    
+
                 }
                 catch (Exception)
                 {
@@ -3622,7 +3625,7 @@ namespace VTDinfo
                 try
                 {
                     AnomalyLogLine.length = Convert.ToDouble(txt.Replace(".", ","));//длина
-                    
+
                 }
                 catch (Exception)
                 {
@@ -3635,7 +3638,7 @@ namespace VTDinfo
                 try
                 {
                     AnomalyLogLine.widht = Convert.ToDouble(txt.Replace(".", ","));//ширина
-                    
+
                 }
                 catch (Exception)
                 {
@@ -3690,11 +3693,11 @@ namespace VTDinfo
                 }
                 else
                 {
-                    if (AnomalyLogLine.featuresCharacter.Contains("Труб")==false)
+                    if (AnomalyLogLine.featuresCharacter.Contains("Труб") == false)
                     {
                         anomalyLogLineS.Add(AnomalyLogLine);//добавляем заполненный экземпляр класса к списку
                     }
-                    
+
                 }
                 incrementor++;//сделаем прогресс-индикатор, чтобы было не так скучно ждать.
                 i++;
@@ -3717,7 +3720,7 @@ namespace VTDinfo
             ObjExcel.Quit();
             return anomalyLogLineS;
         }
-        
+
         private List<anomalyLogLine> shortOperatingReadToClassAnomalyLogAutoFinSOD(string fileName, numbersOfColumns NumbersOfColumns)//с автофинишем/КОРОТКИЙ!!!метод для чтения из файла отчета строк журнала аномалий
         {
 
@@ -3731,10 +3734,10 @@ namespace VTDinfo
             string WorksheetName = textBox196.Text;//получаем название вкладки из формы импотра (журнал выявленных аномалий)
             ObjWorkSheet2 = (Microsoft.Office.Interop.Excel.Worksheet)ObjWorkBook.Sheets[WorksheetName];
 
-            richTextBox3.Invoke(new Action(()=>richTextBox3.AppendText(Environment.NewLine+ "Выполняется обработка журнала выявленных аномалий...")));
+            richTextBox3.Invoke(new Action(() => richTextBox3.AppendText(Environment.NewLine + "Выполняется обработка журнала выявленных аномалий...")));
             //richTextBox3.AppendText(Environment.NewLine + "Выполняется обработка журнала выявленных аномалий...");
 
-            richTextBox3.Invoke(new Action(()=>richTextBox3.AppendText(Environment.NewLine+"->*")));
+            richTextBox3.Invoke(new Action(() => richTextBox3.AppendText(Environment.NewLine + "->*")));
             //richTextBox3.AppendText(Environment.NewLine + "->*");
 
             List<anomalyLogLine> anomalyLogLineS = new List<anomalyLogLine>();
@@ -3747,7 +3750,7 @@ namespace VTDinfo
                 anomalyLogLine AnomalyLogLine = new anomalyLogLine();//создаём экземпляр класса строки журнала аномалий
                 AnomalyLogLine.pipeNumber = Convert.ToString(ObjWorkSheet2.Cells[i + 1, NumbersOfColumns.column2Number20].Text);//расстояние от поперечного шва, м
 
-               
+
                 String txt = Convert.ToString(ObjWorkSheet2.Cells[i + 1, NumbersOfColumns.column2Number1].Text);
                 try
                 {
@@ -3814,7 +3817,7 @@ namespace VTDinfo
                 {
                     AnomalyLogLine.widht = 0;
                 }
-                
+
                 //**********************************************************
                 double pipeThikness = 0;
                 for (int f = 0; f < mGVTD.MGPipeS.Count; f++)
@@ -3822,44 +3825,44 @@ namespace VTDinfo
                     if (String.Equals(mGVTD.MGPipeS[f].pipeNumber, AnomalyLogLine.pipeNumber))
                     {
                         pipeThikness = mGVTD.MGPipeS[f].thikness;
-                        
+
                     }
                 }
-                
+
 
                 String depthInMMString = Convert.ToString(ObjWorkSheet2.Cells[i + 1, NumbersOfColumns.column2Number11].Text);//NumbersOfColumns.column2Number11
                 String depthInProcentString = Convert.ToString(ObjWorkSheet2.Cells[i + 1, NumbersOfColumns.column2Number10].Text);//NumbersOfColumns.column2Number10
-                
+
                 try
                 {
                     AnomalyLogLine.depthInProcent = Convert.ToDouble(depthInProcentString.Trim().Replace(".", ","));//глубина дефекта в процентах
-                    
+
                 }
                 catch (Exception)
                 {
                     AnomalyLogLine.depthInProcent = 0;
-                    
+
                 }
-                
+
                 try
                 {
                     AnomalyLogLine.depthInMm = Convert.ToDouble(depthInMMString.Trim().Replace(".", ","));//глубина дефекта в миллиметрах
-                   
+
                 }
                 catch (Exception)
                 {
                     AnomalyLogLine.depthInMm = 0;
                 }
 
-                if (AnomalyLogLine.depthInMm==0)
+                if (AnomalyLogLine.depthInMm == 0)
                 {
-                    AnomalyLogLine.depthInMm = AnomalyLogLine.depthInProcent * pipeThikness*0.01;
-                   
+                    AnomalyLogLine.depthInMm = AnomalyLogLine.depthInProcent * pipeThikness * 0.01;
+
                 }
-                if (AnomalyLogLine.depthInProcent==0)
+                if (AnomalyLogLine.depthInProcent == 0)
                 {
-                    AnomalyLogLine.depthInProcent= AnomalyLogLine.depthInMm/ (pipeThikness*0.01);
-                    
+                    AnomalyLogLine.depthInProcent = AnomalyLogLine.depthInMm / (pipeThikness * 0.01);
+
                 }
                 //********************************************************
 
@@ -3895,17 +3898,17 @@ namespace VTDinfo
                 i++;
                 if (incrementor == 100)
                 {
-                    richTextBox3.Invoke(new Action(()=>richTextBox3.AppendText("*")));
+                    richTextBox3.Invoke(new Action(() => richTextBox3.AppendText("*")));
                     //richTextBox3.AppendText("*");
                     incrementor = 0;
                 }
 
 
             }
-            textBox110.Invoke(new Action(()=> textBox110.Text = Convert.ToString(i)));
+            textBox110.Invoke(new Action(() => textBox110.Text = Convert.ToString(i)));
             //textBox110.Text = Convert.ToString(i);//записываем в поле количество труб
 
-            richTextBox3.Invoke(new Action(()=> richTextBox3.AppendText(Environment.NewLine + "Массив данных из журнала выявленных аномалий прочитан, количество дефектов:" + anomalyLogLineS.Count)));
+            richTextBox3.Invoke(new Action(() => richTextBox3.AppendText(Environment.NewLine + "Массив данных из журнала выявленных аномалий прочитан, количество дефектов:" + anomalyLogLineS.Count)));
             richTextBox3.Invoke(new Action(() => richTextBox3.AppendText(Environment.NewLine + "==========================================")));
             //richTextBox3.AppendText(Environment.NewLine + "Массив данных из журнала выявленных аномалий прочитан, количество дефектов:" + anomalyLogLineS.Count);
             //richTextBox3.AppendText(Environment.NewLine + "==========================================");
@@ -3927,7 +3930,7 @@ namespace VTDinfo
 
             richTextBox5.Invoke(new Action(() => richTextBox5.AppendText(Environment.NewLine + "Выполняется обработка журнала выявленных аномалий...")));
             richTextBox5.Invoke(new Action(() => richTextBox5.AppendText(Environment.NewLine + "->*")));
-            
+
             //richTextBox5.AppendText(Environment.NewLine + "Выполняется обработка журнала выявленных аномалий...");
             //richTextBox5.AppendText(Environment.NewLine + "->*");
 
@@ -4015,7 +4018,7 @@ namespace VTDinfo
                         AnomalyLogLine.thikness = mGVTD.MGPipeS[g].thikness;
                     }
                 }
-                
+
                 /*txt = Convert.ToString(ObjWorkSheet2.Cells[i + 1, NumbersOfColumns.column2Number11].Text);
                 try
                 {
@@ -4030,7 +4033,7 @@ namespace VTDinfo
                 //AnomalyLogLine.KBD = Convert.ToString(ObjWorkSheet2.Cells[i + 1, NumbersOfColumns.column2Number13].Text);//КБД
 
 
-                AnomalyLogLine.defectAssessment = Convert.ToString(ObjWorkSheet2.Cells[i + 1, NumbersOfColumns.column2Number14].Text.Replace("(c)","C").Replace("(a)", "A").Replace("(b)", "B"));//оценка дефекта
+                AnomalyLogLine.defectAssessment = Convert.ToString(ObjWorkSheet2.Cells[i + 1, NumbersOfColumns.column2Number14].Text.Replace("(c)", "C").Replace("(a)", "A").Replace("(b)", "B"));//оценка дефекта
                 //AnomalyLogLine.Latitude = Convert.ToString(ObjWorkSheet2.Cells[i + 1, NumbersOfColumns.column2Number15].Text);//Широта
                 //AnomalyLogLine.Longitude = Convert.ToString(ObjWorkSheet2.Cells[i + 1, NumbersOfColumns.column2Number16].Text);//Долгота
                 /*txt = Convert.ToString(ObjWorkSheet2.Cells[i + 1, NumbersOfColumns.column2Number17].Text);
@@ -4046,7 +4049,7 @@ namespace VTDinfo
                 //AnomalyLogLine.heightAboveSeaLevel = Convert.ToDouble(txt.Replace(".", ","));//H, м
                 //AnomalyLogLine.note = Convert.ToString(ObjWorkSheet2.Cells[i + 1, NumbersOfColumns.column2Number18].Text);//Примечание
                 AnomalyLogLine.defectRepareDate = Convert.ToString(ObjWorkSheet2.Cells[i + 1, NumbersOfColumns.column2Number19].Text);//Примечание
-                AnomalyLogLine.depthInMm = AnomalyLogLine.thikness * AnomalyLogLine.depthInProcent/100;//в трубном журнале НПЦВТД нет глубины в мм, поэтому вычисляем.
+                AnomalyLogLine.depthInMm = AnomalyLogLine.thikness * AnomalyLogLine.depthInProcent / 100;//в трубном журнале НПЦВТД нет глубины в мм, поэтому вычисляем.
                 if (String.IsNullOrWhiteSpace(AnomalyLogLine.pipeNumber))
                 {
                     mark = false;//дошли до конца трубного журлала
@@ -4055,7 +4058,7 @@ namespace VTDinfo
                 {
                     anomalyLogLineS.Add(AnomalyLogLine);//добавляем заполненный экземпляр класса к списку
                 }
-                
+
                 incrementor++;//сделаем прогресс-индикатор, чтобы было не так скучно ждать.
                 i++;
                 if (incrementor == 100)
@@ -4148,7 +4151,7 @@ namespace VTDinfo
             }
             for (int i = 0; i < mGVTD.anomalyLogLineS.Count; i++)//если подрядчики не расставили толщину трубы в в журнале аномалий, расставим сами
             {
-                if (mGVTD.anomalyLogLineS[i].thikness<1)
+                if (mGVTD.anomalyLogLineS[i].thikness < 1)
                 {
                     for (int j = 0; j < mGVTD.MGPipeS.Count; j++)
                     {
@@ -4171,8 +4174,8 @@ namespace VTDinfo
             //richTextBox1.AppendText(Environment.NewLine + "========================================");
             return mGVTD;
         }
-        private MGVTD PipeLogWithThikness(MGVTD mGVTD,bool mark)//расстановка категорий и характеристик труб
-        { 
+        private MGVTD PipeLogWithThikness(MGVTD mGVTD, bool mark)//расстановка категорий и характеристик труб
+        {
             for (int i = 0; i < mGVTD.anomalyLogLineS.Count; i++)//если подрядчики не расставили толщину трубы в в журнале аномалий, расставим сами
             {
                 if (mGVTD.anomalyLogLineS[i].thikness < 1)
@@ -4202,7 +4205,7 @@ namespace VTDinfo
                 richTextBox5.AppendText(Environment.NewLine + "Расстановка толщин труб в журнале аномалий выполнена.");
                 richTextBox5.AppendText(Environment.NewLine + "========================================");
             }
-           
+
             return mGVTD;
         }
         private void tableExcelReadToClass()//метод для чтения файла в класс
@@ -4216,7 +4219,7 @@ namespace VTDinfo
             mGVTD = PipeLogWithCategory(mGVTD);//расставим в трубном журнале характеристики труб и категории участков
         }
         private void shortTableExcelReadToClass()//КОРОТКИЙ!!! метод для чтения файла в класс
-        {            
+        {
             mGVTD.pipelineInfo = operatingReadToClassPipeInfo(fileName, NumbersOfColumns);//данные о трубе
             mGVTD.MGPipeS = ShortOperatingReadToClassPipeLogAutoFin(fileName, NumbersOfColumns);//трубный журнал
             mGVTD.anomalyLogLineS = shortOperatingReadToClassAnomalyLogAutoFin(fileName, NumbersOfColumns);//журнал аномалий
@@ -4224,20 +4227,20 @@ namespace VTDinfo
             mGVTD.pipeCharacteristicsLog = OperatingReadToClassPipeCharacteristics(fileName, NumbersOfColumns);//Характеристики труб
             mGVTD.pipelineSectionCategoryLogs = OperatingReadToClassPipelineSectionCategoryLog(fileName, NumbersOfColumns);//категории участков трубопровода
 
-            if (isHaveCategory.Checked==false)
+            if (isHaveCategory.Checked == false)
             {
                 mGVTD = PipeLogWithCategory(mGVTD);//расставим в трубном журнале характеристики труб и категории участков
-            }            
+            }
         }
         //***************************************************
         private async void shortTableExcelReadToClassSOD()//ДЛЯ СОД!!!!!!!КОРОТКИЙ!!! метод для чтения файла в класс
-        {            
+        {
             mGVTD.pipelineInfo = operatingReadToClassPipeInfoSOD();//данные о трубе
-            await Task.Run(()=> mGVTD.MGPipeS = ShortOperatingReadToClassPipeLogAutoFinSOD(fileNamePipeLog, NumbersOfColumns));
+            await Task.Run(() => mGVTD.MGPipeS = ShortOperatingReadToClassPipeLogAutoFinSOD(fileNamePipeLog, NumbersOfColumns));
             //mGVTD.MGPipeS = shortOperatingReadToClassPipeLogAutoFinSOD(fileNamePipeLog, NumbersOfColumns);//трубный журнал
-            await Task.Run(()=> mGVTD.anomalyLogLineS = shortOperatingReadToClassAnomalyLogAutoFinSOD(fileNameDefectLog, NumbersOfColumns));
+            await Task.Run(() => mGVTD.anomalyLogLineS = shortOperatingReadToClassAnomalyLogAutoFinSOD(fileNameDefectLog, NumbersOfColumns));
             //mGVTD.anomalyLogLineS = shortOperatingReadToClassAnomalyLogAutoFinSOD(fileNameDefectLog, NumbersOfColumns);//журнал аномалий
-            await Task.Run(()=> mGVTD.furnishingsLogS = OperatingReadToClassFurnishingsLogAutoFinSOD(fileNameLineObjects, NumbersOfColumns));
+            await Task.Run(() => mGVTD.furnishingsLogS = OperatingReadToClassFurnishingsLogAutoFinSOD(fileNameLineObjects, NumbersOfColumns));
             mGVTD.furnishingsLogS = OperatingReadToClassFurnishingsLogAutoFinSOD(fileNameLineObjects, NumbersOfColumns);//элементы обустройства
             mGVTD = PipeLogWithThikness(itIsTee(mGVTD), true);//помечаем соответствующие поля у секций, являющихся тройниками. Расставляем толщину стенки в журнале аномалий
             textBox131.Text = mGVTD.MGPipeS[0].pipeNumber;
@@ -4256,9 +4259,9 @@ namespace VTDinfo
         private async void shortTableExcelReadToClassNPCVTD()//ДЛЯ НПЦВТД!!!!!!!КОРОТКИЙ!!! метод для чтения файла в класс
         {
             mGVTD.pipelineInfo = operatingReadToClassPipeInfoNPCVTD();//данные о трубе
-            await Task.Run(()=> mGVTD.MGPipeS = ShortOperatingReadToClassPipeLogAutoFinNPCVTD(fileNamePipeLog, NumbersOfColumns));
+            await Task.Run(() => mGVTD.MGPipeS = ShortOperatingReadToClassPipeLogAutoFinNPCVTD(fileNamePipeLog, NumbersOfColumns));
             await Task.Run(() => mGVTD.anomalyLogLineS = shortOperatingReadToClassAnomalyLogAutoFinNPCVTD(fileNameDefectLog, NumbersOfColumns));
-            
+
             try
             {
                 await Task.Run(() => mGVTD.furnishingsLogS = OperatingReadToClassFurnishingsLogAutoFinNPCVTD(fileNameLineObjects, NumbersOfColumns));
@@ -4268,7 +4271,7 @@ namespace VTDinfo
             {
                 await Task.Run(() => mGVTD.furnishingsLogS = FirnishingLogVirtual(mGVTD));
                 //mGVTD.furnishingsLogS = firnishingLogVirtual(mGVTD);//Заполняем журнал элементов обустройства на основе данных трубного журнала
-            }            
+            }
             mGVTD = PipeLogWithThikness(itIsTee(mGVTD), false);//помечаем соответствующие поля у секций, являющихся тройниками. Расставляем толщину стенки в журнале аномалий
             textBox131.Text = mGVTD.MGPipeS[0].pipeNumber;
             textBox136.Text = mGVTD.MGPipeS[mGVTD.MGPipeS.Count - 1].pipeNumber;
@@ -4307,7 +4310,7 @@ namespace VTDinfo
 
             for (int i = 0; i < mGVTD.anomalyLogLineS.Count; i++)
             {
-                
+
                 if (String.IsNullOrWhiteSpace(mGVTD.anomalyLogLineS[i].defectRepareDate))
                 {
                     if (mGVTD.anomalyLogLineS[i].featuresCharacter.Contains("орроз"))//для всех труб с коррозией вычисляем ранг опасности и складываем, как того требует п. 6.1.2 СТО 292
@@ -4375,9 +4378,9 @@ namespace VTDinfo
                         localThikness = mGVTD.anomalyLogLineS[i].thikness;
                         if (tensileStrength > 0)
                         {
-                            if (localThikness>0)
+                            if (localThikness > 0)
                             {
-                                if (mGVTD.anomalyLogLineS[i].depthInProcent>= procentOfCorrosion)
+                                if (mGVTD.anomalyLogLineS[i].depthInProcent >= procentOfCorrosion)
                                 {
                                     double Q = Math.Sqrt(1 + 0.31 * Math.Pow((mGVTD.anomalyLogLineS[i].length / (Math.Sqrt(mGVTD.pipelineInfo.pipeDiameter * localThikness))), 2));//коэффициент, учитывающий длину дефекта потери металла (ф. 6.3 СТО 292)
 
@@ -4387,9 +4390,9 @@ namespace VTDinfo
                                     double ksi = mGVTD.anomalyLogLineS[i].depthInMm / localThikness;
                                     double Rk = ksi / ksiP;//(ф. 6.1 СТО 292)
                                     Summdkt = Summdkt + Rk;//расчет суммы рангов опасности для всех дефектов данного типа
-                                }                                
+                                }
                             }
-                        }                        
+                        }
                     }
                 }
             }
@@ -4399,12 +4402,12 @@ namespace VTDinfo
 
         private MGVTD isLostMetal(MGVTD mGVTD)
         {
-            
+
             for (int i = 0; i < mGVTD.anomalyLogLineS.Count; i++)
             {
                 if (String.IsNullOrEmpty(mGVTD.anomalyLogLineS[i].defectRepareDate))
                 {
-                    if (mGVTD.anomalyLogLineS[i].depthInMm > 0| mGVTD.anomalyLogLineS[i].depthInProcent > 0)
+                    if (mGVTD.anomalyLogLineS[i].depthInMm > 0 | mGVTD.anomalyLogLineS[i].depthInProcent > 0)
                     {
                         if (mGVTD.anomalyLogLineS[i].featuresCharacter.Contains("орроз"))
                         {
@@ -4470,7 +4473,7 @@ namespace VTDinfo
                 {
                     //если первое значение пустое а второе не пустое
                     //такого не может быть, логика работы программы этого не допустит
-                   
+
                 }
             }
             else
@@ -4479,42 +4482,42 @@ namespace VTDinfo
                 {
                     //если первое значение не пустое а второе пустое
                     //тогда расчет проводим для одной единственной трубы
-                    
-                        if (String.IsNullOrWhiteSpace(mGVTD.anomalyLogLineS[PlotBoundaries.pipeIdNumberOne].defectRepareDate))
+
+                    if (String.IsNullOrWhiteSpace(mGVTD.anomalyLogLineS[PlotBoundaries.pipeIdNumberOne].defectRepareDate))
+                    {
+                        if (mGVTD.anomalyLogLineS[PlotBoundaries.pipeIdNumberOne].isLostMetal)//для всех труб с коррозией вычисляем ранг опасности и складываем, как того требует п. 6.1.2 СТО 292
                         {
-                            if (mGVTD.anomalyLogLineS[PlotBoundaries.pipeIdNumberOne].isLostMetal)//для всех труб с коррозией вычисляем ранг опасности и складываем, как того требует п. 6.1.2 СТО 292
+                            double tensileStrength = 510;//ищем по трубному журналу предел прочности
+                            for (int j = 0; j < mGVTD.MGPipeS.Count; j++)
                             {
-                                double tensileStrength = 510;//ищем по трубному журналу предел прочности
-                                for (int j = 0; j < mGVTD.MGPipeS.Count; j++)
+                                if (String.Equals(mGVTD.MGPipeS[j].pipeNumber, mGVTD.anomalyLogLineS[PlotBoundaries.pipeIdNumberOne].pipeNumber))
                                 {
-                                    if (String.Equals(mGVTD.MGPipeS[j].pipeNumber, mGVTD.anomalyLogLineS[PlotBoundaries.pipeIdNumberOne].pipeNumber))
-                                    {
-                                        tensileStrength = mGVTD.MGPipeS[j].tensileStrength;//вот он предел прочности, нашли.
-                                    }
-                                    else
-                                    {
-                                        tensileStrength = 500;
-                                    }
+                                    tensileStrength = mGVTD.MGPipeS[j].tensileStrength;//вот он предел прочности, нашли.
                                 }
+                                else
+                                {
+                                    tensileStrength = 500;
+                                }
+                            }
 
-                                allPipeWhithСorrosion++;//инкрементируем счетчик труб с коррозией
+                            allPipeWhithСorrosion++;//инкрементируем счетчик труб с коррозией
 
-                                localThikness = mGVTD.anomalyLogLineS[PlotBoundaries.pipeIdNumberOne].thikness;
-                                double Q = Math.Sqrt(1 + 0.31 * Math.Pow((mGVTD.anomalyLogLineS[PlotBoundaries.pipeIdNumberOne].length / (Math.Sqrt(mGVTD.pipelineInfo.pipeDiameter * localThikness))), 2));//коэффициент, учитывающий длину дефекта потери металла (ф. 6.3 СТО 292)
+                            localThikness = mGVTD.anomalyLogLineS[PlotBoundaries.pipeIdNumberOne].thikness;
+                            double Q = Math.Sqrt(1 + 0.31 * Math.Pow((mGVTD.anomalyLogLineS[PlotBoundaries.pipeIdNumberOne].length / (Math.Sqrt(mGVTD.pipelineInfo.pipeDiameter * localThikness))), 2));//коэффициент, учитывающий длину дефекта потери металла (ф. 6.3 СТО 292)
 
-                                double a = (mGVTD.pipelineInfo.operatingPressure * (mGVTD.pipelineInfo.pipeDiameter - localThikness)) / (2 * localThikness * tensileStrength);//(ф. 6.4 СТО 292)
-                                                                                                                                                                              //richTextBox2.AppendText(Environment.NewLine + "localThikness=" + localThikness + "Q=" + Q + ",  a=" + a);
-                                double ksiP = ((a - 1) * Q) / (a - Q); //(ф. 6.2 СТО 292)
-                                double ksi = mGVTD.anomalyLogLineS[PlotBoundaries.pipeIdNumberOne].depthInMm / localThikness;
-                                double Rk = ksi / ksiP;//(ф. 6.1 СТО 292)
-                            
+                            double a = (mGVTD.pipelineInfo.operatingPressure * (mGVTD.pipelineInfo.pipeDiameter - localThikness)) / (2 * localThikness * tensileStrength);//(ф. 6.4 СТО 292)
+                                                                                                                                                                          //richTextBox2.AppendText(Environment.NewLine + "localThikness=" + localThikness + "Q=" + Q + ",  a=" + a);
+                            double ksiP = ((a - 1) * Q) / (a - Q); //(ф. 6.2 СТО 292)
+                            double ksi = mGVTD.anomalyLogLineS[PlotBoundaries.pipeIdNumberOne].depthInMm / localThikness;
+                            double Rk = ksi / ksiP;//(ф. 6.1 СТО 292)
+
 
                             mGVTD.MGPipeS[PlotBoundaries.pipeIdNumberOne].corossionDamageList.Add(Rk);
 
 
                             //Summdkt = Rk;//расчет суммы рангов опасности для всех дефектов данного типа
                         }
-                        }
+                    }
                     //
 
                 }
@@ -4537,7 +4540,7 @@ namespace VTDinfo
                                     {
                                         mark = false;
                                     }
-                                    
+
                                 }
                                 if (mark)
                                 {
@@ -4617,25 +4620,25 @@ namespace VTDinfo
                                 }
                                 catch (Exception)
                                 {
-                                                                        
+
                                 }
 
 
-                                
+
                             }
                         }
                     }
 
                 }
 
-                
+
             }
             summCorrosionDamag = Summdkt;//запоминаем суммарную поврежденность от коррозии
-            //result = Summdkt / (PlotBoundaries.pipeIdNumberTwoPipeLog - PlotBoundaries.pipeIdNumberOnePipeLog);
-                    return mGVTD;
+                                         //result = Summdkt / (PlotBoundaries.pipeIdNumberTwoPipeLog - PlotBoundaries.pipeIdNumberOnePipeLog);
+            return mGVTD;
 
         }
-        
+
 
         //возвращает суммарную поврежденность по 1 дефекту на трубу
         private double damagFromСorrosion(MGVTD mGVTD, plotBoundaries PlotBoundaries, double procentOfCorrosion)//по одному дефекту на трубу//не менее заданного уровня в процентах!!!В ЗАДАННЫХ ГРАНИЦАХ УЧАСТКА!!вычисляем повреждённость локального участка от коррозии (ф. 5.3 СТО 292)
@@ -4669,17 +4672,17 @@ namespace VTDinfo
                     List<string> defectpipes = new List<string>();//это просто список учтенных труб
                     if (String.IsNullOrWhiteSpace(mGVTD.anomalyLogLineS[PlotBoundaries.pipeIdNumberOne].defectRepareDate))//проверяем, что нет пометки об устранении дефекта
                     {
-                        if (mGVTD.anomalyLogLineS[PlotBoundaries.pipeIdNumberOne].depthInProcent>= procentOfCorrosion)//проверяем, что дефект глубже заданного уровня
+                        if (mGVTD.anomalyLogLineS[PlotBoundaries.pipeIdNumberOne].depthInProcent >= procentOfCorrosion)//проверяем, что дефект глубже заданного уровня
                         {
                             if (mGVTD.anomalyLogLineS[PlotBoundaries.pipeIdNumberOne].isLostMetal)//для всех труб с коррозией вычисляем ранг опасности и складываем, как того требует п. 6.1.2 СТО 292
                             {
-                                double tensileStrength=500;//ищем по трубному журналу предел прочности
+                                double tensileStrength = 500;//ищем по трубному журналу предел прочности
                                 for (int j = 0; j < mGVTD.MGPipeS.Count; j++)
                                 {
                                     if (String.Equals(mGVTD.MGPipeS[j].pipeNumber, mGVTD.anomalyLogLineS[PlotBoundaries.pipeIdNumberOne].pipeNumber))
                                     {
                                         tensileStrength = mGVTD.MGPipeS[j].tensileStrength;//вот он предел прочности, нашли.
-                                    }  
+                                    }
                                 }
 
                                 mark = true;
@@ -4706,7 +4709,7 @@ namespace VTDinfo
                                 Summdkt = Rk;//расчет суммы рангов опасности для всех дефектов данного типа
                             }
                         }
-                    } 
+                    }
                 }
                 else
                 {
@@ -4789,8 +4792,8 @@ namespace VTDinfo
             result = Summdkt / (PlotBoundaries.pipeIdNumberTwoPipeLog - PlotBoundaries.pipeIdNumberOnePipeLog);
             return Summdkt;
         }
-        
-        
+
+
         //Возвращает количество всех коррозионных дефектов больше заданного на данном участке
         private int damagFromСorrosionAllDefects(MGVTD mGVTD, plotBoundaries PlotBoundaries, double procentOfCorrosion)//все коррозионные дефекты//не менее заданного уровня в процентах!!!В ЗАДАННЫХ ГРАНИЦАХ УЧАСТКА!!вычисляем повреждённость локального участка от коррозии (ф. 5.3 СТО 292)
         {
@@ -4896,7 +4899,7 @@ namespace VTDinfo
         }
 
         //Возвращает поврежденность всех коррозионных дефектов больше заданного на данном участке
-        
+
         private double damagOfconnectingParts(MGVTD mGVTD)//вычисляем повреждённость соединительных деталей трубопровода (ф. 5.9 СТО 292)
         {
             double result = 0;//переменная для хранения искомой величины            
@@ -4974,26 +4977,26 @@ namespace VTDinfo
                 {
                     //если первое значение не пустое а второе пустое
                     //тогда расчет проводим для одной единственной трубы
-                   
-                        if (String.IsNullOrWhiteSpace(mGVTD.anomalyLogLineS[PlotBoundaries.pipeIdNumberOne].featuresCharacter)==false)//ищем строку с каким-нибудь дефектом
+
+                    if (String.IsNullOrWhiteSpace(mGVTD.anomalyLogLineS[PlotBoundaries.pipeIdNumberOne].featuresCharacter) == false)//ищем строку с каким-нибудь дефектом
+                    {
+                        if (String.IsNullOrWhiteSpace(mGVTD.anomalyLogLineS[PlotBoundaries.pipeIdNumberOne].defectRepareDate))//проверяем, что поле со сведениями об устранении дефекта пустое
                         {
-                            if (String.IsNullOrWhiteSpace(mGVTD.anomalyLogLineS[PlotBoundaries.pipeIdNumberOne].defectRepareDate))//проверяем, что поле со сведениями об устранении дефекта пустое
+                            for (int k = 0; k < mGVTD.MGPipeS.Count; k++)
                             {
-                                for (int k = 0; k < mGVTD.MGPipeS.Count; k++)
+                                if (String.Equals(mGVTD.MGPipeS[k].pipeNumber, mGVTD.anomalyLogLineS[PlotBoundaries.pipeIdNumberOne].pipeNumber))//ищем дефектную трубу в трубном журнале
                                 {
-                                    if (String.Equals(mGVTD.MGPipeS[k].pipeNumber, mGVTD.anomalyLogLineS[PlotBoundaries.pipeIdNumberOne].pipeNumber))//ищем дефектную трубу в трубном журнале
+                                    if (mGVTD.MGPipeS[k].itIsTee)//проверяем является ли дефектная труба тройником
                                     {
-                                        if (mGVTD.MGPipeS[k].itIsTee)//проверяем является ли дефектная труба тройником
-                                        {
 
                                         PipesCount = 1;
 
-                                        }
                                     }
                                 }
                             }
                         }
-                    
+                    }
+
 
                     try
                     {
@@ -5008,9 +5011,9 @@ namespace VTDinfo
                 {
                     bool mark;
                     List<string> defectpipes = new List<string>();//это просто список учтенных труб
-                    for (int i = PlotBoundaries.pipeIdNumberOne; i < PlotBoundaries.pipeIdNumberTwo-1; i++)
+                    for (int i = PlotBoundaries.pipeIdNumberOne; i < PlotBoundaries.pipeIdNumberTwo - 1; i++)
                     {
-                        if (String.IsNullOrWhiteSpace(mGVTD.anomalyLogLineS[i].featuresCharacter)==false)//ищем строку с каким-нибудь дефектом
+                        if (String.IsNullOrWhiteSpace(mGVTD.anomalyLogLineS[i].featuresCharacter) == false)//ищем строку с каким-нибудь дефектом
                         {
                             if (String.IsNullOrWhiteSpace(mGVTD.anomalyLogLineS[i].defectRepareDate))
                             {
@@ -5054,13 +5057,13 @@ namespace VTDinfo
             }
 
 
-                    //*****************
-           
+            //*****************
+
             //********************
 
 
             return result;
-        }       
+        }
         private double damageFromDent(MGVTD mGVTD)//вычисляем повреждённость участка МГ от вмятин и гофр (ф. 5.8 СТО 292)
         {
             double result;
@@ -5120,7 +5123,7 @@ namespace VTDinfo
         }
         private MGVTD damageFromDent(MGVTD mGVTD, plotBoundaries PlotBoundaries)//!!!В ЗАДАННЫХ ГРАНИЦАХ УЧАСТКА!!вычисляем повреждённость участка МГ от вмятин и гофр (ф. 5.8 СТО 292)
         {
-            double result=0;
+            double result = 0;
             double summOfRangs = 0;
             int defectPipesCount = 0;//создаём переменную для хранения количества труб с вмятинами
 
@@ -5144,57 +5147,57 @@ namespace VTDinfo
                 {
                     //если первое значение не пустое а второе пустое
                     //тогда расчет проводим для одной единственной трубы
-                   
-                        if (mGVTD.anomalyLogLineS[PlotBoundaries.pipeIdNumberOne].featuresCharacter.Contains("мятин"))
+
+                    if (mGVTD.anomalyLogLineS[PlotBoundaries.pipeIdNumberOne].featuresCharacter.Contains("мятин"))
+                    {
+                        if (String.IsNullOrWhiteSpace(mGVTD.anomalyLogLineS[PlotBoundaries.pipeIdNumberOne].defectRepareDate))
                         {
-                            if (String.IsNullOrWhiteSpace(mGVTD.anomalyLogLineS[PlotBoundaries.pipeIdNumberOne].defectRepareDate))
+                            double tensileStrength = 510;//ищем по трубному журналу предел прочности
+                            int pipelineSectionCategory = 1;//ищем по трубному журналу предел прочности
+                            for (int j = 0; j < mGVTD.MGPipeS.Count; j++)
                             {
-                                double tensileStrength = 510;//ищем по трубному журналу предел прочности
-                                int pipelineSectionCategory = 1;//ищем по трубному журналу предел прочности
-                                for (int j = 0; j < mGVTD.MGPipeS.Count; j++)
+                                if (String.Equals(mGVTD.MGPipeS[j].pipeNumber, mGVTD.anomalyLogLineS[PlotBoundaries.pipeIdNumberOne].pipeNumber))
                                 {
-                                    if (String.Equals(mGVTD.MGPipeS[j].pipeNumber, mGVTD.anomalyLogLineS[PlotBoundaries.pipeIdNumberOne].pipeNumber))
+                                    tensileStrength = mGVTD.MGPipeS[j].tensileStrength;//вот он предел прочности, нашли.
+                                    try
                                     {
-                                        tensileStrength = mGVTD.MGPipeS[j].tensileStrength;//вот он предел прочности, нашли.
-                                        try
-                                        {
-                                            pipelineSectionCategory = Convert.ToInt32(mGVTD.MGPipeS[j].pipelineSectionCategory);//и категория участка тоже нашлась
-                                        }
-                                        catch (Exception)
-                                        {
-                                            pipelineSectionCategory = 1;
-                                        }
+                                        pipelineSectionCategory = Convert.ToInt32(mGVTD.MGPipeS[j].pipelineSectionCategory);//и категория участка тоже нашлась
+                                    }
+                                    catch (Exception)
+                                    {
+                                        pipelineSectionCategory = 1;
                                     }
                                 }
-                                defectPipesCount++;//инкриментируем счетчик труб с вмятинами
-                                                   //тут будут проходить вычисления
-                                double r = (mGVTD.pipelineInfo.pipeDiameter - mGVTD.anomalyLogLineS[PlotBoundaries.pipeIdNumberOne].thikness) / 2;//радиус средней линии сечения (ф 7.14 Рекомендаций по оценке прочности...)
-                                double a = mGVTD.anomalyLogLineS[PlotBoundaries.pipeIdNumberOne].length / 2;//полоовина протяженности вмятины в осевом направлении
-                                double b = mGVTD.anomalyLogLineS[PlotBoundaries.pipeIdNumberOne].widht / 2;//половина протяженности дефекта в направлении кривой сечения
-                                double u = (r * Math.PI) / (2 * b);//коэффициент (ф 7.16 Рекомендаций по оценке прочности...)
-                                double t = (r * Math.PI) / (2 * a);//коэффициент (ф 7.15 Рекомендаций по оценке прочности...)
+                            }
+                            defectPipesCount++;//инкриментируем счетчик труб с вмятинами
+                                               //тут будут проходить вычисления
+                            double r = (mGVTD.pipelineInfo.pipeDiameter - mGVTD.anomalyLogLineS[PlotBoundaries.pipeIdNumberOne].thikness) / 2;//радиус средней линии сечения (ф 7.14 Рекомендаций по оценке прочности...)
+                            double a = mGVTD.anomalyLogLineS[PlotBoundaries.pipeIdNumberOne].length / 2;//полоовина протяженности вмятины в осевом направлении
+                            double b = mGVTD.anomalyLogLineS[PlotBoundaries.pipeIdNumberOne].widht / 2;//половина протяженности дефекта в направлении кривой сечения
+                            double u = (r * Math.PI) / (2 * b);//коэффициент (ф 7.16 Рекомендаций по оценке прочности...)
+                            double t = (r * Math.PI) / (2 * a);//коэффициент (ф 7.15 Рекомендаций по оценке прочности...)
                             double pf = (1 - 0.3 * 0.3) * Math.Pow((r / mGVTD.anomalyLogLineS[PlotBoundaries.pipeIdNumberOne].thikness), 3) * (mGVTD.pipelineInfo.operatingPressure / 206000);//поправка глубины вмятины на давление
                             double Uz = 225 * Math.Pow(t, 3) + 27 * 0.3 * Math.Pow(t, 2) * (9 * u * u - 5) + 25 * (Math.Pow(u, 3) + 1);//поправка глубины вмятины на давление
                             double H = 30 * (9 * u * u - 5) * pf / (Uz + 150 * (4 * u * u - 1) * pf);//поправка глубины вмятины на давление
                             double woo = Math.Pow(1 - H, -1) * mGVTD.anomalyLogLineS[PlotBoundaries.pipeIdNumberOne].depthInMm;//поправка глубины вмятины на давление
                             double e2 = 0.5 * (mGVTD.anomalyLogLineS[PlotBoundaries.pipeIdNumberOne].thikness / r) * (woo / r) * (3 * u * u - 1);//остаточные окружные деформации (ф 7.12 Рекомендаций по оценке прочности...)
-                                double e1 = 0.5 * (mGVTD.anomalyLogLineS[PlotBoundaries.pipeIdNumberOne].thikness / r) * (woo / r) * (3 * t * t - 1);//остаточные продольные деформации (ф 7.13 Рекомендаций по оценке прочности...)
-                                double w000 = mGVTD.anomalyLogLineS[PlotBoundaries.pipeIdNumberOne].depthInMm / mGVTD.pipelineInfo.pipeDiameter;//относиттельная глубина дефекта (ф 7.21 Рекомендаций по оценке прочности...)
-                                double kr = 24;//определяем кооэффициент, зависящий от категории участка трубопровода
-                                if (pipelineSectionCategory < 3)
-                                {
-                                    kr = 24;
-                                }
-                                else
-                                {
-                                    kr = 20;
-                                }
-                                double Rr = kr * Math.Max(e2, Math.Max(w000, e1));//это ранг опасности вмятины
-                            mGVTD.MGPipeS[PlotBoundaries.pipeIdNumberOne].DentDamageList.Add(Rr);
-                                //summOfRangs = Rr;//считаем сумму рангов опасности дефектов на трубопроводе
+                            double e1 = 0.5 * (mGVTD.anomalyLogLineS[PlotBoundaries.pipeIdNumberOne].thikness / r) * (woo / r) * (3 * t * t - 1);//остаточные продольные деформации (ф 7.13 Рекомендаций по оценке прочности...)
+                            double w000 = mGVTD.anomalyLogLineS[PlotBoundaries.pipeIdNumberOne].depthInMm / mGVTD.pipelineInfo.pipeDiameter;//относиттельная глубина дефекта (ф 7.21 Рекомендаций по оценке прочности...)
+                            double kr = 24;//определяем кооэффициент, зависящий от категории участка трубопровода
+                            if (pipelineSectionCategory < 3)
+                            {
+                                kr = 24;
                             }
+                            else
+                            {
+                                kr = 20;
+                            }
+                            double Rr = kr * Math.Max(e2, Math.Max(w000, e1));//это ранг опасности вмятины
+                            mGVTD.MGPipeS[PlotBoundaries.pipeIdNumberOne].DentDamageList.Add(Rr);
+                            //summOfRangs = Rr;//считаем сумму рангов опасности дефектов на трубопроводе
                         }
-                    
+                    }
+
                     result = summOfRangs;//повреждённость линейного участка МГ от вмятин (ф. 5.8 СТО 292)
                 }
                 else
@@ -5224,7 +5227,7 @@ namespace VTDinfo
                                         }
                                     }
                                 }
-                                
+
 
                                 mark = true;
                                 for (int q = 0; q < defectpipes.Count; q++)//проверяем, не учли ли мы уже эту трубу
@@ -5239,8 +5242,8 @@ namespace VTDinfo
                                     defectpipes.Add(mGVTD.anomalyLogLineS[i].pipeNumber);
                                     defectPipesCount++;//инкриментируем счетчик труб с вмятинами
                                 }
-                                
-                                                   //тут будут проходить вычисления-20
+
+                                //тут будут проходить вычисления-20
                                 double r = (mGVTD.pipelineInfo.pipeDiameter - mGVTD.anomalyLogLineS[i].thikness) / 2;//радиус средней линии сечения (ф 7.14 Рекомендаций по оценке прочности...)
                                 double a = mGVTD.anomalyLogLineS[i].length / 2;//полоовина протяженности вмятины в осевом направлении
                                 double b = mGVTD.anomalyLogLineS[i].widht / 2;//половина протяженности дефекта в направлении кривой сечения
@@ -5268,7 +5271,7 @@ namespace VTDinfo
                                     kr = 20;
                                 }
                                 double Rr = kr * Math.Max(e2, Math.Max(w000, e1));//это ранг опасности вмятины
-                                if (Rr>1)//условие, что значение искомой величины по определению не больше единицы
+                                if (Rr > 1)//условие, что значение искомой величины по определению не больше единицы
                                 {
                                     Rr = 1;
                                 }
@@ -5286,7 +5289,7 @@ namespace VTDinfo
                     }
                     result = summOfRangs / (PlotBoundaries.pipeIdNumberTwoPipeLog - PlotBoundaries.pipeIdNumberOnePipeLog);//повреждённость линейного участка МГ от вмятин (ф. 5.8 СТО 292)
                 }
-                
+
             }
             //summDentDamag = summOfRangs;//запоминаем суммарную поврежденность от вмятин
             allPipeWhithDent = defectPipesCount;//запоминаем количество труб с вмятинами
@@ -5401,7 +5404,7 @@ namespace VTDinfo
                         }
                     }
                 }
-                 result = summOfRangs / (PlotBoundaries.pipeIdNumberTwoPipeLog - PlotBoundaries.pipeIdNumberOnePipeLog);//вычисляем повреждённость участка МГ от дефектов КСС (ф. 5.10 СТО 292)                }
+                result = summOfRangs / (PlotBoundaries.pipeIdNumberTwoPipeLog - PlotBoundaries.pipeIdNumberOnePipeLog);//вычисляем повреждённость участка МГ от дефектов КСС (ф. 5.10 СТО 292)                }
             }
 
             //summJointDefectsDamag = summOfRangs;//запоминаем суммарную поврежденность сварных соединений
@@ -5409,13 +5412,13 @@ namespace VTDinfo
             return mGVTD;
         }
         public class plotBoundaries//класс для хранения имён труб на границах расчетного участка
-            {
-                public string pipeNumberOne;//имя первой трубы
-                public string pipeNumberTwo;//имя второй трубы
+        {
+            public string pipeNumberOne;//имя первой трубы
+            public string pipeNumberTwo;//имя второй трубы
             public double pipeOneKilometr;//километр первой трубы
             public double pipeTwoKilometr;//километр второй трубы
             public int pipeIdNumberOne;//порядковый номер первой трубы в таблице дефектов
-                public int pipeIdNumberTwo;//порядковый номер второй трубы в таблице дефектов
+            public int pipeIdNumberTwo;//порядковый номер второй трубы в таблице дефектов
             public string pipeNumberOnePipeLog;//имя первой трубы участка в трубном журнале
             public string pipeNumberTwoPipeLog;//имя второй трубы участка в трубном журнале
             public int pipeIdNumberOnePipeLog;//номер первой трубы участка в трубном журнале
@@ -5426,8 +5429,8 @@ namespace VTDinfo
         {
             List<MGPipe> lineValvesPipes = new List<MGPipe>();
             lineValvesPipes.Clear();
-            
-            
+
+
             lineValvesPipes.Add(mGVTD.MGPipeS[0]);//добавляем в список первую трубу
             lineValvesPipes[0].note = String.Concat(lineValvesPipes[0].note, " - первая труба участка");
 
@@ -5436,27 +5439,27 @@ namespace VTDinfo
             int valveID = 1;//порядковый номер крана
             for (int i = 0; i < mGVTD.furnishingsLogS.Count; i++)
             {
-                if (mGVTD.furnishingsLogS[i].characterFeatures.Contains("ран")| mGVTD.furnishingsLogS[i].note.Contains("ран")| mGVTD.furnishingsLogS[i].characterFeatures.Contains("раниц"))
+                if (mGVTD.furnishingsLogS[i].characterFeatures.Contains("ран") | mGVTD.furnishingsLogS[i].note.Contains("ран") | mGVTD.furnishingsLogS[i].characterFeatures.Contains("раниц"))
                 {
                     for (int j = 0; j < mGVTD.MGPipeS.Count; j++)
                     {
                         if (String.Equals(mGVTD.MGPipeS[j].pipeNumber, mGVTD.furnishingsLogS[i].pipeNumber))
                         {
-                            lineValvesPipes.Add(mGVTD.MGPipeS[j]);                            
+                            lineValvesPipes.Add(mGVTD.MGPipeS[j]);
                             string note2 = mGVTD.furnishingsLogS[i].characterFeatures;
                             string note3 = mGVTD.furnishingsLogS[i].note;
                             string note = "";
-                            note=String.Concat(note2, "_", note3, ", номер трубы: ", mGVTD.furnishingsLogS[i].pipeNumber);
+                            note = String.Concat(note2, "_", note3, ", номер трубы: ", mGVTD.furnishingsLogS[i].pipeNumber);
                             lineValvesPipes[valveID].note = "";
                             lineValvesPipes[valveID].note = note;
                             valveID++;
-                            richTextBox4.AppendText(Environment.NewLine+ valveID + ") Найден кран "+ mGVTD.MGPipeS[j].note+", номер трубы: "+ mGVTD.MGPipeS[j].pipeNumber);                            
+                            richTextBox4.AppendText(Environment.NewLine + valveID + ") Найден кран " + mGVTD.MGPipeS[j].note + ", номер трубы: " + mGVTD.MGPipeS[j].pipeNumber);
                         }
                     }
                 }
             }
-            lineValvesPipes.Add(mGVTD.MGPipeS[mGVTD.MGPipeS.Count-1]);//добавляем в список последнюю трубу
-            lineValvesPipes[lineValvesPipes.Count-1].note = String.Concat(lineValvesPipes[lineValvesPipes.Count - 1].note, " - последняя труба участка");
+            lineValvesPipes.Add(mGVTD.MGPipeS[mGVTD.MGPipeS.Count - 1]);//добавляем в список последнюю трубу
+            lineValvesPipes[lineValvesPipes.Count - 1].note = String.Concat(lineValvesPipes[lineValvesPipes.Count - 1].note, " - последняя труба участка");
             return lineValvesPipes;
         }
         private void setChekBoxNames(List<MGPipe> lineValvesPipes)
@@ -5469,7 +5472,7 @@ namespace VTDinfo
 
             try
             {
-                checkBox1.Text = String.Concat(lineValvesPipes[0].note,", ", Convert.ToString(Convert.ToDouble(textBox381.Text.Replace(".", ",")) +a*(lineValvesPipes[0].odometrDist- lineValvesPipes[0].odometrDist))," км.");
+                checkBox1.Text = String.Concat(lineValvesPipes[0].note, ", ", Convert.ToString(Convert.ToDouble(textBox381.Text.Replace(".", ",")) + a * (lineValvesPipes[0].odometrDist - lineValvesPipes[0].odometrDist)), " км.");
                 checkBox1.Checked = true;
             }
             catch (Exception)
@@ -5487,7 +5490,7 @@ namespace VTDinfo
             }
             try
             {
-                checkBox3.Text = String.Concat(lineValvesPipes[2].note, ", ", Convert.ToString(Convert.ToDouble(textBox381.Text.Replace(".",",")) + a * (lineValvesPipes[2].odometrDist - lineValvesPipes[0].odometrDist)), " км.");
+                checkBox3.Text = String.Concat(lineValvesPipes[2].note, ", ", Convert.ToString(Convert.ToDouble(textBox381.Text.Replace(".", ",")) + a * (lineValvesPipes[2].odometrDist - lineValvesPipes[0].odometrDist)), " км.");
                 checkBox3.Checked = true;
             }
             catch (Exception)
@@ -5595,7 +5598,7 @@ namespace VTDinfo
             }
             try
             {
-                checkBox15.Text = String.Concat(lineValvesPipes[14].note, ", ",Convert.ToString(Convert.ToDouble(textBox381.Text.Replace(".", ",")) + a * (lineValvesPipes[14].odometrDist - lineValvesPipes[0].odometrDist)), " км.");
+                checkBox15.Text = String.Concat(lineValvesPipes[14].note, ", ", Convert.ToString(Convert.ToDouble(textBox381.Text.Replace(".", ",")) + a * (lineValvesPipes[14].odometrDist - lineValvesPipes[0].odometrDist)), " км.");
                 checkBox15.Checked = true;
             }
             catch (Exception)
@@ -5761,128 +5764,128 @@ namespace VTDinfo
         {
             List<plotBoundaries> allPlots = new List<plotBoundaries>();//будущий список участков для обсчета
             List<MGPipe> chekedValves = new List<MGPipe>();//список труб (кранов), на которых поставлены галочки
-            { 
-            try
             {
-                if (checkBox1.Checked)
+                try
                 {
-                    chekedValves.Add(allValves[0]);
+                    if (checkBox1.Checked)
+                    {
+                        chekedValves.Add(allValves[0]);
 
+                    }
                 }
-            }
-            catch (Exception) { }
-            try
-            {
-                if (checkBox2.Checked)
+                catch (Exception) { }
+                try
                 {
-                    chekedValves.Add(allValves[1]);
+                    if (checkBox2.Checked)
+                    {
+                        chekedValves.Add(allValves[1]);
+                    }
                 }
-            }
-            catch (Exception) { }
-            try
-            {
-                if (checkBox3.Checked)
+                catch (Exception) { }
+                try
                 {
-                    chekedValves.Add(allValves[2]);
+                    if (checkBox3.Checked)
+                    {
+                        chekedValves.Add(allValves[2]);
+                    }
                 }
-            }
-            catch (Exception) { }
-            try
-            {
-                if (checkBox4.Checked)
+                catch (Exception) { }
+                try
                 {
-                    chekedValves.Add(allValves[3]);
+                    if (checkBox4.Checked)
+                    {
+                        chekedValves.Add(allValves[3]);
+                    }
                 }
-            }
-            catch (Exception) { }
-            try
-            {
-                if (checkBox5.Checked)
+                catch (Exception) { }
+                try
                 {
-                    chekedValves.Add(allValves[4]);
+                    if (checkBox5.Checked)
+                    {
+                        chekedValves.Add(allValves[4]);
+                    }
                 }
-            }
-            catch (Exception) { }
-            try
-            {
-                if (checkBox6.Checked)
+                catch (Exception) { }
+                try
                 {
-                    chekedValves.Add(allValves[5]);
+                    if (checkBox6.Checked)
+                    {
+                        chekedValves.Add(allValves[5]);
+                    }
                 }
-            }
-            catch (Exception) { }
-            try
-            {
-                if (checkBox7.Checked)
+                catch (Exception) { }
+                try
                 {
-                    chekedValves.Add(allValves[6]);
+                    if (checkBox7.Checked)
+                    {
+                        chekedValves.Add(allValves[6]);
+                    }
                 }
-            }
-            catch (Exception) { }
-            try
-            {
-                if (checkBox8.Checked)
+                catch (Exception) { }
+                try
                 {
-                    chekedValves.Add(allValves[7]);
+                    if (checkBox8.Checked)
+                    {
+                        chekedValves.Add(allValves[7]);
+                    }
                 }
-            }
-            catch (Exception) { }
-            try
-            {
-                if (checkBox9.Checked)
+                catch (Exception) { }
+                try
                 {
-                    chekedValves.Add(allValves[8]);
+                    if (checkBox9.Checked)
+                    {
+                        chekedValves.Add(allValves[8]);
+                    }
                 }
-            }
-            catch (Exception) { }
-            try
-            {
-                if (checkBox10.Checked)
+                catch (Exception) { }
+                try
                 {
-                    chekedValves.Add(allValves[9]);
+                    if (checkBox10.Checked)
+                    {
+                        chekedValves.Add(allValves[9]);
+                    }
                 }
-            }
-            catch (Exception) { }
-            try
-            {
-                if (checkBox11.Checked)
+                catch (Exception) { }
+                try
                 {
-                    chekedValves.Add(allValves[10]);
+                    if (checkBox11.Checked)
+                    {
+                        chekedValves.Add(allValves[10]);
+                    }
                 }
-            }
-            catch (Exception) { }
-            try
-            {
-                if (checkBox12.Checked)
+                catch (Exception) { }
+                try
                 {
-                    chekedValves.Add(allValves[11]);
+                    if (checkBox12.Checked)
+                    {
+                        chekedValves.Add(allValves[11]);
+                    }
                 }
-            }
-            catch (Exception) { }
-            try
-            {
-                if (checkBox13.Checked)
+                catch (Exception) { }
+                try
                 {
-                    chekedValves.Add(allValves[12]);
+                    if (checkBox13.Checked)
+                    {
+                        chekedValves.Add(allValves[12]);
+                    }
                 }
-            }
-            catch (Exception) { }
-            try
-            {
-                if (checkBox14.Checked)
+                catch (Exception) { }
+                try
                 {
-                    chekedValves.Add(allValves[13]);
+                    if (checkBox14.Checked)
+                    {
+                        chekedValves.Add(allValves[13]);
+                    }
                 }
-            }
-            catch (Exception) { }
-            try
-            {
-                if (checkBox15.Checked)
+                catch (Exception) { }
+                try
                 {
-                    chekedValves.Add(allValves[14]);
+                    if (checkBox15.Checked)
+                    {
+                        chekedValves.Add(allValves[14]);
+                    }
                 }
-            }
-            catch (Exception) { }
+                catch (Exception) { }
 
                 //***********************************************************************************//
                 try
@@ -6029,12 +6032,12 @@ namespace VTDinfo
             }
             for (int i = 1; i < chekedValves.Count; i++)
             {
-                plotBoundaries plot = lookingOfPlotBoundaries(mGVTD, chekedValves[i-1].pipeNumber, chekedValves[i].pipeNumber);
+                plotBoundaries plot = lookingOfPlotBoundaries(mGVTD, chekedValves[i - 1].pipeNumber, chekedValves[i].pipeNumber);
                 allPlots.Add(plot);
             }
             return allPlots;
         }
-       
+
         private plotBoundaries lookingOfPlotBoundaries(MGVTD mGVTD, string pipeNumberOne, string pipeNumberTwo)//ищем имена и порядковые номера первой и последней труб в ведомости аномалий, попавших в заданный интервал трубного журнала. 
         {
             double apperKm = 0.001;
@@ -6045,8 +6048,8 @@ namespace VTDinfo
             plotBoundaries result = new plotBoundaries();
             result.pipeNumberOnePipeLog = pipeNumberOne;//имя первой трубы участка в трубном журнале
             result.pipeNumberTwoPipeLog = pipeNumberTwo;//имя второй трубы участка в трубном журнале
-        int firstPipeID=0;
-            int secondPipeID= mGVTD.MGPipeS.Count;
+            int firstPipeID = 0;
+            int secondPipeID = mGVTD.MGPipeS.Count;
             int marker = 0;//маркер для определения, что первая труба диапазона уже найдена
             for (int i = 0; i < mGVTD.MGPipeS.Count; i++)//ищем порядковые номера этих труб в трубном журнале
             {
@@ -6054,17 +6057,17 @@ namespace VTDinfo
                 {
                     firstPipeID = i;
                     result.pipeIdNumberOnePipeLog = firstPipeID;
-                    
-                    result.pipeOneKilometr = Convert.ToDouble(textBox381.Text.Replace(".",",")) + apperKm * (mGVTD.MGPipeS[i].odometrDist- mGVTD.MGPipeS[0].odometrDist);
+
+                    result.pipeOneKilometr = Convert.ToDouble(textBox381.Text.Replace(".", ",")) + apperKm * (mGVTD.MGPipeS[i].odometrDist - mGVTD.MGPipeS[0].odometrDist);
                 }
                 if (String.Equals(pipeNumberTwo, mGVTD.MGPipeS[i].pipeNumber))
                 {
                     secondPipeID = i;
-                    result.pipeIdNumberTwoPipeLog = secondPipeID; 
-                    
+                    result.pipeIdNumberTwoPipeLog = secondPipeID;
+
                     result.pipeTwoKilometr = Convert.ToDouble(textBox381.Text.Replace(".", ",")) + apperKm * (mGVTD.MGPipeS[i].odometrDist - mGVTD.MGPipeS[0].odometrDist);
                 }
-                
+
             }
             for (int j = firstPipeID; j < secondPipeID; j++)
             {
@@ -6104,11 +6107,11 @@ namespace VTDinfo
             await Task.Run(() => shortTableExcelReadToClass());//чтение данных из файла в экземпляр класса (избирательный метод)
             mGVTD = itIsTee(mGVTD);//помечаем соответствующие поля у секций, являющихся тройниками
             textBox131.Text = mGVTD.MGPipeS[0].pipeNumber;
-            textBox136.Text= mGVTD.MGPipeS[mGVTD.MGPipeS.Count-1].pipeNumber;
+            textBox136.Text = mGVTD.MGPipeS[mGVTD.MGPipeS.Count - 1].pipeNumber;
         }
         private void button6_Click(object sender, EventArgs e)//выполнение расчета
         {
-            
+
         }
 
         private double damagFromСorrosionReal(MGVTD mGVTD, plotBoundaries PlotBoundaries)//сбор поврежденности от коррозии
@@ -6137,9 +6140,9 @@ namespace VTDinfo
                 if (maxCorrDamagOfHhisPipe > maxDentDamagOfHhisPipe)
                 {
                     result = result + maxCorrDamagOfHhisPipe;
-                   // richTextBox2.AppendText(Environment.NewLine + "_"+ mGVTD.MGPipeS[i].pipeNumber);
+                    // richTextBox2.AppendText(Environment.NewLine + "_"+ mGVTD.MGPipeS[i].pipeNumber);
                 }
-            } 
+            }
             return result;
         }
         private double damagFromDentReal(MGVTD mGVTD, plotBoundaries PlotBoundaries)//сбор поврежденности от вмятин
@@ -6167,7 +6170,7 @@ namespace VTDinfo
                 }
                 if (maxCorrDamagOfHhisPipe < maxDentDamagOfHhisPipe)
                 {
-                    result = result+maxDentDamagOfHhisPipe;
+                    result = result + maxDentDamagOfHhisPipe;
                 }
 
             }
@@ -6180,16 +6183,16 @@ namespace VTDinfo
             double result = 0;
             for (int i = PlotBoundaries.pipeIdNumberOnePipeLog; i < PlotBoundaries.pipeIdNumberTwoPipeLog; i++)
             {
-                
+
                 double maxJoinOfHhisPipe = 0;
                 for (int j = 0; j < mGVTD.MGPipeS[i].JoinDamageList.Count; j++)
                 {
-                   
+
                     if (maxJoinOfHhisPipe < mGVTD.MGPipeS[i].JoinDamageList[j])
                     {
                         maxJoinOfHhisPipe = mGVTD.MGPipeS[i].JoinDamageList[j];
                     }
-                    
+
                 }
                 result = result + maxJoinOfHhisPipe;
 
@@ -6200,9 +6203,9 @@ namespace VTDinfo
         }
         private void button1_Click_1(object sender, EventArgs e)//проведение вычислений Pvtd !!!В ЗАДАННЫХ ГРАНИЦАХ УЧАСТКА!!
         {
-        
+
         }
-        private int MaxCorrDefectNumber (MGVTD mGVTD, plotBoundaries PlotBoundaries)//ищем номер строки с максимальным дефектом потери металла
+        private int MaxCorrDefectNumber(MGVTD mGVTD, plotBoundaries PlotBoundaries)//ищем номер строки с максимальным дефектом потери металла
         {
             double maxLostMetalProcent = 0;
             int numberPipeWithMaxDefect = 0;
@@ -6218,14 +6221,14 @@ namespace VTDinfo
                             numberPipeWithMaxDefect = i;
                         }
                     }
-                }                               
+                }
             }
             return numberPipeWithMaxDefect;
 
         }
         private int numberOfTriples(MGVTD mGVTD, plotBoundaries PlotBoundaries)//считаем количество тройников на участке
         {
-            int result=0;
+            int result = 0;
             for (int i = PlotBoundaries.pipeIdNumberOnePipeLog; i < PlotBoundaries.pipeIdNumberTwoPipeLog; i++)
             {
                 if (mGVTD.MGPipeS[i].itIsTee)
@@ -6240,7 +6243,7 @@ namespace VTDinfo
         }
         private int numberOfDefectTriples(MGVTD mGVTD, plotBoundaries PlotBoundaries)//считаем количество дефектных тройников
         {
-            int result=0;
+            int result = 0;
             for (int i = PlotBoundaries.pipeIdNumberOne; i < PlotBoundaries.pipeIdNumberTwo; i++)
             {
                 if (String.IsNullOrEmpty(mGVTD.anomalyLogLineS[i].defectRepareDate))
@@ -6258,7 +6261,7 @@ namespace VTDinfo
                                 if (mGVTD.MGPipeS[j].itIsTee)
                                 {
                                     result++;
-                                }          
+                                }
                             }
                         }
                     }
@@ -6268,7 +6271,7 @@ namespace VTDinfo
         }
         private int numberOfDefectUnderRoads(MGVTD mGVTD, plotBoundaries PlotBoundaries)//НЕ РАБОТАЕТ!!!считаем количество дефектных стыков в кожухах
         {
-            int result=0;
+            int result = 0;
             int startPipe = 0;
             int finishPipe = 0;
             bool marker = false;
@@ -6288,8 +6291,8 @@ namespace VTDinfo
                                 startPipe = f;//номер первой трубы патрона в трубном журнале
                             }
                         }
-                        
-                       
+
+
                         if (marker == true)
                         {
                             for (int j = i; j < mGVTD.furnishingsLogS.Count; j++)//и ищем конец этого патрона
@@ -6305,11 +6308,11 @@ namespace VTDinfo
                                             marker = false;
                                         }
                                     }
-                                    
+
                                     if (marker == false)
                                     {
                                         for (int k = startPipe; k < finishPipe; k++)
-                                        {                                            
+                                        {
                                             if (mGVTD.MGPipeS[k].JoinDamageList.Count > 0)
                                             {
                                                 mark = true;
@@ -6325,7 +6328,7 @@ namespace VTDinfo
                                                     defectpipes.Add(mGVTD.anomalyLogLineS[i].pipeNumber);
                                                     result++;
                                                     richTextBox2.AppendText(Environment.NewLine + "Дефектный стык № " + k + ", в кожухе от" + startPipe + " до " + finishPipe + " трубы");
-                                                }                                                
+                                                }
                                             }
                                         }
                                     }
@@ -6375,7 +6378,7 @@ namespace VTDinfo
                                                     finishPipeID = f;
                                                     //richTextBox2.AppendText(Environment.NewLine + "Последняя труба кожуха " + mGVTD.MGPipeS[finishPipeID].pipeNumber);
                                                     //richTextBox2.AppendText(Environment.NewLine + "======================================= ");
-                                                    for (int q = startPipeID + 1; q < finishPipeID+1; q++)//+1 потому, что первый стык находится не в кожухе и мы его пропускаем
+                                                    for (int q = startPipeID + 1; q < finishPipeID + 1; q++)//+1 потому, что первый стык находится не в кожухе и мы его пропускаем
                                                     {
                                                         pipesUnderRoad.Add(mGVTD.MGPipeS[q].pipeNumber);//добавляем трубы, находящиеся в кожухе к специально созданноому списку
                                                         //richTextBox2.AppendText(Environment.NewLine + "Очередная труба кожуха " + mGVTD.MGPipeS[q].pipeNumber);
@@ -6417,10 +6420,10 @@ namespace VTDinfo
                                     {
                                         richTextBox2.AppendText(Environment.NewLine + "Дефектный стык № " + mGVTD.anomalyLogLineS[j].pipeNumber + " внутри кожуха");
                                     }
-                                    
+
                                 }
                             }
-                            
+
                         }
                     }
                 }
@@ -6429,7 +6432,7 @@ namespace VTDinfo
             return result;
         }
         private List<string> namesOfDefectCoilUnderRoads(MGVTD mGVTD, plotBoundaries PlotBoundaries, bool printPipe)//считаем количество дефектных стыков в кожухах
-        {            
+        {
             int result = 0;
             int startPipeID = 0;
             int finishPipeID = 0;
@@ -6543,7 +6546,7 @@ namespace VTDinfo
                             result++;//инкрементироуем количество дефектных труб
                         }
                     }
-                }                
+                }
 
             }
             return result;
@@ -6553,9 +6556,10 @@ namespace VTDinfo
         {
             goEquation();
         }
-        
+
         private void goEquation()
         {
+            richTextBox2.AppendText(Environment.NewLine + "mGVTD.MGPipeS.Count=" + mGVTD.MGPipeS.Count);
             bool printPipe = true;//выводим на экран номера дефектных труб в кожухах
             allPipeCount = 0;//сумма всех труб участка++
             allPipeWhithСorrosion = 0;//сумма труб с коррозией++
@@ -6572,13 +6576,14 @@ namespace VTDinfo
             allDefectsWhithСorrosionPlus = 0;//сумма всех коррозионных дефектов глубиной больше указанного процента
             plotBoundaries PlotBoundaries = new plotBoundaries();
             mGVTD = isLostMetal(mGVTD);//расставляем метки на дефектах потери металла
+            richTextBox2.AppendText(Environment.NewLine + "mGVTD.MGPipeS.Count=" + mGVTD.MGPipeS.Count);
             PlotBoundaries = lookingOfPlotBoundaries(mGVTD, textBox131.Text, textBox136.Text);
             allPipeCount = PlotBoundaries.pipeIdNumberTwoPipeLog - PlotBoundaries.pipeIdNumberOnePipeLog + 1;
             richTextBox2.AppendText(Environment.NewLine + "=======================================");
             richTextBox2.AppendText(Environment.NewLine + "Выполняется расчет Pвтд для участка газопровода в заданных границах");
 
             mGVTD = damagFromСorrosion(damageFromDent(damagOfCoilJoin(mGVTD, PlotBoundaries), PlotBoundaries), PlotBoundaries);
-
+            richTextBox2.AppendText(Environment.NewLine + "mGVTD.MGPipeS.Count=" + mGVTD.MGPipeS.Count);
             double dc = 0;//поврежденность от трещиноподобных дефектов
             summCorrosionDamag = damagFromСorrosionReal(mGVTD, PlotBoundaries);
             double dk = summCorrosionDamag / allPipeCount;//поврежд от коррозии
@@ -6595,6 +6600,7 @@ namespace VTDinfo
             double Pt = 1 - (1 - dc) * (1 - dk) * (1 - Do) * (1 - dr) * (1 - dd);//показатель технического состояния труб и соединительных деталей
             technicalConditionIndicatorOfPipesAndSDT = Pt;
             double Pvtd = 1 - (1 - Pt) * (1 - 0.5 * dCoil) * (1 - dSigma) * (1 - df * df);//Показатель технического состояния линейного участка МГ по результатам ВТД
+            PvtdReport = Pvtd;
             richTextBox2.AppendText(Environment.NewLine + "Выполнен расчет для участка МГ от трубы № " + textBox131.Text + " до трубы № " + textBox136.Text);
 
             richTextBox2.AppendText(Environment.NewLine + "Повреждённость соединительных деталей линейного участка (ф. 5.9 СТО 292): " + Math.Round(dd, 3));
@@ -6677,16 +6683,17 @@ namespace VTDinfo
             double x17 = numberOfDefectLongitudinalWelds(mGVTD, PlotBoundaries);//Количество аномальных продольных швов
             richTextBox2.AppendText(Environment.NewLine + x0 + ";" + x1 + ";" + x2 + ";" + x3 + ";" + x4 + ";" + x5 + ";" + x6 + ";" + x7 + ";" + x8 + ";" + x9 + ";" + x10 + ";" +
                 x11 + ";" + x12 + ";" + x13 + ";" + x14 + ";" + x15 + ";" + x16 + ";" + x17);
+            richTextBox2.AppendText(Environment.NewLine + "mGVTD.MGPipeS.Count=" + mGVTD.MGPipeS.Count);
         }//Проводим цикл вычислений по заданному интервалу
-        
+
         private MGVTD VDTWhithoutRepareDefects(MGVTD mGVTD)
         {
             MGVTD result = mGVTD;
-            
+
             result.anomalyLogLineS.Clear();
             for (int i = 0; i < mGVTD.anomalyLogLineS.Count; i++)
             {
-                if (String.IsNullOrWhiteSpace(mGVTD.anomalyLogLineS[i].defectRepareDate)==false)
+                if (String.IsNullOrWhiteSpace(mGVTD.anomalyLogLineS[i].defectRepareDate) == false)
                 {
                     result.anomalyLogLineS.Add(mGVTD.anomalyLogLineS[i]);
                 }
@@ -6694,7 +6701,7 @@ namespace VTDinfo
 
             return result;
         }
-        
+
         private void goEquationSpecial(MGVTD mGVTD, plotBoundaries PlotBoundaries)
         {
             allPipeCount = 0;//сумма всех труб участка++
@@ -6708,7 +6715,7 @@ namespace VTDinfo
             allPipeWhithJointDefects = 0;//количество труб с дефектами КСС++
             summJointDefectsDamag = 0;//суммарная поврежденность КСС
 
-            
+
             double dCoil = 0;
             allDefectsWhithСorrosionPlus = 0;//сумма всех коррозионных дефектов глубиной больше указанного процента
             //plotBoundaries PlotBoundaries = new plotBoundaries();
@@ -6742,7 +6749,7 @@ namespace VTDinfo
             //richTextBox2.AppendText(Environment.NewLine + "Повреждённость линейного участка МГ от вмятин и гофр (ф. 5.8 СТО 292): " + Math.Round(dr, 3));
             //richTextBox2.AppendText(Environment.NewLine + "Повреждённость линейного участка МГ от от дефектов КСС (ф. 5.10 СТО 292): " + Math.Round(dCoil, 3));
             //richTextBox2.AppendText(Environment.NewLine + "Pвтд= " + Math.Round(Pvtd, 3));
-            richTextBox2.AppendText(Environment.NewLine +mGVTD.pipelineInfo.pipelineName +";" + mGVTD.pipelineInfo.pipelineSection + ";" + mGVTD.pipelineInfo.pipeDiameter + ";" + mGVTD.pipelineInfo.examinationDate + ";" + mGVTD.pipelineInfo.designPressure + ";" + mGVTD.pipelineInfo.operatingPressure + ";" + mGVTD.pipelineInfo.comissioningYear + ";" + PlotBoundaries.pipeNumberOnePipeLog + ";"+ PlotBoundaries.pipeNumberTwoPipeLog+ ";"+ allPipeCount + ";" + allPipeWhithСorrosion + ";" + Math.Round(summCorrosionDamag, 3) + ";" + Math.Round(dk, 3) + ";" + Math.Round(dc, 3) + ";" + Math.Round(Do, 3) + ";" +
+            richTextBox2.AppendText(Environment.NewLine + mGVTD.pipelineInfo.pipelineName + ";" + mGVTD.pipelineInfo.pipelineSection + ";" + mGVTD.pipelineInfo.pipeDiameter + ";" + mGVTD.pipelineInfo.examinationDate + ";" + mGVTD.pipelineInfo.designPressure + ";" + mGVTD.pipelineInfo.operatingPressure + ";" + mGVTD.pipelineInfo.comissioningYear + ";" + PlotBoundaries.pipeNumberOnePipeLog + ";" + PlotBoundaries.pipeNumberTwoPipeLog + ";" + allPipeCount + ";" + allPipeWhithСorrosion + ";" + Math.Round(summCorrosionDamag, 3) + ";" + Math.Round(dk, 3) + ";" + Math.Round(dc, 3) + ";" + Math.Round(Do, 3) + ";" +
             allPipeWhithDent + ";" + Math.Round(summDentDamag, 3) + ";" + Math.Round(dr, 3) + ";" + Math.Round(dd, 3) + ";" + Math.Round(Pt, 3) + ";" + allPipeWhithJointDefects + ";" +
             Math.Round(dJoin, 3) + ";" + Math.Round(dCoil, 3) + ";" + Math.Round(0.85 * dCoil, 3) + ";" + dSigma + ";" + df + ";" + Math.Round(Pvtd, 3));
             double procent = 15;
@@ -6812,10 +6819,10 @@ namespace VTDinfo
             //richTextBox2.AppendText(Environment.NewLine + "======================================= ");
             //richTextBox2.AppendText(Environment.NewLine + "Количество дефектных труб в кожухах: " + numberOfDefectCoilUnderRoads(mGVTD, PlotBoundaries));
             bool printPipe = false;
-            double x15 = numberOfDefectCoilUnderRoads(mGVTD, PlotBoundaries,printPipe);//Количество дефектных труб в кожухах
+            double x15 = numberOfDefectCoilUnderRoads(mGVTD, PlotBoundaries, printPipe);//Количество дефектных труб в кожухах
             List<string> defectCoils = namesOfDefectCoilUnderRoads(mGVTD, PlotBoundaries, printPipe);
-            string x18="";
-            if (defectCoils.Count>0)
+            string x18 = "";
+            if (defectCoils.Count > 0)
             {
                 for (int i = 0; i < defectCoils.Count; i++)
                 {
@@ -6828,7 +6835,7 @@ namespace VTDinfo
             //richTextBox2.AppendText(Environment.NewLine + "Количество аномальных продольных швов: " + numberOfDefectLongitudinalWelds(mGVTD, PlotBoundaries));
             double x17 = numberOfDefectLongitudinalWelds(mGVTD, PlotBoundaries);//Количество аномальных продольных швов
             richTextBox2.AppendText(";" + x0 + ";" + x1 + ";" + x2 + ";" + x3 + ";" + x4 + ";" + x5 + ";" + x6 + ";" + x7 + ";" + x8 + ";" + x9 + ";" + x10 + ";" +
-                x11 + ";" + x12 + ";" + x13 + ";" + x14 + ";" + x15 + ";("+x18+");" + x16 + ";" + x17 + ";" + mGVTD.MGPipeS[PlotBoundaries.pipeIdNumberOnePipeLog].note + ";" + mGVTD.MGPipeS[PlotBoundaries.pipeIdNumberTwoPipeLog].note+";"+PlotBoundaries.pipeOneKilometr+";"+PlotBoundaries.pipeTwoKilometr);
+                x11 + ";" + x12 + ";" + x13 + ";" + x14 + ";" + x15 + ";(" + x18 + ");" + x16 + ";" + x17 + ";" + mGVTD.MGPipeS[PlotBoundaries.pipeIdNumberOnePipeLog].note + ";" + mGVTD.MGPipeS[PlotBoundaries.pipeIdNumberTwoPipeLog].note + ";" + PlotBoundaries.pipeOneKilometr + ";" + PlotBoundaries.pipeTwoKilometr);
         }
         string fileNamePipeLog;
         string fileNameDefectLog;
@@ -6838,7 +6845,7 @@ namespace VTDinfo
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 fileNamePipeLog = openFileDialog1.FileName;
-                
+
                 ButtonOpenPipeLog.BackColor = Color.Azure;
                 //findStart();//поиск начала и конца журналов свойств труб и категорий
                 //tableArdesTest();
@@ -6890,7 +6897,7 @@ namespace VTDinfo
         }
         private void parsSOD2020()//один из вариантов расположения столбцов журнала дефектов
         {
-            textBox195.Text = "7";            
+            textBox195.Text = "7";
             textBox193.Text = "21";
             textBox192.Text = "8";
             textBox191.Text = "7";
@@ -6963,7 +6970,7 @@ namespace VTDinfo
 
             //Выбираем таблицу(лист).
             Microsoft.Office.Interop.Excel.Worksheet ObjWorkSheet3;
-            
+
             //*********************Обработка журнала аномалий
             string WorksheetName3 = textBox196.Text;//получаем название вкладки из формы импотра
             try
@@ -6972,11 +6979,11 @@ namespace VTDinfo
             }
             catch (Exception)
             {
-                WorksheetName3 = WorksheetName3.Replace(".xlsx","");
+                WorksheetName3 = WorksheetName3.Replace(".xlsx", "");
                 ObjWorkSheet3 = (Microsoft.Office.Interop.Excel.Worksheet)ObjWorkBook.Sheets[WorksheetName3];
             }
-            
-            bool isFindFinish = false;            
+
+            bool isFindFinish = false;
             for (int i = 1; i < 50; i++)
             {
                 string columnName = Convert.ToString(ObjWorkSheet3.Cells[1, i].Text);
@@ -7038,7 +7045,7 @@ namespace VTDinfo
                 }
                 else if (String.IsNullOrEmpty(columnName))
                 {
-                    if (isFindFinish==false)
+                    if (isFindFinish == false)
                     {
                         textBox216.Text = Convert.ToString(i);
                         isFindFinish = true;
@@ -7068,7 +7075,7 @@ namespace VTDinfo
                 {
                     textBox169.Text = Convert.ToString(i);
                 }
- 
+
                 else if (columnName.Contains(Convert.ToString(textBox211.Text)))
                 {
                     textBox168.Text = Convert.ToString(i);
@@ -7096,7 +7103,7 @@ namespace VTDinfo
                 else if (columnName.Contains(Convert.ToString(textBox219.Text)))
                 {
                     textBox172.Text = Convert.ToString(i);
-                }               
+                }
                 else if (String.IsNullOrEmpty(columnName))
                 {
                     if (isFindFinish == false)
@@ -7145,7 +7152,7 @@ namespace VTDinfo
                 else if (columnName.Contains(Convert.ToString(textBox225.Text)))
                 {
                     textBox224.Text = Convert.ToString(i);
-                }                
+                }
             }
             ObjExcel.Quit();
         }
@@ -7260,7 +7267,7 @@ namespace VTDinfo
                 {
                     textBox252.Text = Convert.ToString(i);
                 }
-                
+
                 else if (columnName.Contains(Convert.ToString(textBox268.Text)))
                 {
                     textBox255.Text = Convert.ToString(i);
@@ -7278,7 +7285,7 @@ namespace VTDinfo
             ObjExcel.Quit();
             //*********************Обработка журнала линейных объектов
 
-            if (String.IsNullOrEmpty(fileNameLineObjects)==false)
+            if (String.IsNullOrEmpty(fileNameLineObjects) == false)
             {
                 ObjExcel = new Microsoft.Office.Interop.Excel.Application();
                 //Открываем книгу.                                                                                                                                                        
@@ -7312,8 +7319,8 @@ namespace VTDinfo
                 }
                 ObjExcel.Quit();
             }
-            
-           
+
+
         }
 
         private void autoLookColumns_Click(object sender, EventArgs e)
@@ -7346,13 +7353,13 @@ namespace VTDinfo
         private void lookingForValves_Click(object sender, EventArgs e)//кнопка для поиска трубных секций, помеченных как краны
         {
             allValves = getAllValvePipes(mGVTD);
-            setChekBoxNames(allValves);            
+            setChekBoxNames(allValves);
         }
         private void makeBoundariesList_Click(object sender, EventArgs e)//кнопка для формирования списка участков для обсчета
         {
-            List<plotBoundaries> allPlots=getAllPlotBoundaries(mGVTD, allValves);
+            List<plotBoundaries> allPlots = getAllPlotBoundaries(mGVTD, allValves);
             richTextBox2.Clear();
-            
+
             for (int i = 0; i < allPlots.Count; i++)
             {
                 goEquationSpecial(mGVTD, allPlots[i]);
@@ -7373,9 +7380,9 @@ namespace VTDinfo
             app.Visible = false;
             Microsoft.Office.Interop.Excel.Workbook workBook = app.Workbooks.Add(Nothing);
             Microsoft.Office.Interop.Excel.Worksheet worksheet = (Microsoft.Office.Interop.Excel.Worksheet)workBook.Sheets[1];
-            
+
             worksheet.Name = "SonarFormat";
-            
+
             // Write data
             worksheet.Cells[1, 22] = mGVTD.pipelineInfo.pipelineName;//public string pipelineName;//трубопровод (название)
             worksheet.Cells[1, 23] = mGVTD.pipelineInfo.pipelineSection;//public string pipelineSection;//участок трубопровода
@@ -7414,7 +7421,7 @@ namespace VTDinfo
             worksheet.Cells[1, 20] = "Repere_date";//дата устранения дефекта
             worksheet.Cells[1, 21] = "Глубина дефекта в мм";//дата устранения дефекта
             int strNunber = 2;//номер строки в формируемой таблице
-            for (int i = PlotBoundaries.pipeIdNumberOnePipeLog; i < PlotBoundaries.pipeIdNumberTwoPipeLog+1; i++)
+            for (int i = PlotBoundaries.pipeIdNumberOnePipeLog; i < PlotBoundaries.pipeIdNumberTwoPipeLog + 1; i++)
             {
                 string pipeNumber = mGVTD.MGPipeS[i].pipeNumber;//номер текущей трубы
                 worksheet.Cells[strNunber, 1] = "";//N_OSOB
@@ -7463,9 +7470,9 @@ namespace VTDinfo
                             worksheet.Cells[strNunber, 20] = mGVTD.anomalyLogLineS[j].defectRepareDate;//дата устранения дефекта
                             worksheet.Cells[strNunber, 25] = mGVTD.anomalyLogLineS[j].Latitude;//Широта
                             worksheet.Cells[strNunber, 26] = mGVTD.anomalyLogLineS[j].Longitude;//Долгота
-                            if (String.IsNullOrEmpty(Convert.ToString(mGVTD.anomalyLogLineS[j].depthInMm))==false)
+                            if (String.IsNullOrEmpty(Convert.ToString(mGVTD.anomalyLogLineS[j].depthInMm)) == false)
                             {
-                                if (mGVTD.anomalyLogLineS[j].depthInMm>0)
+                                if (mGVTD.anomalyLogLineS[j].depthInMm > 0)
                                 {
                                     worksheet.Cells[strNunber, 21] = mGVTD.anomalyLogLineS[j].depthInMm;
                                 }
@@ -7479,7 +7486,7 @@ namespace VTDinfo
                                     {
                                         worksheet.Cells[strNunber, 21] = 0.01 * mGVTD.anomalyLogLineS[j].depthInProcent * mGVTD.MGPipeS[i].thikness;
                                     }
-                                    
+
                                 }
                             }
                             else
@@ -7493,7 +7500,7 @@ namespace VTDinfo
                                     worksheet.Cells[strNunber, 21] = 0.01 * mGVTD.anomalyLogLineS[j].depthInProcent * mGVTD.MGPipeS[i].thikness;
                                 }
                             }
-                           
+
                             strNunber++;
                         }
                     }
@@ -7517,13 +7524,13 @@ namespace VTDinfo
                 Directory.CreateDirectory(dir);
             }
             saveFileDialog1.FileName = textBox_adres.Text + mGVTD.pipelineInfo.pipelineName + "-" + PlotBoundaries.pipeNumberOnePipeLog + "-" + PlotBoundaries.pipeNumberTwoPipeLog + "-(" + PlotBoundaries.pipeOneKilometr + "-" + PlotBoundaries.pipeTwoKilometr + " км).xlsx";
-                //richTextBox4.AppendText(Environment.NewLine + saveFileDialog1.FileName);
-                worksheet.SaveAs(saveFileDialog1.FileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange, Type.Missing, Type.Missing, Type.Missing);
-                //worksheet2.SaveAs(saveFileDialog1.FileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange, Type.Missing, Type.Missing, Type.Missing);
+            //richTextBox4.AppendText(Environment.NewLine + saveFileDialog1.FileName);
+            worksheet.SaveAs(saveFileDialog1.FileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange, Type.Missing, Type.Missing, Type.Missing);
+            //worksheet2.SaveAs(saveFileDialog1.FileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange, Type.Missing, Type.Missing, Type.Missing);
 
             workBook.Close(false, Type.Missing, Type.Missing);
-                app.Quit();
-            
+            app.Quit();
+
 
             /*}*/
         }
@@ -7564,22 +7571,22 @@ namespace VTDinfo
                 worksheet.Cells[strNunber, 6] = Math.Round(mGVTD.anomalyLogLineS[i].distanceFromLongitudinalWeld, 3);// "Расстояние от продольного шва";
                 worksheet.Cells[strNunber, 7] = mGVTD.anomalyLogLineS[i].start_angle;// "Начальный угол";
 
-                if (mGVTD.anomalyLogLineS[i].length>0)
+                if (mGVTD.anomalyLogLineS[i].length > 0)
                 {
-                    if (mGVTD.anomalyLogLineS[i].defectCode.Contains("ANCW") ==false)
+                    if (mGVTD.anomalyLogLineS[i].defectCode.Contains("ANCW") == false)
                     {
-                        worksheet.Cells[strNunber, 8] = Math.Round( mGVTD.anomalyLogLineS[i].length,3);// "Длина, мм";
-                    }                    
+                        worksheet.Cells[strNunber, 8] = Math.Round(mGVTD.anomalyLogLineS[i].length, 3);// "Длина, мм";
+                    }
                 }
-                if (mGVTD.anomalyLogLineS[i].widht>0)
+                if (mGVTD.anomalyLogLineS[i].widht > 0)
                 {
                     worksheet.Cells[strNunber, 9] = Math.Round(mGVTD.anomalyLogLineS[i].widht, 3);// "Ширина, мм";
                 }
-                if (mGVTD.anomalyLogLineS[i].depthInMm>0)
+                if (mGVTD.anomalyLogLineS[i].depthInMm > 0)
                 {
                     worksheet.Cells[strNunber, 10] = Math.Round(mGVTD.anomalyLogLineS[i].depthInMm, 3);// "Глубина, мм";
                 }
-                
+
                 worksheet.Cells[strNunber, 11] = mGVTD.anomalyLogLineS[i].inside_or_outside;// "Положение";//наружный-внутренний
                 worksheet.Cells[strNunber, 12] = mGVTD.anomalyLogLineS[i].defect_location;// "Расположение дефекта на трубе";
                 worksheet.Cells[strNunber, 13] = mGVTD.anomalyLogLineS[i].danger_level;// "Уровень опасности";
@@ -7604,7 +7611,7 @@ namespace VTDinfo
             {
                 Directory.CreateDirectory(dir);
             }
-            saveFileDialog1.FileName = textBox_adres.Text + mGVTD.pipelineInfo.pipelineName + "-"  + " Журнал_дефектов_ИУС_Т).xlsx";
+            saveFileDialog1.FileName = textBox_adres.Text + mGVTD.pipelineInfo.pipelineName + "-" + " Журнал_дефектов_ИУС_Т).xlsx";
             //richTextBox4.AppendText(Environment.NewLine + saveFileDialog1.FileName);
             try
             {
@@ -7612,7 +7619,7 @@ namespace VTDinfo
             }
             catch (Exception)
             {
-                
+
             }
             //worksheet2.SaveAs(saveFileDialog1.FileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange, Type.Missing, Type.Missing, Type.Missing);
 
@@ -7743,7 +7750,7 @@ namespace VTDinfo
         private void textBox316_TextChanged(object sender, EventArgs e)
         {
 
-        }        
+        }
 
 
         private void ButtonOpenPipeLogNPCVTD_Click(object sender, EventArgs e)
@@ -7799,9 +7806,9 @@ namespace VTDinfo
                 ObjWorkSheet2 = (Microsoft.Office.Interop.Excel.Worksheet)ObjWorkBook.Sheets[WorksheetName2.Replace(".xlsx", "")];
                 textBox170.Text = WorksheetName2.Replace(".xlsx", "");
             }
-            string text="";
-            string test = Convert.ToString(ObjWorkSheet2.Cells[9, 2].Text).Substring(4,1);
-            if (test==" ")
+            string text = "";
+            string test = Convert.ToString(ObjWorkSheet2.Cells[9, 2].Text).Substring(4, 1);
+            if (test == " ")
             {
                 text = Convert.ToString(ObjWorkSheet2.Cells[9, 2].Text).Substring(0, 4);
             }
@@ -7809,7 +7816,7 @@ namespace VTDinfo
             {
                 text = Convert.ToString(ObjWorkSheet2.Cells[9, 2].Text).Substring(0, 3);
             }
-            
+
             textBox_diameterNPCVTD.Text = text;//диаметр трубы 
             textBox_nameNPCVTD.Text = Convert.ToString(ObjWorkSheet2.Cells[6, 2].Text);//наименование газопровода
             textBox_ploteNPCVTD.Text = Convert.ToString(ObjWorkSheet2.Cells[7, 2].Text);//наименование участка
@@ -7819,7 +7826,7 @@ namespace VTDinfo
         private void get_report_inform_BHTTS()
         {
             //Создаём приложение.
-           Microsoft.Office.Interop.Excel.Application ObjExcel = new Microsoft.Office.Interop.Excel.Application();
+            Microsoft.Office.Interop.Excel.Application ObjExcel = new Microsoft.Office.Interop.Excel.Application();
             //Открываем книгу.                                                                                                                                                        
             Microsoft.Office.Interop.Excel.Workbook ObjWorkBook = ObjExcel.Workbooks.Open(fileNamePipeLog, 0, true, 5, "", "", false, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "", true, false, 0, true, false, false);
 
@@ -7835,9 +7842,9 @@ namespace VTDinfo
             string plote = "0";
             string dateCreationFile = "0";
 
-            int DiameterStartPosition = text.IndexOf("Ду",0);
+            int DiameterStartPosition = text.IndexOf("Ду", 0);
 
-            if (DiameterStartPosition>-1)
+            if (DiameterStartPosition > -1)
             {
                 int DiameterFinishPosition = text.IndexOf(" ", DiameterStartPosition);
                 pipename = text.Substring(0, DiameterStartPosition - 1);
@@ -7845,7 +7852,7 @@ namespace VTDinfo
                 plote = text.Substring(DiameterFinishPosition + 1, text.Length - DiameterFinishPosition - 1);
                 dateCreationFile = System.IO.File.GetLastWriteTime(fileNamePipeLog).ToString();
             }
-            
+
 
             textBox_diam_BHTTS.Text = diameter;
             textBox_pipeline_BHTTS.Text = pipename;
@@ -7961,8 +7968,8 @@ namespace VTDinfo
             NumbersOfColumns.depthInProcent_BHTTS = Convert.ToInt16(textBox360.Text);//глубина дефекта в процентах///12
             NumbersOfColumns.extOrInt_BHTTS = Convert.ToInt16(textBox361.Text);//характер локаизации(внутри или снаружи)///13
             NumbersOfColumns.note_BHTTS = Convert.ToInt16(textBox362.Text);//Примечание///14
-            NumbersOfColumns.defectVanishDate = NumbersOfColumns.note_BHTTS+1;
-            int number_of_string= Convert.ToInt16(textBox112.Text);//получаем из формы номер строки для тестирования
+            NumbersOfColumns.defectVanishDate = NumbersOfColumns.note_BHTTS + 1;
+            int number_of_string = Convert.ToInt16(textBox112.Text);//получаем из формы номер строки для тестирования
             //выводим значения соответствующих ячеек для проверки
             textBox334.Text = Convert.ToString(ObjWorkSheet2.Cells[number_of_string, NumbersOfColumns.featuresNumber_BHTTS].Text);
             textBox335.Text = Convert.ToString(ObjWorkSheet2.Cells[number_of_string, NumbersOfColumns.pipeNumber_BHTTS].Text);
@@ -8158,10 +8165,10 @@ namespace VTDinfo
             get_report_inform_NPCVTD();//получаем данные об отчете из отчета
             tableArdesTestPipeLogNPCVTD();
             tableArdesTestDefectLogNPCVTD();
-            if (String.IsNullOrEmpty(fileNameLineObjects)==false)
+            if (String.IsNullOrEmpty(fileNameLineObjects) == false)
             {
                 tableArdesTestLineObjectsNPCVTD();
-            }            
+            }
         }
 
         private void ReadReportToMemoryNPCVTD_Click(object sender, EventArgs e)
@@ -8189,7 +8196,6 @@ namespace VTDinfo
         {
             operatingReadToClassPipeInfoBHTTS();
         }
-
         private void textBox349_TextChanged(object sender, EventArgs e)
         {
         }
@@ -8199,9 +8205,9 @@ namespace VTDinfo
         private void button9_Click(object sender, EventArgs e)
         {
             mGVTD = OperatingReadToClassPipeLogAutoFinBHTTS(fileNamePipeLog, NumbersOfColumns);//трубный журнал и журнал аномалий
-             List<furnishingsLog> furnishingsLogS_ = FirnishingLogVirtual(mGVTD);//Заполняем журнал элементов обустройства на основе данных трубного журнала
+            List<furnishingsLog> furnishingsLogS_ = FirnishingLogVirtual(mGVTD);//Заполняем журнал элементов обустройства на основе данных трубного журнала
             mGVTD.furnishingsLogS = furnishingsLogS_;
-            mGVTD.pipelineInfo= operatingReadToClassPipeInfoBHTTS();
+            mGVTD.pipelineInfo = operatingReadToClassPipeInfoBHTTS();
         }
 
         private void ArrangementElements_Click(object sender, EventArgs e)
@@ -8209,7 +8215,7 @@ namespace VTDinfo
         }
         private void button8_Click(object sender, EventArgs e)
         {
-            string filename = DIrectory.Text+ "VTD.xlsx";
+            string filename = DIrectory.Text + "VTD.xlsx";
             pipeSectionS = readToClassPipeSectionLog(filename);
             setComboBoxes(pipeSectionS);
 
@@ -8256,7 +8262,7 @@ namespace VTDinfo
                     {
                         pipelineSection_Check.Items.Add(pipeSectionS[i].pipelineSection);
                     }
-                    
+
                 }
             }
 
@@ -8332,18 +8338,18 @@ namespace VTDinfo
             get_MG_ID(pipeSectionS);
             //string fileName = DIrectory.Text + MG_ID.Text;
             string fileName = DIrectory.Text + "VTD.xlsx";
-            await Task.Run(()=> mGVTD = OperatingReadToClassPipeLogHimself(fileName, MG_ID.Text));
+            await Task.Run(() => mGVTD = OperatingReadToClassPipeLogHimself(fileName, MG_ID.Text));
             //List<ListOfTees> listOfTees = GetListOfTees(fileName);//читаем таблицу принадлежности тройников
             //mGVTD = VDTWhithoutRepareDefects(mGVTD);//удаляет сведения об устраненных дефектах
             textBox131.Text = mGVTD.MGPipeS[0].pipeNumber;
-            textBox136.Text = mGVTD.MGPipeS[mGVTD.MGPipeS.Count-1].pipeNumber;
+            textBox136.Text = mGVTD.MGPipeS[mGVTD.MGPipeS.Count - 1].pipeNumber;
             textBox_contractor.Text = mGVTD.pipelineInfo.contractor;
             textBox_examinationDate.Text = mGVTD.pipelineInfo.examinationDate;
-            textBox_diameter.Text =Convert.ToString(mGVTD.pipelineInfo.pipeDiameter);
+            textBox_diameter.Text = Convert.ToString(mGVTD.pipelineInfo.pipeDiameter);
             textBox_comissioningYear.Text = mGVTD.pipelineInfo.comissioningYear;
             textBox_operatingPressure.Text = Convert.ToString(mGVTD.pipelineInfo.operatingPressure);
             textBox_pipelineCount.Text = Convert.ToString(mGVTD.MGPipeS.Count);
-            richTextBox7.AppendText(Environment.NewLine + "Подрядчик: "+ mGVTD.pipelineInfo.contractor);
+            richTextBox7.AppendText(Environment.NewLine + "Подрядчик: " + mGVTD.pipelineInfo.contractor);
             richTextBox7.AppendText(Environment.NewLine + "Дата обследования: " + mGVTD.pipelineInfo.examinationDate);
         }
 
@@ -8404,7 +8410,7 @@ namespace VTDinfo
             double fullPath = 0;//полный путь
             for (int i = 0; i < mGVTD.MGPipeS.Count; i++)
             {
-                fullPath = mGVTD.MGPipeS[i].odometrDist;
+                fullPath = mGVTD.MGPipeS[i].odometrDist- mGVTD.MGPipeS[0].odometrDist;
                 //richTextBox7.AppendText("/"+fullPath);
                 double a = 1000;
                 double b = 100;
@@ -8412,14 +8418,14 @@ namespace VTDinfo
                 double z = fullPath / b - Math.Round(fullPath / b);//остаток от целочисленного деления
                 if (Math.Abs(z) < 0.06)
                 {
-                    float X0 = (float)(gWidht * fullPath / mGVTD.MGPipeS[mGVTD.MGPipeS.Count - 1].odometrDist);
+                    float X0 = (float)(gWidht * fullPath / (mGVTD.MGPipeS[mGVTD.MGPipeS.Count - 1].odometrDist - mGVTD.MGPipeS[0].odometrDist));
                     g.DrawLine(myWindBlue, ((float)(X0)), ((float)(gHeight2)), ((float)(X0)), ((float)(gHeight2 - 10)));
                 }
 
                 z = fullPath / a - Math.Round(fullPath / a);
                 if (Math.Abs(z) < 0.007)
                 {
-                    float X0 = (float)(gWidht * fullPath / mGVTD.MGPipeS[mGVTD.MGPipeS.Count - 1].odometrDist);
+                    float X0 = (float)(gWidht * fullPath / (mGVTD.MGPipeS[mGVTD.MGPipeS.Count - 1].odometrDist - mGVTD.MGPipeS[0].odometrDist));
                     g.DrawLine(myWindBlackBold, ((float)(X0)), ((float)(gHeight2)), ((float)(X0)), ((float)(gHeight2 - 20)));
                 }
             }
@@ -8478,21 +8484,21 @@ namespace VTDinfo
             double fullPath = 0;//полный путь
             for (int i = 0; i < mGVTD.MGPipeS.Count; i++)
             {
-                fullPath = mGVTD.MGPipeS[i].odometrDist;
+                fullPath = mGVTD.MGPipeS[i].odometrDist - mGVTD.MGPipeS[0].odometrDist;
                 double a = 1000;
                 double b = 100;
 
                 double z = fullPath / b - Math.Round(fullPath / b);//остаток от целочисленного деления
                 if (Math.Abs(z) < 0.06)
                 {
-                    float X0 = (float)(gWidht * fullPath / mGVTD.MGPipeS[mGVTD.MGPipeS.Count - 1].odometrDist);
+                    float X0 = (float)(gWidht * fullPath / (mGVTD.MGPipeS[mGVTD.MGPipeS.Count - 1].odometrDist - mGVTD.MGPipeS[0].odometrDist));
                     g.DrawLine(myWindBlue, ((float)(X0)), ((float)(gHeight2)), ((float)(X0)), ((float)(gHeight2 - 10)));
                 }
 
                 z = fullPath / a - Math.Round(fullPath / a);
                 if (Math.Abs(z) < 0.007)
                 {
-                    float X0 = (float)(gWidht * fullPath / mGVTD.MGPipeS[mGVTD.MGPipeS.Count - 1].odometrDist);
+                    float X0 = (float)(gWidht * fullPath / (mGVTD.MGPipeS[mGVTD.MGPipeS.Count - 1].odometrDist - mGVTD.MGPipeS[0].odometrDist));
                     g.DrawLine(myWindBlackBold, ((float)(X0)), ((float)(gHeight2)), ((float)(X0)), ((float)(gHeight2 - 20)));
                 }
             }
@@ -8551,21 +8557,21 @@ namespace VTDinfo
             double fullPath = 0;//полный путь
             for (int i = 0; i < mGVTD.MGPipeS.Count; i++)
             {
-                fullPath = mGVTD.MGPipeS[i].odometrDist;
+                fullPath = mGVTD.MGPipeS[i].odometrDist - mGVTD.MGPipeS[0].odometrDist;
                 double a = 1000;
                 double b = 100;
 
                 double z = fullPath / b - Math.Round(fullPath / b);//остаток от целочисленного деления
                 if (Math.Abs(z) < 0.06)
                 {
-                    float X0 = (float)(gWidht * fullPath / mGVTD.MGPipeS[mGVTD.MGPipeS.Count - 1].odometrDist);
+                    float X0 = (float)(gWidht * fullPath / (mGVTD.MGPipeS[mGVTD.MGPipeS.Count - 1].odometrDist - mGVTD.MGPipeS[0].odometrDist));
                     g.DrawLine(myWindBlue, ((float)(X0)), ((float)(gHeight2)), ((float)(X0)), ((float)(gHeight2 - 10)));
                 }
 
                 z = fullPath / a - Math.Round(fullPath / a);
                 if (Math.Abs(z) < 0.007)
                 {
-                    float X0 = (float)(gWidht * fullPath / mGVTD.MGPipeS[mGVTD.MGPipeS.Count - 1].odometrDist);
+                    float X0 = (float)(gWidht * fullPath / (mGVTD.MGPipeS[mGVTD.MGPipeS.Count - 1].odometrDist - mGVTD.MGPipeS[0].odometrDist));
                     g.DrawLine(myWindBlackBold, ((float)(X0)), ((float)(gHeight2)), ((float)(X0)), ((float)(gHeight2 - 20)));
                 }
             }
@@ -8624,21 +8630,21 @@ namespace VTDinfo
             double fullPath = 0;//полный путь
             for (int i = 0; i < mGVTD.MGPipeS.Count; i++)
             {
-                fullPath = mGVTD.MGPipeS[i].odometrDist;
+                fullPath = mGVTD.MGPipeS[i].odometrDist- mGVTD.MGPipeS[0].odometrDist;
                 double a = 1000;
                 double b = 100;
 
                 double z = fullPath / b - Math.Round(fullPath / b);//остаток от целочисленного деления
                 if (Math.Abs(z) < 0.06)
                 {
-                    float X0 = (float)(gWidht * fullPath / mGVTD.MGPipeS[mGVTD.MGPipeS.Count - 1].odometrDist);
+                    float X0 = (float)(gWidht * fullPath / (mGVTD.MGPipeS[mGVTD.MGPipeS.Count - 1].odometrDist - mGVTD.MGPipeS[0].odometrDist));
                     g.DrawLine(myWindBlue, ((float)(X0)), ((float)(gHeight2)), ((float)(X0)), ((float)(gHeight2 - 10)));
                 }
 
                 z = fullPath / a - Math.Round(fullPath / a);
                 if (Math.Abs(z) < 0.007)
                 {
-                    float X0 = (float)(gWidht * fullPath / mGVTD.MGPipeS[mGVTD.MGPipeS.Count - 1].odometrDist);
+                    float X0 = (float)(gWidht * fullPath / (mGVTD.MGPipeS[mGVTD.MGPipeS.Count - 1].odometrDist - mGVTD.MGPipeS[0].odometrDist));
                     g.DrawLine(myWindBlackBold, ((float)(X0)), ((float)(gHeight2)), ((float)(X0)), ((float)(gHeight2 - 20)));
                 }
             }
@@ -8674,10 +8680,10 @@ namespace VTDinfo
             float minim = Math.Min(gWidht, gHeight);
             float xCoeff = 1500 / minim;
             float deltaX = gWidht / mGVTD.MGPipeS.Count;
-            double maxCorrpro=0;
+            double maxCorrpro = 0;
             for (int i = 0; i < mGVTD.MGPipeS.Count; i++)
             {
-                if (maxCorrpro< mGVTD.MGPipeS[i].MaximumCorrProcent)
+                if (maxCorrpro < mGVTD.MGPipeS[i].MaximumCorrProcent)
                 {
                     maxCorrpro = mGVTD.MGPipeS[i].MaximumCorrProcent;
                 }
@@ -8707,26 +8713,25 @@ namespace VTDinfo
             double fullPath = 0;//полный путь
             for (int i = 0; i < mGVTD.MGPipeS.Count; i++)
             {
-                fullPath = mGVTD.MGPipeS[i].odometrDist;
+                fullPath = mGVTD.MGPipeS[i].odometrDist - mGVTD.MGPipeS[0].odometrDist;
                 double a = 1000;
                 double b = 100;
 
                 double z = fullPath / b - Math.Round(fullPath / b);//остаток от целочисленного деления
                 if (Math.Abs(z) < 0.06)
                 {
-                    float X0 = (float)(gWidht * fullPath / mGVTD.MGPipeS[mGVTD.MGPipeS.Count - 1].odometrDist);
+                    float X0 = (float)(gWidht * fullPath / (mGVTD.MGPipeS[mGVTD.MGPipeS.Count - 1].odometrDist - mGVTD.MGPipeS[0].odometrDist));
                     g.DrawLine(myWindBlue, ((float)(X0)), ((float)(gHeight2)), ((float)(X0)), ((float)(gHeight2 - 10)));
                 }
 
                 z = fullPath / a - Math.Round(fullPath / a);
                 if (Math.Abs(z) < 0.007)
                 {
-                    float X0 = (float)(gWidht * fullPath / mGVTD.MGPipeS[mGVTD.MGPipeS.Count - 1].odometrDist);
+                    float X0 = (float)(gWidht * fullPath / (mGVTD.MGPipeS[mGVTD.MGPipeS.Count - 1].odometrDist - mGVTD.MGPipeS[0].odometrDist));
                     g.DrawLine(myWindBlackBold, ((float)(X0)), ((float)(gHeight2)), ((float)(X0)), ((float)(gHeight2 - 20)));
                 }
             }
         }
-
         private void DrawMyDiagram6(MGVTD mGVTD)//График поврежденности от дефектов сварнных швов.
         {
             Graphics g = pictureBox6.CreateGraphics();
@@ -8768,9 +8773,9 @@ namespace VTDinfo
 
             for (int i = 0; i < mGVTD.MGPipeS.Count; i++)
             {
-                double dd = gHeight * (100-mGVTD.MGPipeS[i].MaximumCorrProcent) / maxHeight;
+                double dd = gHeight * (100 - mGVTD.MGPipeS[i].MaximumCorrProcent) / maxHeight;
                 float alpha = (float)dd;
-                if (100 - mGVTD.MGPipeS[i].MaximumCorrProcent <=70)
+                if (100 - mGVTD.MGPipeS[i].MaximumCorrProcent <= 70)
                 {
                     g.DrawLine(myWindRed, ((float)(deltaX + i * deltaX)), ((float)(gHeight)), ((float)(deltaX + i * deltaX)), ((float)(gHeight - alpha)));
                 }
@@ -8784,21 +8789,21 @@ namespace VTDinfo
             double fullPath = 0;//полный путь
             for (int i = 0; i < mGVTD.MGPipeS.Count; i++)
             {
-                fullPath = mGVTD.MGPipeS[i].odometrDist;
+                fullPath = mGVTD.MGPipeS[i].odometrDist - mGVTD.MGPipeS[0].odometrDist;
                 double a = 1000;
                 double b = 100;
                 fullPath = fullPath - mGVTD.MGPipeS[0].odometrDist;
                 double z = fullPath / b - Math.Round(fullPath / b);//остаток от целочисленного деления
                 if (Math.Abs(z) < 0.06)
                 {
-                    float X0 = (float)(gWidht * fullPath / mGVTD.MGPipeS[mGVTD.MGPipeS.Count - 1].odometrDist);
+                    float X0 = (float)(gWidht * fullPath / (mGVTD.MGPipeS[mGVTD.MGPipeS.Count - 1].odometrDist - mGVTD.MGPipeS[0].odometrDist));
                     g.DrawLine(myWindBlue, ((float)(X0)), ((float)(gHeight2)), ((float)(X0)), ((float)(gHeight2 - 10)));
                 }
 
                 z = fullPath / a - Math.Round(fullPath / a);
                 if (Math.Abs(z) < 0.007)
                 {
-                    float X0 = (float)(gWidht * fullPath / mGVTD.MGPipeS[mGVTD.MGPipeS.Count - 1].odometrDist);
+                    float X0 = (float)(gWidht * fullPath / (mGVTD.MGPipeS[mGVTD.MGPipeS.Count - 1].odometrDist - mGVTD.MGPipeS[0].odometrDist));
                     g.DrawLine(myWindBlackBold, ((float)(X0)), ((float)(gHeight2)), ((float)(X0)), ((float)(gHeight2 - 20)));
                 }
             }
@@ -8862,52 +8867,74 @@ namespace VTDinfo
             double fullPath = 0;//полный путь
             for (int i = 0; i < mGVTD.MGPipeS.Count; i++)
             {
-                fullPath = mGVTD.MGPipeS[i].odometrDist;
+                fullPath = mGVTD.MGPipeS[i].odometrDist - mGVTD.MGPipeS[0].odometrDist;
                 double a = 1000;
                 double b = 100;
                 fullPath = fullPath - mGVTD.MGPipeS[0].odometrDist;
                 double z = fullPath / b - Math.Round(fullPath / b);//остаток от целочисленного деления
                 if (Math.Abs(z) < 0.06)
                 {
-                    float X0 = (float)(gWidht * fullPath / mGVTD.MGPipeS[mGVTD.MGPipeS.Count - 1].odometrDist);
+                    float X0 = (float)(gWidht * fullPath / (mGVTD.MGPipeS[mGVTD.MGPipeS.Count - 1].odometrDist - mGVTD.MGPipeS[0].odometrDist));
                     g.DrawLine(myWindBlue, ((float)(X0)), ((float)(gHeight2)), ((float)(X0)), ((float)(gHeight2 - 10)));
                 }
 
                 z = fullPath / a - Math.Round(fullPath / a);
                 if (Math.Abs(z) < 0.007)
                 {
-                    float X0 = (float)(gWidht * fullPath / mGVTD.MGPipeS[mGVTD.MGPipeS.Count - 1].odometrDist);
+                    float X0 = (float)(gWidht * fullPath / (mGVTD.MGPipeS[mGVTD.MGPipeS.Count - 1].odometrDist - mGVTD.MGPipeS[0].odometrDist));
                     g.DrawLine(myWindBlackBold, ((float)(X0)), ((float)(gHeight2)), ((float)(X0)), ((float)(gHeight2 - 20)));
                 }
+            }
+        }
+        MGVTD cropPipesLog(MGVTD input, int start, int stop)
+        {
+            MGVTD result = new MGVTD();
+  
+            for (int i = start; i < stop; i++)
+            {
+                result.MGPipeS.Add(input.MGPipeS[i]);
+            }
+            result.pipelineInfo = input.pipelineInfo;
+            /*for (int i = 0; i < result.MGPipeS.Count; i++)
+            {
+                result.MGPipeS[i].odometrDist = result.MGPipeS[i].odometrDist - result.MGPipeS[0].odometrDist;
+            }*/
+            return result;
+        }
+        private void DrawDiagrams()
+        {
+            int min = Math.Min(hScrollBar1.Value, hScrollBar2.Value);
+            int max = Math.Max(hScrollBar1.Value, hScrollBar2.Value);
+
+            if (max - min > 10)
+            {
+                MGVTD VTD = cropPipesLog(mGVTD, min, max);
+                VTD.MGPipeS[0].odometrDist = 0;
+                for (int i = 1; i < VTD.MGPipeS.Count; i++)
+                {
+                    VTD.MGPipeS[i].odometrDist = VTD.MGPipeS[i - 1].odometrDist + VTD.MGPipeS[i].pipeLength;
+                }
+                DrawMyDiagram(VTD);
+                DrawMyDiagram2(VTD);
+                DrawMyDiagram3(VTD);
+                DrawMyDiagram4(VTD);
+                DrawMyDiagram5(VTD);
+                DrawMyDiagram6(VTD);
+                DrawMyDiagram7(VTD);
             }
         }
 
         private void button_DrawGraph_Click(object sender, EventArgs e)
         {
-            //double del = mGVTD.MGPipeS[0].odometrDist;
-            //MGVTD vtd = mGVTD;
-            mGVTD.MGPipeS[0].odometrDist = 0;
-            for (int i = 1; i < mGVTD.MGPipeS.Count; i++)
-            {
-                mGVTD.MGPipeS[i].odometrDist = mGVTD.MGPipeS[i-1].odometrDist+ mGVTD.MGPipeS[i].pipeLength;
-            }
-            mGVTD= GetMaximumValues(mGVTD);
-            mGVTD = GetMaximumValuesCorrerionInProcent(mGVTD);
-            mGVTD = GetCritikalThiknessForAll(mGVTD);
-            DrawMyDiagram(mGVTD);
-            DrawMyDiagram2(mGVTD);
-            DrawMyDiagram3(mGVTD);
-            DrawMyDiagram4(mGVTD);
-            DrawMyDiagram5(mGVTD);
-            DrawMyDiagram6(mGVTD);
-            DrawMyDiagram7(mGVTD);
+            DrawDiagrams();
         }
         List<ListOfTees> listOfTees = new List<ListOfTees>();
         List<ListOfTees> InfoOfTees = new List<ListOfTees>();
+        
         private async void button1_Click_2(object sender, EventArgs e)
         {
             fileName = DIrectory.Text + "VTD.xlsx";
-            await Task.Run(new Action(()=> InfoOfTees = GetListOfNumbersTees(fileName)));//читаем таблицу принадлежности тройников GetListOfTees
+            await Task.Run(new Action(() => InfoOfTees = GetListOfNumbersTees(fileName)));//читаем таблицу принадлежности тройников GetListOfTees
             string fileName2 = DIrectory.Text + "tees.xlsx";
             await Task.Run(new Action(() => listOfTees = GetListOfTees(fileName2)));//читаем данные о тройниках
             listOfTees = SetIDtoTees(listOfTees, InfoOfTees);
@@ -8916,10 +8943,10 @@ namespace VTDinfo
         private async void button14_Click(object sender, EventArgs e)
         {
             richTextBox7.Invoke(new Action(() => richTextBox7.Clear()));
-            await Task.Run(new Action(()=>  listOfTees=getInfoAbouteTees(listOfTees, pipeSectionS)));
+            await Task.Run(new Action(() => listOfTees = getInfoAbouteTees(listOfTees, pipeSectionS)));
             for (int i = 0; i < listOfTees.Count; i++)
             {
-                if (listOfTees[i].isSorted==false)
+                if (listOfTees[i].isSorted == false)
                 {
                     richTextBox7.AppendText(Convert.ToString(listOfTees[i].teeName));
                 }
@@ -8933,8 +8960,6 @@ namespace VTDinfo
             double c = a + b;
             richTextBox7.AppendText(Convert.ToString(c));
         }
-
-
         private void ConvertIusT_Click(object sender, EventArgs e)
         {
             mGVTD = SetPipeLengthToAnomalyLog(mGVTD);
@@ -8942,31 +8967,77 @@ namespace VTDinfo
             //MessageBox.Show("OK!");
             exportAnomalylogToIUST(mGVTD);
         }
-
         private void testButton_Click(object sender, EventArgs e)
         {
-            textBox437.Text = GetDefectTypeGPAS(textBox436.Text).defectType+"_"+ GetDefectTypeGPAS(textBox436.Text).defectCode;
+            textBox437.Text = GetDefectTypeGPAS(textBox436.Text).defectType + "_" + GetDefectTypeGPAS(textBox436.Text).defectCode;
         }
-
         private void button13_Click(object sender, EventArgs e)//3.04 / -8.54
         {
             textBox437.Text = Convert.ToString(convertJointToHour(textBox436.Text));
         }
-
         private void button15_Click(object sender, EventArgs e)
         {
             textBox437.Text = Convert.ToString(GetStartAngle(textBox436.Text));
         }
-
         private void button16_Click(object sender, EventArgs e)
         {
             textBox437.Text = Convert.ToString(GetDistanceFromTranswersWeldGPAS(textBox436.Text));
         }
-
         private void button17_Click(object sender, EventArgs e)
         {
             //GetdistanceFromLongitudinalWeld
             textBox437.Text = Convert.ToString(GetdistanceFromLongitudinalWeld(textBox436.Text, 0, 1420));
+        }
+        double PvtdReport = 0;
+        private async void getVtdData_Click(object sender, EventArgs e)
+        {
+            string fileName = DIrectory.Text + "VTD.xlsx";
+            await Task.Run(() => mGVTD = OperatingReadToClassPipeLogHimself(fileName, textBox438.Text));
+            textBox439.Text = mGVTD.pipelineInfo.pipelineName;
+            textBox440.Text = mGVTD.pipelineInfo.pipelineSection;
+            textBox441.Text = Convert.ToString(mGVTD.pipelineInfo.pipeDiameter);
+            textBox443.Text = Convert.ToString(mGVTD.anomalyLogLineS.Count);
+
+            textBox131.Text = mGVTD.MGPipeS[0].pipeNumber;
+            textBox136.Text = mGVTD.MGPipeS[mGVTD.MGPipeS.Count - 1].pipeNumber;
+            goEquation();
+            textBox442.Text = Convert.ToString(Math.Round(PvtdReport,3));
+            richTextBox2.AppendText(Environment.NewLine + "mGVTD.MGPipeS.Count=" + mGVTD.MGPipeS.Count);
+            textBox_contractor.Text = mGVTD.pipelineInfo.contractor;
+            textBox_examinationDate.Text = mGVTD.pipelineInfo.examinationDate;
+            textBox_diameter.Text = Convert.ToString(mGVTD.pipelineInfo.pipeDiameter);
+            textBox_comissioningYear.Text = mGVTD.pipelineInfo.comissioningYear;
+            textBox_operatingPressure.Text = Convert.ToString(mGVTD.pipelineInfo.operatingPressure);
+            textBox_pipelineCount.Text = Convert.ToString(mGVTD.MGPipeS.Count);
+            richTextBox7.AppendText(Environment.NewLine + "Подрядчик: " + mGVTD.pipelineInfo.contractor);
+            richTextBox7.AppendText(Environment.NewLine + "Дата обследования: " + mGVTD.pipelineInfo.examinationDate);
+            /*textBoxGraphStart.Text = mGVTD.MGPipeS[0].pipeNumber;
+            textBoxGraphStop.Text = mGVTD.MGPipeS[mGVTD.MGPipeS.Count].pipeNumber;*/
+            mGVTD = GetMaximumValues(mGVTD);
+            mGVTD = GetMaximumValuesCorrerionInProcent(mGVTD);
+            mGVTD = GetCritikalThiknessForAll(mGVTD);
+            SetScrollBars(mGVTD);
+        }
+        private void SetScrollBars(MGVTD input)
+        {
+            hScrollBar1.Minimum = 1;
+            hScrollBar1.Maximum = input.MGPipeS.Count;
+            richTextBox2.AppendText(Environment.NewLine + "mGVTD.MGPipeS.Count=" + input.MGPipeS.Count);
+            hScrollBar2.Minimum = 1;
+            hScrollBar2.Maximum = input.MGPipeS.Count;
+            hScrollBar1.Value = 1;
+            hScrollBar2.Value = input.MGPipeS.Count;
+        }
+        private void hScrollBar1_Scroll(object sender, ScrollEventArgs e)
+        {
+            textBoxGraphStart.Text = String.Concat(mGVTD.MGPipeS[hScrollBar1.Value - 1].pipeNumber, "_", hScrollBar1.Value - 1);
+            //DrawDiagrams();
+        }
+
+        private void hScrollBar2_Scroll(object sender, ScrollEventArgs e)
+        {
+            textBoxGraphStop.Text = String.Concat(mGVTD.MGPipeS[hScrollBar2.Value - 1].pipeNumber, "_", hScrollBar2.Value - 1);
+            //DrawDiagrams();
         }
     }
 }

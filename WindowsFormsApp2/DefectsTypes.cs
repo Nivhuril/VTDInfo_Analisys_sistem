@@ -123,7 +123,7 @@ namespace VTDinfo
         {
             double result = 0;
             int indexOfChar = 0;
-            if (distanceFromTransverseWeld.Length>0)
+            if (distanceFromTransverseWeld.Length > 0)
             {
                 distanceFromTransverseWeld = distanceFromTransverseWeld.Replace(" ", "").Replace(".", ",");
                 if (distanceFromTransverseWeld.Contains("/"))
@@ -134,9 +134,9 @@ namespace VTDinfo
                 {
                     indexOfChar = distanceFromTransverseWeld.IndexOf("-");
                 }
-                result = 1000*Convert.ToDouble(distanceFromTransverseWeld.Substring(0, indexOfChar - 1));
+                result = 1000 * Convert.ToDouble(distanceFromTransverseWeld.Substring(0, indexOfChar - 1));
             }
-            
+
             return result;
         }
         public double convertJointToHour(string inputAngle)//конвертация из формата чч:мм в десятичные часы.
@@ -144,7 +144,7 @@ namespace VTDinfo
             double result = 0;
             int indexOfChar = inputAngle.IndexOf(":");
             int lengthOfString = inputAngle.Length;
-            if (lengthOfString>0)
+            if (lengthOfString > 0)
             {
                 double hours = Convert.ToDouble(inputAngle.Substring(0, indexOfChar).Trim().Replace("-", ""));
                 double minuts = Convert.ToDouble(inputAngle.Substring(indexOfChar + 1, lengthOfString - indexOfChar - 1).Trim());
@@ -160,7 +160,7 @@ namespace VTDinfo
             }
             return result;
         }
-        public double GetdistanceFromLongitudinalWeld(string featuresOrientation, double clockOrientation,  double pipeDiameter)//расстояние от продольного шва
+        public double GetdistanceFromLongitudinalWeld(string featuresOrientation, double clockOrientation, double pipeDiameter)//расстояние от продольного шва
         {
             double result = 0;
             string substring = "";
@@ -169,17 +169,17 @@ namespace VTDinfo
             {
                 int indexOfChar = featuresOrientation.IndexOf("-");
                 substring = featuresOrientation.Substring(0, indexOfChar);
-                result = koeff * convertJointToHour(substring)- clockOrientation;
+                result = koeff * convertJointToHour(substring) - clockOrientation;
             }
             else if (featuresOrientation.Contains("/"))
             {
                 int indexOfChar = featuresOrientation.IndexOf("/");
                 substring = featuresOrientation.Substring(0, indexOfChar);
-                result = koeff * convertJointToHour(substring)-clockOrientation;
+                result = koeff * convertJointToHour(substring) - clockOrientation;
             }
-            else if (featuresOrientation.Contains(":")& featuresOrientation.Contains(":")==false & featuresOrientation.Contains("/") == false)
+            else if (featuresOrientation.Contains(":") & featuresOrientation.Contains(":") == false & featuresOrientation.Contains("/") == false)
             {
-                result = koeff * convertJointToHour(featuresOrientation)- clockOrientation;
+                result = koeff * convertJointToHour(featuresOrientation) - clockOrientation;
             }
             else
             {
@@ -190,7 +190,7 @@ namespace VTDinfo
         public double GetStartAngle(string featuresOrientation)
         {
             double result = 0;
-            featuresOrientation = featuresOrientation.Replace(" ","");
+            featuresOrientation = featuresOrientation.Replace(" ", "");
             if (featuresOrientation.Contains("-"))
             {
                 result = convertJointToHour(featuresOrientation.Substring(0, featuresOrientation.IndexOf("-")));
@@ -224,7 +224,6 @@ namespace VTDinfo
             }
             return result;
         }
-
         public string GetExtOrInt(string extOrInt)
         {
             string result = "";
@@ -246,7 +245,7 @@ namespace VTDinfo
         }
         public MGVTD SetPipeLengthToAnomalyLog(MGVTD input)//расставим в журнале аномалий длины труб
         {
-            
+
             for (int i = 0; i < mGVTD.anomalyLogLineS.Count; i++)
             {
                 for (int j = 0; j < mGVTD.MGPipeS.Count; j++)
@@ -258,7 +257,7 @@ namespace VTDinfo
                 }
 
             }
-                       
+
             return input;
 
         }
@@ -266,13 +265,13 @@ namespace VTDinfo
         public string GetDefectLocation(MGVTD input, int defectNumber)
         {
             string result = "";
-            double distanceFromJoint = Math.Min(input.anomalyLogLineS[defectNumber].distanceFromTransverseWeldIUST, 1000*input.anomalyLogLineS[defectNumber].pipeLength-input.anomalyLogLineS[defectNumber].distanceFromTransverseWeldIUST);
+            double distanceFromJoint = Math.Min(input.anomalyLogLineS[defectNumber].distanceFromTransverseWeldIUST, 1000 * input.anomalyLogLineS[defectNumber].pipeLength - input.anomalyLogLineS[defectNumber].distanceFromTransverseWeldIUST);
             richTextBox8.AppendText(Environment.NewLine + input.anomalyLogLineS[defectNumber].pipeLength);
-            if (distanceFromJoint==0)
+            if (distanceFromJoint == 0)
             {
                 result = "Сварной шов";
             }
-            else if (distanceFromJoint <150)
+            else if (distanceFromJoint < 150)
             {
                 result = "Околошовная зона";
             }
@@ -289,7 +288,7 @@ namespace VTDinfo
 
             for (int i = 0; i < input.anomalyLogLineS.Count; i++)
             {
-                if (input.anomalyLogLineS[i].featuresCharacter.Contains("Труба")==false)
+                if (input.anomalyLogLineS[i].featuresCharacter.Contains("Труба") == false)
                 {
                     result.anomalyLogLineS.Add(input.anomalyLogLineS[i]);
                 }
@@ -297,11 +296,9 @@ namespace VTDinfo
 
             return result;
         }
-            public MGVTD SetVolumesToAnomalyLogForIUST(MGVTD input)
+        public MGVTD SetVolumesToAnomalyLogForIUST(MGVTD input)
         {
-
             MGVTD result = input;
-
             for (int i = 0; i < input.anomalyLogLineS.Count; i++)//расставляем в журнале аномалий ориентацию сварного шва
             {
                 for (int j = 0; j < input.MGPipeS.Count; j++)
@@ -309,46 +306,35 @@ namespace VTDinfo
                     if (String.Equals(input.anomalyLogLineS[i].pipeNumber, input.MGPipeS[j].pipeNumber))
                     {
                         input.anomalyLogLineS[i].clockOrientation = GetStartAngle(input.MGPipeS[j].clockOrientation);
-                        
                         input.anomalyLogLineS[i].distanceFromLongitudinalWeld = GetdistanceFromLongitudinalWeld(input.anomalyLogLineS[i].featuresOrientation, input.anomalyLogLineS[i].clockOrientation, input.pipelineInfo.pipeDiameter);
-
                         input.anomalyLogLineS[i].distanceFromTransverseWeldIUST = GetDistanceFromTranswersWeldGPAS(input.anomalyLogLineS[i].distanceFromTransverseWeld);
-
                         input.anomalyLogLineS[i].defectType = GetDefectTypeGPAS(input.anomalyLogLineS[i].featuresCharacter).defectType;
-                        
                         input.anomalyLogLineS[i].defectCode = GetDefectTypeGPAS(input.anomalyLogLineS[i].featuresCharacter).defectCode;
-                        
                         input.anomalyLogLineS[i].start_angle = GetStartAngle(input.anomalyLogLineS[i].featuresOrientation);
-                        
                         input.anomalyLogLineS[i].inside_or_outside = GetExtOrInt(input.anomalyLogLineS[i].extOrInt);
-                        
                         input.anomalyLogLineS[i].defect_location = GetDefectLocation(input, i);
                         input.anomalyLogLineS[i].danger_level = GetDangerLevel(input.anomalyLogLineS[i].defectAssessment);
                     }
                 }
             }
-
-
-
             return result;
         }
-
     }
-        public class DefectsTypes
-        {
-            public int defectNumber;//номер дефекта по порядку
-            public string pipeNumber;//номер трубы
-            public string defectType;//тип дефекта
-            public string defectCode;//код дефекта
-            public double distanceFromTransverseWeld;//расстояние от первого поперечного шва
-            public double distanceFromLongitudinalWeld;//расстояние от продольного шва
-            public double start_angle;//начальный угол дефекта
-            public double length;//длина
-            public double widht;//ширина
-            public double depthInMm;//глубина дефекта в миллиметрах
-            public string inside_or_outside;//внутренний, наружный, внутристенный
-            public string defect_location;//расположение дефекта (основной металл, сварной шов, околошовная зона)
-            public string danger_level;//уровень опасности (закритический, критический, допустимый)
-        }    
+    public class DefectsTypes
+    {
+        public int defectNumber;//номер дефекта по порядку
+        public string pipeNumber;//номер трубы
+        public string defectType;//тип дефекта
+        public string defectCode;//код дефекта
+        public double distanceFromTransverseWeld;//расстояние от первого поперечного шва
+        public double distanceFromLongitudinalWeld;//расстояние от продольного шва
+        public double start_angle;//начальный угол дефекта
+        public double length;//длина
+        public double widht;//ширина
+        public double depthInMm;//глубина дефекта в миллиметрах
+        public string inside_or_outside;//внутренний, наружный, внутристенный
+        public string defect_location;//расположение дефекта (основной металл, сварной шов, околошовная зона)
+        public string danger_level;//уровень опасности (закритический, критический, допустимый)
+    }
 
 }

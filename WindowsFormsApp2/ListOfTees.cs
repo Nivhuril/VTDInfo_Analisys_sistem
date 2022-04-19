@@ -220,7 +220,6 @@ namespace VTDinfo
                         }
                     }
                 }
-
                 if (currentObjectTees.Count>0)
                 {
                     for (int j = 0; j < currentObjectTees.Count; j++)
