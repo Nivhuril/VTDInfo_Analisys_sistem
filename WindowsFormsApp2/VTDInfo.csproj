@@ -7,7 +7,7 @@
     <ProjectGuid>{BD19C863-7622-4AD3-ACA2-EFD30C14C8DC}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>VTDinfo</RootNamespace>
-    <AssemblyName>VTDinfo v.1.4.4 %2816.02.2022%29</AssemblyName>
+    <AssemblyName>VTDinfo v.1.4.4 %2819.04.2022%29</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

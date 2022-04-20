@@ -175,8 +175,83 @@ namespace VTDinfo
             public double MaximumJoinDamage;//максимальная поврежденность от дефектов швов, выявленная на данной трубе
             public double critikalThikness;//критическая толщина, вычисленная для данной трубы
             public double residualResource;//остаточный ресурс трубы
+
+
+            public double firstJointAngle;
+            public double secondJointAngle;
+            public bool isTwoJoint;
         }
 
+        MGVTD setTypesForIUSTToFirnishingLog(MGVTD input)
+        {
+            MGVTD result = input;
+            for (int i = 0; i < input.furnishingsLogS.Count; i++)
+            {
+                if (input.furnishingsLogS[i].characterFeatures.Contains("Кран"))
+                {
+                    result.furnishingsLogS[i].typeForIUST = "Кран";
+                }
+                else if (input.furnishingsLogS[i].characterFeatures.Contains("кран"))
+                {
+                    result.furnishingsLogS[i].typeForIUST = "Кран";
+                }
+                else if (input.furnishingsLogS[i].characterFeatures.Contains("запус"))
+                {
+                    result.furnishingsLogS[i].typeForIUST = "Камера запуска";
+                }
+                else if (input.furnishingsLogS[i].characterFeatures.Contains("приема"))
+                {
+                    result.furnishingsLogS[i].typeForIUST = "Камера приема";
+                }
+                else if (input.furnishingsLogS[i].characterFeatures.Contains("аркер"))
+                {
+                    result.furnishingsLogS[i].typeForIUST = "Маркер";
+                }
+                else if (input.furnishingsLogS[i].characterFeatures.Contains("ройник"))
+                {
+                    result.furnishingsLogS[i].typeForIUST = "Тройник";
+                }
+                else if (input.furnishingsLogS[i].characterFeatures.Contains("твод"))
+                {
+                    result.furnishingsLogS[i].typeForIUST = "Отвод";
+                }
+                else
+                {
+                    result.furnishingsLogS[i].typeForIUST = "Прочее";
+                }
+            }
+            return result;
+        }
+
+        MGVTD setJointAnglesToMgPipesGPAS(MGVTD input)//расстановка информации об ориентации продольных швов в трубном журнале
+        {
+            MGVTD result = input;
+            for (int i = 0; i < input.MGPipeS.Count; i++)
+            {
+                if (String.IsNullOrWhiteSpace(input.MGPipeS[i].clockOrientation)==false)
+                {
+                    if (input.MGPipeS[i].clockOrientation.Contains("/"))
+                    {
+                        result.MGPipeS[i].firstJointAngle = GetStartAngle(input.MGPipeS[i].clockOrientation);
+                        if (result.MGPipeS[i].firstJointAngle<6)
+                        {
+                            result.MGPipeS[i].secondJointAngle = result.MGPipeS[i].firstJointAngle + 6;
+                        }
+                        else
+                        {
+                            result.MGPipeS[i].secondJointAngle = result.MGPipeS[i].firstJointAngle - 6;
+                        }
+                        result.MGPipeS[i].isTwoJoint = true;
+                    }
+                    else
+                    {
+                        result.MGPipeS[i].firstJointAngle = GetStartAngle(input.MGPipeS[i].clockOrientation);
+                        result.MGPipeS[i].isTwoJoint = false;
+                    }
+                }                
+            }
+            return result;
+        }
         MGVTD GetMaximumValues(MGVTD mGVTD)//поиск максимальной повреждённости на трубе
         {
             for (int i = 0; i < mGVTD.MGPipeS.Count; i++)
@@ -323,6 +398,8 @@ namespace VTDinfo
             public string Longitude;//Долгота
             public double heightAboveSeaLevel;//H, м
             public string note;//Примечание
+
+            public string typeForIUST;//тип элемента для ШСЗ ИУСТ
         }
         public class pipeCharacteristics//класс для хранения сведений о характеристиках труб
         {
@@ -3846,7 +3923,7 @@ namespace VTDinfo
 
                 try
                 {
-                    AnomalyLogLine.depthInMm = Convert.ToDouble(depthInMMString.Trim().Replace(".", ","));//глубина дефекта в миллиметрах
+                    AnomalyLogLine.depthInMm = 0.1*Convert.ToDouble(depthInMMString.Trim().Replace(".", ","));//глубина дефекта в миллиметрах
 
                 }
                 catch (Exception)
@@ -3856,12 +3933,12 @@ namespace VTDinfo
 
                 if (AnomalyLogLine.depthInMm == 0)
                 {
-                    AnomalyLogLine.depthInMm = AnomalyLogLine.depthInProcent * pipeThikness * 0.01;
+                    AnomalyLogLine.depthInMm = AnomalyLogLine.depthInProcent * pipeThikness * 0.001;
 
                 }
                 if (AnomalyLogLine.depthInProcent == 0)
                 {
-                    AnomalyLogLine.depthInProcent = AnomalyLogLine.depthInMm / (pipeThikness * 0.01);
+                    AnomalyLogLine.depthInProcent = AnomalyLogLine.depthInMm / (pipeThikness * 0.001);
 
                 }
                 //********************************************************
@@ -7534,7 +7611,7 @@ namespace VTDinfo
 
             /*}*/
         }
-        private void exportAnomalylogToIUST(MGVTD mGVTD)//Создание Excel файла для экспорта в Сонар
+        private void exportAnomalylogToIUST(MGVTD mGVTD)//Создание Excel файла с журналом дефектов для ИУС Т
         {
             object Nothing = System.Reflection.Missing.Value;
             var app = new Microsoft.Office.Interop.Excel.Application();
@@ -7542,7 +7619,7 @@ namespace VTDinfo
             Microsoft.Office.Interop.Excel.Workbook workBook = app.Workbooks.Add(Nothing);
             Microsoft.Office.Interop.Excel.Worksheet worksheet = (Microsoft.Office.Interop.Excel.Worksheet)workBook.Sheets[1];
 
-            worksheet.Name = "SonarFormat";
+            worksheet.Name = "AnomalyLog";
 
             // Write data
             worksheet.Cells[1, 1] = "№";//
@@ -7563,7 +7640,7 @@ namespace VTDinfo
             int strNunber = 2;
             for (int i = 0; i < mGVTD.anomalyLogLineS.Count; i++)
             {
-                worksheet.Cells[strNunber, 1] = i;//"№";//
+                worksheet.Cells[strNunber, 1] = i + 1;//"№";//
                 worksheet.Cells[strNunber, 2] = mGVTD.anomalyLogLineS[i].pipeNumber;//"Номер трубы"
                 worksheet.Cells[strNunber, 3] = mGVTD.anomalyLogLineS[i].defectType;//"Тип дефекта";          
                 worksheet.Cells[strNunber, 4] = mGVTD.anomalyLogLineS[i].defectCode;// "Код дефекта";
@@ -7611,7 +7688,196 @@ namespace VTDinfo
             {
                 Directory.CreateDirectory(dir);
             }
-            saveFileDialog1.FileName = textBox_adres.Text + mGVTD.pipelineInfo.pipelineName + "-" + " Журнал_дефектов_ИУС_Т).xlsx";
+            saveFileDialog1.FileName = textBox_adres.Text + mGVTD.pipelineInfo.pipelineName + "-" + " Журнал_дефектов_ИУС_Т.xlsx";
+            //richTextBox4.AppendText(Environment.NewLine + saveFileDialog1.FileName);
+            try
+            {
+                worksheet.SaveAs(saveFileDialog1.FileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange, Type.Missing, Type.Missing, Type.Missing);
+            }
+            catch (Exception)
+            {
+
+            }
+            //worksheet2.SaveAs(saveFileDialog1.FileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange, Type.Missing, Type.Missing, Type.Missing);
+
+            //workBook.Close(false, Type.Missing, Type.Missing);
+            //app.Quit();
+
+
+            /*}*/
+        }
+
+        private void exportPipeLogToIUST(MGVTD mGVTD)//Создание Excel файла с трубным журналом для ИУС Т
+        {
+            object Nothing = System.Reflection.Missing.Value;
+            var app = new Microsoft.Office.Interop.Excel.Application();
+            app.Visible = true;
+            Microsoft.Office.Interop.Excel.Workbook workBook = app.Workbooks.Add(Nothing);
+            Microsoft.Office.Interop.Excel.Worksheet worksheet = (Microsoft.Office.Interop.Excel.Worksheet)workBook.Sheets[1];
+
+            worksheet.Name = "PipeLog";
+
+            // Write data
+            worksheet.Cells[1, 1] = "№";//
+            worksheet.Cells[1, 2] = "Номер трубы";//
+            worksheet.Cells[1, 3] = "Начало";//          
+            worksheet.Cells[1, 4] = "Географические координаты начала трубы";//
+            worksheet.Cells[1, 5] = "Длина трубы";//
+            worksheet.Cells[1, 6] = "Тип трубы";//
+            worksheet.Cells[1, 7] = "Диаметр";//
+            worksheet.Cells[1, 8] = "Толщина стенки измеренная";//
+            worksheet.Cells[1, 9] = "Ориентация первого шва";//
+            worksheet.Cells[1, 10] = "Ориентация второго шва";//
+            worksheet.Cells[1, 11] = "Овализация трубы";//
+            worksheet.Cells[1, 12] = "Радиус упругого изгиба";//
+            worksheet.Cells[1, 13] = "Процент повреждения изоляции";//
+            worksheet.Cells[1, 14] = "Комментарий";//
+            worksheet.Cells[1, 15] = "Завод - изготовитель";//
+            worksheet.Cells[1, 16] = "Класс прочности стали трубы";//
+            worksheet.Cells[1, 17] = "Коэф.надежности по внутреннему давлению";//
+            worksheet.Cells[1, 18] = "Коэф-т надежности по назн.трубопровода";//
+            worksheet.Cells[1, 19] = "Коэффициент надежности по материалу k1";//
+            worksheet.Cells[1, 20] = "Марка стали";//
+            worksheet.Cells[1, 21] = "Наличие наружного балластного покрытия";//
+            worksheet.Cells[1, 22] = "Проект.категорийность уч.трубопровода";//
+            worksheet.Cells[1, 23] = "Способ производства трубы";//
+            worksheet.Cells[1, 24] = "Стандарт изготовления";//
+            worksheet.Cells[1, 25] = "Страна завода-изготовителя";//
+            worksheet.Cells[1, 26] = "Тип защитного покрытия";//
+            int strNunber = 2;
+            for (int i = 0; i < mGVTD.MGPipeS.Count; i++)
+            {
+
+                worksheet.Cells[strNunber, 1] = i+1;//"№";//
+                worksheet.Cells[strNunber, 2] = mGVTD.MGPipeS[i].pipeNumber;//"Номер трубы";//
+                worksheet.Cells[strNunber, 3] = mGVTD.MGPipeS[i].odometrDist;// "Начало";//          
+                //worksheet.Cells[strNunber, 4] = "Географические координаты начала трубы";//
+                worksheet.Cells[strNunber, 5] = mGVTD.MGPipeS[i].pipeLength;//"Длина трубы";//
+
+                if (mGVTD.MGPipeS[i].isTwoJoint)
+                {
+                    worksheet.Cells[strNunber, 6] = "двухшовная";//"Тип трубы";//
+                    worksheet.Cells[strNunber, 9] = mGVTD.MGPipeS[i].firstJointAngle;//"Ориентация первого шва";//
+                    worksheet.Cells[strNunber, 10] = mGVTD.MGPipeS[i].secondJointAngle;//"Ориентация второго шва";//
+                }
+                else
+                {
+                    worksheet.Cells[strNunber, 6] = "одношовная";//"Тип трубы";//
+                    worksheet.Cells[strNunber, 9] = mGVTD.MGPipeS[i].firstJointAngle;//"Ориентация первого шва";//
+                }
+                
+                worksheet.Cells[strNunber, 7] = mGVTD.pipelineInfo.pipeDiameter;//"Диаметр";//
+                worksheet.Cells[strNunber, 8] = mGVTD.MGPipeS[i].thikness;//"Толщина стенки измеренная";//
+
+
+
+                //worksheet.Cells[strNunber, 11] = "Овализация трубы";//
+                //worksheet.Cells[strNunber, 12] = "Радиус упругого изгиба";//
+                //worksheet.Cells[strNunber, 13] = "Процент повреждения изоляции";//
+                worksheet.Cells[strNunber, 14] = mGVTD.MGPipeS[i].note;//"Комментарий";//
+                //worksheet.Cells[strNunber, 15] = "Завод - изготовитель";//
+                worksheet.Cells[strNunber, 16] = textBox447.Text;//"Класс прочности стали трубы";//
+                worksheet.Cells[strNunber, 17] = textBox444.Text;//"Коэф.надежности по внутреннему давлению";//
+                worksheet.Cells[strNunber, 18] = textBox445.Text;//"Коэф-т надежности по назн.трубопровода";//
+                worksheet.Cells[strNunber, 19] = textBox446.Text;//"Коэффициент надежности по материалу k1";//
+                worksheet.Cells[strNunber, 20] = mGVTD.MGPipeS[i].steelGrade;//"Марка стали";//
+                //worksheet.Cells[strNunber, 21] = "Наличие наружного балластного покрытия";//
+                worksheet.Cells[strNunber, 22] = mGVTD.MGPipeS[i].pipelineSectionCategory;//"Проект.категорийность уч.трубопровода";//
+                //worksheet.Cells[strNunber, 23] = "Способ производства трубы";//
+                //worksheet.Cells[strNunber, 24] = "Стандарт изготовления";//
+                //worksheet.Cells[strNunber, 25] = "Страна завода-изготовителя";//
+                //worksheet.Cells[strNunber, 26] = "Тип защитного покрытия";//
+                strNunber++;
+            }
+
+            /*string filename = textBox_adres.Text + mGVTD.pipelineInfo.pipelineName + "-" + PlotBoundaries.pipeNumberOnePipeLog+"-"+ PlotBoundaries.pipeNumberOnePipeLog+"xlsx";
+            worksheet.SaveAs(fileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange, Type.Missing, Type.Missing, Type.Missing);
+            workBook.Close(false, Type.Missing, Type.Missing);
+            app.Quit();*/
+
+            // Show save file dialog
+            //SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            /*if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {*/
+
+            String dir = textBox_adres.Text;
+            if (!Directory.Exists(dir))
+            {
+                Directory.CreateDirectory(dir);
+            }
+            saveFileDialog1.FileName = textBox_adres.Text + mGVTD.pipelineInfo.pipelineName + "-" + " Трубный_журнал_ИУС_Т.xlsx";
+            //richTextBox4.AppendText(Environment.NewLine + saveFileDialog1.FileName);
+            try
+            {
+                worksheet.SaveAs(saveFileDialog1.FileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange, Type.Missing, Type.Missing, Type.Missing);
+            }
+            catch (Exception)
+            {
+
+            }
+            //worksheet2.SaveAs(saveFileDialog1.FileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange, Type.Missing, Type.Missing, Type.Missing);
+
+            //workBook.Close(false, Type.Missing, Type.Missing);
+            //app.Quit();
+
+
+            /*}*/
+        }
+        private void exportFurnishingLogToIUST(MGVTD mGVTD)//Создание Excel файла с журналом элементов обустройства для ИУС Т
+        {
+            object Nothing = System.Reflection.Missing.Value;
+            var app = new Microsoft.Office.Interop.Excel.Application();
+            app.Visible = true;
+            Microsoft.Office.Interop.Excel.Workbook workBook = app.Workbooks.Add(Nothing);
+            Microsoft.Office.Interop.Excel.Worksheet worksheet = (Microsoft.Office.Interop.Excel.Worksheet)workBook.Sheets[1];
+
+            worksheet.Name = "furnishingsLog";
+
+            // Write data
+            worksheet.Cells[1, 1] = "№";//
+            worksheet.Cells[1, 2] = "Километр расположения";//
+            worksheet.Cells[1, 3] = "Тип";//          
+            worksheet.Cells[1, 4] = "Начало";//
+            worksheet.Cells[1, 5] = "Длина";//
+            worksheet.Cells[1, 6] = "Начальный угол";//
+            worksheet.Cells[1, 7] = "Конечный угол";//
+            worksheet.Cells[1, 8] = "Описание";//
+            worksheet.Cells[1, 9] = "Комментарий";//
+            worksheet.Cells[1, 10] = "Номер трубы";//
+           
+            int strNunber = 2;
+            for (int i = 0; i < mGVTD.furnishingsLogS.Count; i++)
+            {
+                double aa = 0.001;
+                worksheet.Cells[strNunber, 1] = i + 1;//"№";//
+                worksheet.Cells[strNunber, 2] = aa * mGVTD.furnishingsLogS[i].odometrDist;//"Километр расположения";//
+                worksheet.Cells[strNunber, 3] = mGVTD.furnishingsLogS[i].typeForIUST;//"Тип";//          
+                worksheet.Cells[strNunber, 4] = Convert.ToString(1000 * mGVTD.furnishingsLogS[i].odometrDist);// "Начало";//
+                worksheet.Cells[strNunber, 5] = mGVTD.furnishingsLogS[i].pipeLength;//"Длина";//
+                worksheet.Cells[strNunber, 6] = "Начальный угол";//
+                worksheet.Cells[strNunber, 7] = "Конечный угол";//
+                worksheet.Cells[strNunber, 8] = "Описание";//
+                worksheet.Cells[strNunber, 9] = mGVTD.furnishingsLogS[i].note;//"Комментарий";//
+                worksheet.Cells[strNunber, 10] = mGVTD.furnishingsLogS[i].pipeNumber;//"Номер трубы";//
+                strNunber++;
+            }
+
+            /*string filename = textBox_adres.Text + mGVTD.pipelineInfo.pipelineName + "-" + PlotBoundaries.pipeNumberOnePipeLog+"-"+ PlotBoundaries.pipeNumberOnePipeLog+"xlsx";
+            worksheet.SaveAs(fileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange, Type.Missing, Type.Missing, Type.Missing);
+            workBook.Close(false, Type.Missing, Type.Missing);
+            app.Quit();*/
+
+            // Show save file dialog
+            //SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            /*if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {*/
+
+            String dir = textBox_adres.Text;
+            if (!Directory.Exists(dir))
+            {
+                Directory.CreateDirectory(dir);
+            }
+            saveFileDialog1.FileName = textBox_adres.Text + mGVTD.pipelineInfo.pipelineName + "-" + " журнал_особенностей_ИУС_Т.xlsx";
             //richTextBox4.AppendText(Environment.NewLine + saveFileDialog1.FileName);
             try
             {
@@ -8964,8 +9230,12 @@ namespace VTDinfo
         {
             mGVTD = SetPipeLengthToAnomalyLog(mGVTD);
             mGVTD = SetVolumesToAnomalyLogForIUST(mGVTD);
+            mGVTD = setJointAnglesToMgPipesGPAS(mGVTD);
+            mGVTD = setTypesForIUSTToFirnishingLog(mGVTD);
             //MessageBox.Show("OK!");
-            exportAnomalylogToIUST(mGVTD);
+            //exportAnomalylogToIUST(mGVTD);
+            //exportPipeLogToIUST(mGVTD);
+            exportFurnishingLogToIUST(mGVTD);
         }
         private void testButton_Click(object sender, EventArgs e)
         {
@@ -9002,7 +9272,7 @@ namespace VTDinfo
             textBox136.Text = mGVTD.MGPipeS[mGVTD.MGPipeS.Count - 1].pipeNumber;
             goEquation();
             textBox442.Text = Convert.ToString(Math.Round(PvtdReport,3));
-            richTextBox2.AppendText(Environment.NewLine + "mGVTD.MGPipeS.Count=" + mGVTD.MGPipeS.Count);
+            richTextBox2.AppendText(Environment.NewLine + "mGVTD.MGPipeS.Count=" + mGVTD.MGPipeS.Count); textBox441.Text = Convert.ToString(mGVTD.pipelineInfo.pipeDiameter);
             textBox_contractor.Text = mGVTD.pipelineInfo.contractor;
             textBox_examinationDate.Text = mGVTD.pipelineInfo.examinationDate;
             textBox_diameter.Text = Convert.ToString(mGVTD.pipelineInfo.pipeDiameter);
@@ -9017,6 +9287,7 @@ namespace VTDinfo
             mGVTD = GetMaximumValuesCorrerionInProcent(mGVTD);
             mGVTD = GetCritikalThiknessForAll(mGVTD);
             SetScrollBars(mGVTD);
+            DrawDiagrams();
         }
         private void SetScrollBars(MGVTD input)
         {
@@ -9027,6 +9298,8 @@ namespace VTDinfo
             hScrollBar2.Maximum = input.MGPipeS.Count;
             hScrollBar1.Value = 1;
             hScrollBar2.Value = input.MGPipeS.Count;
+            textBoxGraphStart.Text = String.Concat(mGVTD.MGPipeS[hScrollBar1.Value - 1].pipeNumber, "_", hScrollBar1.Value - 1);
+            textBoxGraphStop.Text = String.Concat(mGVTD.MGPipeS[hScrollBar2.Value - 1].pipeNumber, "_", hScrollBar2.Value - 1);
         }
         private void hScrollBar1_Scroll(object sender, ScrollEventArgs e)
         {

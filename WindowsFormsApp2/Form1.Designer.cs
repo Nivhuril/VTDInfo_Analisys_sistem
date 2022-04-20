@@ -52,6 +52,17 @@ namespace VTDinfo
             this.tabControl5 = new System.Windows.Forms.TabControl();
             this.tabPage16 = new System.Windows.Forms.TabPage();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.label250 = new System.Windows.Forms.Label();
+            this.textBox443 = new System.Windows.Forms.TextBox();
+            this.label254 = new System.Windows.Forms.Label();
+            this.textBox442 = new System.Windows.Forms.TextBox();
+            this.label253 = new System.Windows.Forms.Label();
+            this.textBox441 = new System.Windows.Forms.TextBox();
+            this.label252 = new System.Windows.Forms.Label();
+            this.textBox440 = new System.Windows.Forms.TextBox();
+            this.label251 = new System.Windows.Forms.Label();
+            this.textBox439 = new System.Windows.Forms.TextBox();
+            this.label249 = new System.Windows.Forms.Label();
             this.textBox438 = new System.Windows.Forms.TextBox();
             this.getVtdData = new System.Windows.Forms.Button();
             this.tabPage14 = new System.Windows.Forms.TabPage();
@@ -914,17 +925,15 @@ namespace VTDinfo
             this.textBox436 = new System.Windows.Forms.TextBox();
             this.ConvertIusT = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.label249 = new System.Windows.Forms.Label();
-            this.textBox439 = new System.Windows.Forms.TextBox();
-            this.textBox440 = new System.Windows.Forms.TextBox();
-            this.label251 = new System.Windows.Forms.Label();
-            this.textBox441 = new System.Windows.Forms.TextBox();
-            this.label252 = new System.Windows.Forms.Label();
-            this.textBox442 = new System.Windows.Forms.TextBox();
-            this.label253 = new System.Windows.Forms.Label();
-            this.textBox443 = new System.Windows.Forms.TextBox();
-            this.label254 = new System.Windows.Forms.Label();
-            this.label250 = new System.Windows.Forms.Label();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.label255 = new System.Windows.Forms.Label();
+            this.textBox444 = new System.Windows.Forms.TextBox();
+            this.textBox445 = new System.Windows.Forms.TextBox();
+            this.label256 = new System.Windows.Forms.Label();
+            this.textBox446 = new System.Windows.Forms.TextBox();
+            this.label257 = new System.Windows.Forms.Label();
+            this.textBox447 = new System.Windows.Forms.TextBox();
+            this.label258 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage13.SuspendLayout();
             this.tableLayoutPanel28.SuspendLayout();
@@ -1009,6 +1018,7 @@ namespace VTDinfo
             this.tableLayoutPanel13.SuspendLayout();
             this.tableLayoutPanel33.SuspendLayout();
             this.IusT.SuspendLayout();
+            this.groupBox11.SuspendLayout();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -1274,6 +1284,101 @@ namespace VTDinfo
             this.groupBox7.TabIndex = 0;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Выбор участка для обработки";
+            // 
+            // label250
+            // 
+            this.label250.AutoSize = true;
+            this.label250.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label250.Location = new System.Drawing.Point(8, 166);
+            this.label250.Name = "label250";
+            this.label250.Size = new System.Drawing.Size(137, 13);
+            this.label250.TabIndex = 15;
+            this.label250.Text = "Количество дефектов";
+            // 
+            // textBox443
+            // 
+            this.textBox443.Location = new System.Drawing.Point(149, 163);
+            this.textBox443.Name = "textBox443";
+            this.textBox443.Size = new System.Drawing.Size(263, 20);
+            this.textBox443.TabIndex = 14;
+            // 
+            // label254
+            // 
+            this.label254.AutoSize = true;
+            this.label254.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label254.Location = new System.Drawing.Point(8, 140);
+            this.label254.Name = "label254";
+            this.label254.Size = new System.Drawing.Size(39, 13);
+            this.label254.TabIndex = 13;
+            this.label254.Text = "P втд";
+            // 
+            // textBox442
+            // 
+            this.textBox442.Location = new System.Drawing.Point(149, 137);
+            this.textBox442.Name = "textBox442";
+            this.textBox442.Size = new System.Drawing.Size(263, 20);
+            this.textBox442.TabIndex = 12;
+            // 
+            // label253
+            // 
+            this.label253.AutoSize = true;
+            this.label253.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label253.Location = new System.Drawing.Point(8, 114);
+            this.label253.Name = "label253";
+            this.label253.Size = new System.Drawing.Size(60, 13);
+            this.label253.TabIndex = 11;
+            this.label253.Text = "Диаметр";
+            // 
+            // textBox441
+            // 
+            this.textBox441.Location = new System.Drawing.Point(149, 111);
+            this.textBox441.Name = "textBox441";
+            this.textBox441.Size = new System.Drawing.Size(263, 20);
+            this.textBox441.TabIndex = 10;
+            // 
+            // label252
+            // 
+            this.label252.AutoSize = true;
+            this.label252.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label252.Location = new System.Drawing.Point(8, 88);
+            this.label252.Name = "label252";
+            this.label252.Size = new System.Drawing.Size(56, 13);
+            this.label252.TabIndex = 9;
+            this.label252.Text = "Участок";
+            // 
+            // textBox440
+            // 
+            this.textBox440.Location = new System.Drawing.Point(149, 85);
+            this.textBox440.Name = "textBox440";
+            this.textBox440.Size = new System.Drawing.Size(263, 20);
+            this.textBox440.TabIndex = 8;
+            // 
+            // label251
+            // 
+            this.label251.AutoSize = true;
+            this.label251.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label251.Location = new System.Drawing.Point(8, 62);
+            this.label251.Name = "label251";
+            this.label251.Size = new System.Drawing.Size(77, 13);
+            this.label251.TabIndex = 7;
+            this.label251.Text = "Газопровод";
+            // 
+            // textBox439
+            // 
+            this.textBox439.Location = new System.Drawing.Point(149, 59);
+            this.textBox439.Name = "textBox439";
+            this.textBox439.Size = new System.Drawing.Size(263, 20);
+            this.textBox439.TabIndex = 6;
+            // 
+            // label249
+            // 
+            this.label249.AutoSize = true;
+            this.label249.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label249.Location = new System.Drawing.Point(6, 17);
+            this.label249.Name = "label249";
+            this.label249.Size = new System.Drawing.Size(70, 13);
+            this.label249.TabIndex = 2;
+            this.label249.Text = "ID участка";
             // 
             // textBox438
             // 
@@ -10064,6 +10169,7 @@ namespace VTDinfo
             // 
             // IusT
             // 
+            this.IusT.Controls.Add(this.groupBox11);
             this.IusT.Controls.Add(this.richTextBox8);
             this.IusT.Controls.Add(this.button17);
             this.IusT.Controls.Add(this.button16);
@@ -10168,100 +10274,96 @@ namespace VTDinfo
             this.saveFileDialog1.FileName = "MG";
             this.saveFileDialog1.InitialDirectory = "C:\\Result";
             // 
-            // label249
+            // groupBox11
             // 
-            this.label249.AutoSize = true;
-            this.label249.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label249.Location = new System.Drawing.Point(6, 17);
-            this.label249.Name = "label249";
-            this.label249.Size = new System.Drawing.Size(70, 13);
-            this.label249.TabIndex = 2;
-            this.label249.Text = "ID участка";
+            this.groupBox11.BackColor = System.Drawing.Color.Pink;
+            this.groupBox11.Controls.Add(this.textBox447);
+            this.groupBox11.Controls.Add(this.label258);
+            this.groupBox11.Controls.Add(this.textBox446);
+            this.groupBox11.Controls.Add(this.label257);
+            this.groupBox11.Controls.Add(this.textBox445);
+            this.groupBox11.Controls.Add(this.label256);
+            this.groupBox11.Controls.Add(this.textBox444);
+            this.groupBox11.Controls.Add(this.label255);
+            this.groupBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBox11.Location = new System.Drawing.Point(27, 388);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(449, 159);
+            this.groupBox11.TabIndex = 9;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "Данные для внесения в отчет";
             // 
-            // textBox439
+            // label255
             // 
-            this.textBox439.Location = new System.Drawing.Point(149, 59);
-            this.textBox439.Name = "textBox439";
-            this.textBox439.Size = new System.Drawing.Size(263, 20);
-            this.textBox439.TabIndex = 6;
+            this.label255.AutoSize = true;
+            this.label255.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label255.Location = new System.Drawing.Point(22, 38);
+            this.label255.Name = "label255";
+            this.label255.Size = new System.Drawing.Size(272, 15);
+            this.label255.TabIndex = 0;
+            this.label255.Text = "Коэф. надежности по внутреннему давлению";
             // 
-            // textBox440
+            // textBox444
             // 
-            this.textBox440.Location = new System.Drawing.Point(149, 85);
-            this.textBox440.Name = "textBox440";
-            this.textBox440.Size = new System.Drawing.Size(263, 20);
-            this.textBox440.TabIndex = 8;
+            this.textBox444.Location = new System.Drawing.Point(326, 35);
+            this.textBox444.Name = "textBox444";
+            this.textBox444.Size = new System.Drawing.Size(100, 26);
+            this.textBox444.TabIndex = 1;
+            this.textBox444.Text = "1.3";
             // 
-            // label251
+            // textBox445
             // 
-            this.label251.AutoSize = true;
-            this.label251.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label251.Location = new System.Drawing.Point(8, 62);
-            this.label251.Name = "label251";
-            this.label251.Size = new System.Drawing.Size(77, 13);
-            this.label251.TabIndex = 7;
-            this.label251.Text = "Газопровод";
+            this.textBox445.Location = new System.Drawing.Point(326, 61);
+            this.textBox445.Name = "textBox445";
+            this.textBox445.Size = new System.Drawing.Size(100, 26);
+            this.textBox445.TabIndex = 3;
+            this.textBox445.Text = "0.8";
             // 
-            // textBox441
+            // label256
             // 
-            this.textBox441.Location = new System.Drawing.Point(149, 111);
-            this.textBox441.Name = "textBox441";
-            this.textBox441.Size = new System.Drawing.Size(263, 20);
-            this.textBox441.TabIndex = 10;
+            this.label256.AutoSize = true;
+            this.label256.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label256.Location = new System.Drawing.Point(22, 64);
+            this.label256.Name = "label256";
+            this.label256.Size = new System.Drawing.Size(291, 15);
+            this.label256.TabIndex = 2;
+            this.label256.Text = "Коэф. надежности по назначению трубопровода";
             // 
-            // label252
+            // textBox446
             // 
-            this.label252.AutoSize = true;
-            this.label252.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label252.Location = new System.Drawing.Point(8, 88);
-            this.label252.Name = "label252";
-            this.label252.Size = new System.Drawing.Size(56, 13);
-            this.label252.TabIndex = 9;
-            this.label252.Text = "Участок";
+            this.textBox446.Location = new System.Drawing.Point(326, 87);
+            this.textBox446.Name = "textBox446";
+            this.textBox446.Size = new System.Drawing.Size(100, 26);
+            this.textBox446.TabIndex = 5;
+            this.textBox446.Text = "1.4";
             // 
-            // textBox442
+            // label257
             // 
-            this.textBox442.Location = new System.Drawing.Point(149, 137);
-            this.textBox442.Name = "textBox442";
-            this.textBox442.Size = new System.Drawing.Size(263, 20);
-            this.textBox442.TabIndex = 12;
+            this.label257.AutoSize = true;
+            this.label257.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label257.Location = new System.Drawing.Point(22, 90);
+            this.label257.Name = "label257";
+            this.label257.Size = new System.Drawing.Size(215, 15);
+            this.label257.TabIndex = 4;
+            this.label257.Text = "Коэф. надежности по материалу k1";
             // 
-            // label253
+            // textBox447
             // 
-            this.label253.AutoSize = true;
-            this.label253.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label253.Location = new System.Drawing.Point(8, 114);
-            this.label253.Name = "label253";
-            this.label253.Size = new System.Drawing.Size(60, 13);
-            this.label253.TabIndex = 11;
-            this.label253.Text = "Диаметр";
+            this.textBox447.Location = new System.Drawing.Point(326, 114);
+            this.textBox447.Name = "textBox447";
+            this.textBox447.Size = new System.Drawing.Size(100, 26);
+            this.textBox447.TabIndex = 7;
+            this.textBox447.Text = "К34";
             // 
-            // textBox443
+            // label258
             // 
-            this.textBox443.Location = new System.Drawing.Point(149, 163);
-            this.textBox443.Name = "textBox443";
-            this.textBox443.Size = new System.Drawing.Size(263, 20);
-            this.textBox443.TabIndex = 14;
-            // 
-            // label254
-            // 
-            this.label254.AutoSize = true;
-            this.label254.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label254.Location = new System.Drawing.Point(8, 140);
-            this.label254.Name = "label254";
-            this.label254.Size = new System.Drawing.Size(39, 13);
-            this.label254.TabIndex = 13;
-            this.label254.Text = "P втд";
-            // 
-            // label250
-            // 
-            this.label250.AutoSize = true;
-            this.label250.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label250.Location = new System.Drawing.Point(8, 166);
-            this.label250.Name = "label250";
-            this.label250.Size = new System.Drawing.Size(137, 13);
-            this.label250.TabIndex = 15;
-            this.label250.Text = "Количество дефектов";
+            this.label258.AutoSize = true;
+            this.label258.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label258.Location = new System.Drawing.Point(22, 117);
+            this.label258.Name = "label258";
+            this.label258.Size = new System.Drawing.Size(180, 15);
+            this.label258.TabIndex = 6;
+            this.label258.Text = "Класс прочности стали трубы";
             // 
             // Form1
             // 
@@ -10271,7 +10373,7 @@ namespace VTDinfo
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "VTDinfo v.1.4.4 (22.10.2021)";
+            this.Text = "VTDinfo v.1.4.4 (19.04.2022)";
             this.tabControl1.ResumeLayout(false);
             this.tabPage13.ResumeLayout(false);
             this.tableLayoutPanel28.ResumeLayout(false);
@@ -10388,6 +10490,8 @@ namespace VTDinfo
             this.tableLayoutPanel33.PerformLayout();
             this.IusT.ResumeLayout(false);
             this.IusT.PerformLayout();
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -11289,6 +11393,15 @@ namespace VTDinfo
         private System.Windows.Forms.TextBox textBox439;
         private System.Windows.Forms.Label label249;
         private System.Windows.Forms.Label label250;
+        private System.Windows.Forms.GroupBox groupBox11;
+        private System.Windows.Forms.TextBox textBox447;
+        private System.Windows.Forms.Label label258;
+        private System.Windows.Forms.TextBox textBox446;
+        private System.Windows.Forms.Label label257;
+        private System.Windows.Forms.TextBox textBox445;
+        private System.Windows.Forms.Label label256;
+        private System.Windows.Forms.TextBox textBox444;
+        private System.Windows.Forms.Label label255;
     }
 }
 
