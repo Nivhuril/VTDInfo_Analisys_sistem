@@ -4166,7 +4166,7 @@ namespace VTDinfo
             {
                 for (int j = 0; j < mGVTD.MGPipeS.Count; j++)
                 {
-                    if (String.IsNullOrWhiteSpace(MgvtdNew.MGPipeS[j].steelGrade))
+                    if (String.IsNullOrWhiteSpace(mGVTD.MGPipeS[j].steelGrade))
                     {
                         if (mGVTD.MGPipeS[j].thikness == mGVTD.pipeCharacteristicsLog[i].thikness)
                         {
@@ -7832,7 +7832,16 @@ namespace VTDinfo
             Microsoft.Office.Interop.Excel.Worksheet worksheet = (Microsoft.Office.Interop.Excel.Worksheet)workBook.Sheets[1];
 
             worksheet.Name = "furnishingsLog";
-
+            double startKm = 0;
+            try
+            {
+                startKm = Convert.ToDouble(textBox448.Text.Replace(".",","));
+            }
+            catch (Exception)
+            {
+                
+            }
+                
             // Write data
             worksheet.Cells[1, 1] = "№";//
             worksheet.Cells[1, 2] = "Километр расположения";//
@@ -7850,13 +7859,13 @@ namespace VTDinfo
             {
                 double aa = 0.001;
                 worksheet.Cells[strNunber, 1] = i + 1;//"№";//
-                worksheet.Cells[strNunber, 2] = aa * mGVTD.furnishingsLogS[i].odometrDist;//"Километр расположения";//
+                worksheet.Cells[strNunber, 2] = startKm + aa * mGVTD.furnishingsLogS[i].odometrDist;//"Километр расположения";//
                 worksheet.Cells[strNunber, 3] = mGVTD.furnishingsLogS[i].typeForIUST;//"Тип";//          
                 worksheet.Cells[strNunber, 4] = Convert.ToString(1000 * mGVTD.furnishingsLogS[i].odometrDist);// "Начало";//
                 worksheet.Cells[strNunber, 5] = mGVTD.furnishingsLogS[i].pipeLength;//"Длина";//
-                worksheet.Cells[strNunber, 6] = "Начальный угол";//
-                worksheet.Cells[strNunber, 7] = "Конечный угол";//
-                worksheet.Cells[strNunber, 8] = "Описание";//
+                //worksheet.Cells[strNunber, 6] = "Начальный угол";//
+                //worksheet.Cells[strNunber, 7] = "Конечный угол";//
+                //worksheet.Cells[strNunber, 8] = "Описание";//
                 worksheet.Cells[strNunber, 9] = mGVTD.furnishingsLogS[i].note;//"Комментарий";//
                 worksheet.Cells[strNunber, 10] = mGVTD.furnishingsLogS[i].pipeNumber;//"Номер трубы";//
                 strNunber++;
@@ -9233,8 +9242,8 @@ namespace VTDinfo
             mGVTD = setJointAnglesToMgPipesGPAS(mGVTD);
             mGVTD = setTypesForIUSTToFirnishingLog(mGVTD);
             //MessageBox.Show("OK!");
-            //exportAnomalylogToIUST(mGVTD);
-            //exportPipeLogToIUST(mGVTD);
+            exportAnomalylogToIUST(mGVTD);
+            exportPipeLogToIUST(mGVTD);
             exportFurnishingLogToIUST(mGVTD);
         }
         private void testButton_Click(object sender, EventArgs e)
