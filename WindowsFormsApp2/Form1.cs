@@ -9380,6 +9380,8 @@ namespace VTDinfo
             }
             gMapControl1.Position = new PointLatLng(ConvertDegreeAngleToDoubleLat(input[centrPoint].defectCoordinates), ConvertDegreeAngleToDoubleLon(input[centrPoint].defectCoordinates));
         }
+
+        List<defectsOfInsulation> insulationDefectPipes = new List<defectsOfInsulation>();
         MGVTD setInsulationDefectsNew(MGVTD inputVTD, List<InsulationDefects> insulationDefects)
         {
             MGVTD result = new MGVTD();
@@ -9406,33 +9408,45 @@ namespace VTDinfo
                         }                    
                 }
 
-
+                
                 if (mark)
                 {
+                    defectsOfInsulation defect = new defectsOfInsulation();
                     double defectLength = insulationDefects[i].defectLength;
+                    defect.defectLength = insulationDefects[i].defectLength;
+                    defect.pipeNumber = inputVTD.MGPipeS[nearPipe].pipeNumber;
+                    List<int> pipesList = new List<int>();
                     while (defectLength > 0)
                     {
                         inputVTD.MGPipeS[nearPipe].isInsulationDefect = true;
                         defectLength -= inputVTD.MGPipeS[nearPipe].pipeLength;
-
-                        richTextBox9.Invoke(new Action(() => richTextBox9.AppendText(Environment.NewLine + inputVTD.MGPipeS[nearPipe].pipeNumber + "_" + insulationDefects[i].defectLength)));
+                        
+                        
                         if (nearPipe < inputVTD.MGPipeS.Count)
                         {
-                            nearPipe++;
+                            pipesList.Add(nearPipe);
+                            nearPipe++;                            
                         }
                         else
                         {
                             defectLength = 0;
                         }
                     }
+                    defect.numbersOfPipes = pipesList;
+                    insulationDefectPipes.Add(defect);
                 }
-                    
-                
             }
 
             return result;
         }
-
+        private void printInsulatoinDefects(MGVTD inputVTD, List<defectsOfInsulation> inputDefects)
+        {
+            for (int i = 0; i < inputDefects.Count; i++)
+            {
+                int numb = i + 1;
+                richTextBox9.Invoke(new Action(() => richTextBox9.AppendText(Environment.NewLine + "Дефект №" + numb + ",длина:" + inputDefects[i].defectLength + " м, тр.№" + inputVTD.MGPipeS[inputDefects[i].numbersOfPipes[0]].pipeNumber+ "-тр.№" + inputVTD.MGPipeS[inputDefects[i].numbersOfPipes[inputDefects[i].numbersOfPipes.Count-1]].pipeNumber)));
+            }
+        }
 
 
         MGVTD setInsulationDefects(MGVTD inputVTD, List<InsulationDefects> insulationDefects)
@@ -9533,7 +9547,10 @@ namespace VTDinfo
                 insulationDefects = GetInsulationDefectsFromFile(fileName);
             }
             setMarkersOfDefects(insulationDefects);
-            
+            setInsulationDefectsNew(mGVTD, insulationDefects);
+            addLineInsulatoinDefects(mGVTD);
+            printInsulatoinDefects(mGVTD, insulationDefectPipes);
+
         }
         private void addLine()//пример рисования линий на карте
         {
@@ -9605,8 +9622,7 @@ namespace VTDinfo
         private void button22_Click(object sender, EventArgs e)
         {
             //addLine();
-            setInsulationDefectsNew(mGVTD, insulationDefects);
-            addLineInsulatoinDefects(mGVTD);
+
         }
     }
 }

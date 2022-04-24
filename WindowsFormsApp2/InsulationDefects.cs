@@ -17,6 +17,13 @@ namespace VTDinfo
     public partial class Form1 : Form
     {
         public List<InsulationDefects> insulationDefects = new List<InsulationDefects>();
+        public class defectsOfInsulation
+        {
+            public string pipeNumber;
+            public double defectLength;
+            public List<int> numbersOfPipes;
+        }
+        
         public double ConvertDegreeAngleToDouble(string input)
         {
             double degrees = 0;
@@ -149,13 +156,13 @@ namespace VTDinfo
                 else
                 {
                     insulationDefects.Add(insDef);
-                    richTextBox9.Invoke(new Action(() => richTextBox9.AppendText(Environment.NewLine + insDef.defectCoordinates + "_" + insDef.defectLength)));
+                    //richTextBox9.Invoke(new Action(() => richTextBox9.AppendText(Environment.NewLine + insDef.defectCoordinates + "_" + insDef.defectLength)));
                 }
 
                 incrementor++;//сделаем прогресс-индикатор, чтобы было не так скучно ждать.
                 if (incrementor == 10)
                 {
-                    richTextBox1.Invoke(new Action(() => richTextBox1.AppendText("*")));
+                    richTextBox9.Invoke(new Action(() => richTextBox1.AppendText("*")));
                     incrementor = 0;
                 }
                 i++;

@@ -11125,7 +11125,7 @@ namespace VTDinfo
             // 
             // button20
             // 
-            this.button20.Location = new System.Drawing.Point(15, 104);
+            this.button20.Location = new System.Drawing.Point(15, 25);
             this.button20.Name = "button20";
             this.button20.Size = new System.Drawing.Size(175, 65);
             this.button20.TabIndex = 6;
@@ -11136,22 +11136,22 @@ namespace VTDinfo
             // richTextBox9
             // 
             this.richTextBox9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox9.Location = new System.Drawing.Point(1417, 495);
+            this.richTextBox9.Location = new System.Drawing.Point(1329, 495);
             this.richTextBox9.Name = "richTextBox9";
-            this.richTextBox9.Size = new System.Drawing.Size(348, 486);
+            this.richTextBox9.Size = new System.Drawing.Size(436, 486);
             this.richTextBox9.TabIndex = 5;
             this.richTextBox9.Text = "";
             // 
             // textBox450
             // 
-            this.textBox450.Location = new System.Drawing.Point(15, 193);
+            this.textBox450.Location = new System.Drawing.Point(15, 293);
             this.textBox450.Name = "textBox450";
-            this.textBox450.Size = new System.Drawing.Size(162, 26);
+            this.textBox450.Size = new System.Drawing.Size(175, 26);
             this.textBox450.TabIndex = 4;
             // 
             // textBox449
             // 
-            this.textBox449.Location = new System.Drawing.Point(196, 299);
+            this.textBox449.Location = new System.Drawing.Point(196, 116);
             this.textBox449.Name = "textBox449";
             this.textBox449.Size = new System.Drawing.Size(42, 26);
             this.textBox449.TabIndex = 3;
@@ -11159,7 +11159,7 @@ namespace VTDinfo
             // 
             // button19
             // 
-            this.button19.Location = new System.Drawing.Point(15, 279);
+            this.button19.Location = new System.Drawing.Point(15, 96);
             this.button19.Name = "button19";
             this.button19.Size = new System.Drawing.Size(175, 67);
             this.button19.TabIndex = 2;
@@ -11169,9 +11169,9 @@ namespace VTDinfo
             // 
             // button18
             // 
-            this.button18.Location = new System.Drawing.Point(15, 38);
+            this.button18.Location = new System.Drawing.Point(15, 230);
             this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(175, 44);
+            this.button18.Size = new System.Drawing.Size(175, 57);
             this.button18.TabIndex = 1;
             this.button18.Text = "Очистить карту";
             this.button18.UseVisualStyleBackColor = true;
@@ -11201,7 +11201,7 @@ namespace VTDinfo
             this.gMapControl1.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.gMapControl1.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.gMapControl1.ShowTileGridLines = false;
-            this.gMapControl1.Size = new System.Drawing.Size(1408, 978);
+            this.gMapControl1.Size = new System.Drawing.Size(1320, 978);
             this.gMapControl1.TabIndex = 0;
             this.gMapControl1.Zoom = 0D;
             // 
@@ -11214,8 +11214,8 @@ namespace VTDinfo
             // tableLayoutPanel37
             // 
             this.tableLayoutPanel37.ColumnCount = 2;
-            this.tableLayoutPanel37.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.tableLayoutPanel37.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel37.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
+            this.tableLayoutPanel37.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel37.Controls.Add(this.richTextBox9, 1, 1);
             this.tableLayoutPanel37.Controls.Add(this.gMapControl1, 0, 0);
             this.tableLayoutPanel37.Controls.Add(this.groupBox12, 1, 0);
@@ -11230,6 +11230,7 @@ namespace VTDinfo
             // 
             // groupBox12
             // 
+            this.groupBox12.BackColor = System.Drawing.Color.PaleTurquoise;
             this.groupBox12.Controls.Add(this.button22);
             this.groupBox12.Controls.Add(this.label260);
             this.groupBox12.Controls.Add(this.button21);
@@ -11238,18 +11239,19 @@ namespace VTDinfo
             this.groupBox12.Controls.Add(this.textBox450);
             this.groupBox12.Controls.Add(this.button20);
             this.groupBox12.Controls.Add(this.button19);
-            this.groupBox12.Location = new System.Drawing.Point(1417, 3);
+            this.groupBox12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox12.Location = new System.Drawing.Point(1329, 3);
             this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(343, 486);
+            this.groupBox12.Size = new System.Drawing.Size(436, 486);
             this.groupBox12.TabIndex = 6;
             this.groupBox12.TabStop = false;
-            this.groupBox12.Text = "groupBox12";
+            this.groupBox12.Text = " ";
             // 
             // button21
             // 
-            this.button21.Location = new System.Drawing.Point(15, 388);
+            this.button21.Location = new System.Drawing.Point(15, 169);
             this.button21.Name = "button21";
-            this.button21.Size = new System.Drawing.Size(175, 45);
+            this.button21.Size = new System.Drawing.Size(175, 55);
             this.button21.TabIndex = 7;
             this.button21.Text = "Показать трубы";
             this.button21.UseVisualStyleBackColor = true;
@@ -11258,7 +11260,7 @@ namespace VTDinfo
             // label260
             // 
             this.label260.AutoSize = true;
-            this.label260.Location = new System.Drawing.Point(244, 299);
+            this.label260.Location = new System.Drawing.Point(244, 119);
             this.label260.Name = "label260";
             this.label260.Size = new System.Drawing.Size(23, 20);
             this.label260.TabIndex = 8;
@@ -11266,11 +11268,11 @@ namespace VTDinfo
             // 
             // button22
             // 
-            this.button22.Location = new System.Drawing.Point(208, 38);
+            this.button22.Location = new System.Drawing.Point(15, 325);
             this.button22.Name = "button22";
-            this.button22.Size = new System.Drawing.Size(115, 44);
+            this.button22.Size = new System.Drawing.Size(175, 53);
             this.button22.TabIndex = 9;
-            this.button22.Text = "button22";
+            this.button22.Text = "Дефекты КСС";
             this.button22.UseVisualStyleBackColor = true;
             this.button22.Click += new System.EventHandler(this.button22_Click);
             // 
