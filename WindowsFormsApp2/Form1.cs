@@ -9354,7 +9354,7 @@ namespace VTDinfo
         private void setMarkersOfDefects(List<InsulationDefects> input)
         {
             gMapControl1.MapProvider = GMapProviders.GoogleHybridMap;
-                        gMapControl1.MinZoom = 5;
+            gMapControl1.MinZoom = 5;
             gMapControl1.MaxZoom = 50;
             gMapControl1.Zoom = 15;
             gMapControl1.DragButton = MouseButtons.Left;
@@ -9389,8 +9389,9 @@ namespace VTDinfo
             }
             for (int i = 0; i < insulationDefects.Count; i++)
             {
-                int nearPipe = 0;
-                double minimumDist = 11;
+                int nearPipe = 2;
+                double minimumDist = 10;
+                bool mark = false;
                 for (int j = 0; j < inputVTD.MGPipeS.Count; j++)
                 {
                     GeoCoordinate defectPoint = new GeoCoordinate(ConvertDegreeAngleToDoubleLat(insulationDefects[i].defectCoordinates), ConvertDegreeAngleToDoubleLon(insulationDefects[i].defectCoordinates));
@@ -9401,21 +9402,23 @@ namespace VTDinfo
                         {
                             minimumDist = distanceTo;
                             nearPipe = j;
+                            mark = true;
                         }                    
                 }
-                for (int j = nearPipe; j < inputVTD.MGPipeS.Count; j++)
+
+
+                if (mark)
                 {
-                    int a = j;
                     double defectLength = insulationDefects[i].defectLength;
                     while (defectLength > 0)
                     {
-                        inputVTD.MGPipeS[a].isInsulationDefect = true;
-                        defectLength -= inputVTD.MGPipeS[a].pipeLength;
+                        inputVTD.MGPipeS[nearPipe].isInsulationDefect = true;
+                        defectLength -= inputVTD.MGPipeS[nearPipe].pipeLength;
 
-                        richTextBox9.Invoke(new Action(() => richTextBox9.AppendText(Environment.NewLine + inputVTD.MGPipeS[a].pipeNumber + "_" + insulationDefects[i].defectLength)));
-                        if (a < inputVTD.MGPipeS.Count-1)
+                        richTextBox9.Invoke(new Action(() => richTextBox9.AppendText(Environment.NewLine + inputVTD.MGPipeS[nearPipe].pipeNumber + "_" + insulationDefects[i].defectLength)));
+                        if (nearPipe < inputVTD.MGPipeS.Count)
                         {
-                            a++;
+                            nearPipe++;
                         }
                         else
                         {
@@ -9423,6 +9426,8 @@ namespace VTDinfo
                         }
                     }
                 }
+                    
+                
             }
 
             return result;
