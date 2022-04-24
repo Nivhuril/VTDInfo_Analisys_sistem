@@ -9509,9 +9509,10 @@ namespace VTDinfo
             {
                 /*if (input.anomalyLogLineS[i].depthInProcent>0)
                 {*/
-                    PointLatLng point = new PointLatLng(ConvertDegreeAngleToDouble(input.MGPipeS[i].Latitude), ConvertDegreeAngleToDouble(input.MGPipeS[i].Longitude));
-                    GMapMarker marker = new GMarkerGoogle(point, GMarkerGoogleType.green_dot);
-                    markers.Markers.Add(marker);
+                PointLatLng point = new PointLatLng(ConvertDegreeAngleToDouble(input.MGPipeS[i].Latitude), ConvertDegreeAngleToDouble(input.MGPipeS[i].Longitude));
+                GMapMarker marker = new GMarkerGoogle(point, GMarkerGoogleType.green_dot);
+                marker.ToolTipText = input.MGPipeS[i].pipeNumber;
+                markers.Markers.Add(marker);
                // }
             }
             gMapControl1.Overlays.Add(markers);
