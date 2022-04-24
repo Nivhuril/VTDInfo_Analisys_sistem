@@ -11,6 +11,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 //using Microsoft.Office.Interop.Excel;
 using System.Data.SqlClient;
+using GMap.NET.MapProviders;
+using GMap.NET;
+using System.Globalization;
+using GMap.NET.WindowsForms;
+using GMap.NET.WindowsForms.Markers;
+using GMap.NET.WindowsForms.ToolTips;
+using System.Device.Location;
+//using System.Windows.Forms.DataVisualization.Charting;
 //antipov-db1 OByM6oBaKutjA2xv
 namespace VTDinfo
 {
@@ -180,6 +188,8 @@ namespace VTDinfo
             public double firstJointAngle;
             public double secondJointAngle;
             public bool isTwoJoint;
+
+            public bool isInsulationDefect;
         }
 
         MGVTD setTypesForIUSTToFirnishingLog(MGVTD input)
@@ -3267,8 +3277,9 @@ namespace VTDinfo
                     MG_Pipe.clockOrientation = Convert.ToString(ObjWorkSheet2.Cells[i, 11].Text);//Ориент., ч:мин
                     //MG_Pipe.bendOfPipe = Convert.ToString(ObjWorkSheet2.Cells[i, 2].Text);//Изгиб, °
                     //MG_Pipe.jointAngle = Convert.ToString(ObjWorkSheet2.Cells[i, 2].Text);//Угол стыка,°
-                    //MG_Pipe.Latitude = Convert.ToString(ObjWorkSheet2.Cells[i, 2].Text);//Широта
-                    //MG_Pipe.Longitude = Convert.ToString(ObjWorkSheet2.Cells[i, 2].Text);//Долгота
+                    MG_Pipe.Latitude = Convert.ToString(ObjWorkSheet2.Cells[i, 25].Text);//Широта
+                    MG_Pipe.Longitude = Convert.ToString(ObjWorkSheet2.Cells[i, 26].Text);//Долгота
+                    //richTextBox7.Invoke(new Action(() => richTextBox7.AppendText(Environment.NewLine + MG_Pipe.Latitude+"_"+ MG_Pipe.Longitude)));
                     //MG_Pipe.heightAboveSeaLevel = Convert.ToString(ObjWorkSheet2.Cells[i, 2].Text);//H, м
                     MG_Pipe.note = Convert.ToString(ObjWorkSheet2.Cells[i, 14].Text);//Примечание
 
@@ -3289,8 +3300,9 @@ namespace VTDinfo
                         furnishings_Log.designations = Convert.ToString(ObjWorkSheet2.Cells[i, 14].Text);//обозначение
                         furnishings_Log.marker = Convert.ToString(ObjWorkSheet2.Cells[i, 14].Text);//маркер
                         //furnishings_Log.distanceToNextFeature;//расстояние до седующей особенности
-                        //furnishings_Log.Latitude;//Широта
-                        //furnishings_Log.Longitude;//Долгота
+                        furnishings_Log.Latitude=Convert.ToString(ObjWorkSheet2.Cells[i, 25].Text); //Широта
+                        furnishings_Log.Longitude=Convert.ToString(ObjWorkSheet2.Cells[i, 26].Text);//Долгота
+                        //richTextBox7.Invoke(new Action(() => richTextBox7.AppendText(Environment.NewLine + furnishings_Log.Latitude + "_" + furnishings_Log.Longitude+"_line")));
                         //furnishings_Log.heightAboveSeaLevel;//H, м
                         furnishings_Log.note = Convert.ToString(ObjWorkSheet2.Cells[i, 14].Text);//Примечание
                         furnishingsLog.Add(furnishings_Log);
@@ -3313,8 +3325,9 @@ namespace VTDinfo
                     //anomalyLog_Line.extOrInt = ConvertToDouble(ObjWorkSheet2.Cells[i, 17].Text);//характер локаизации(внутри или снаружи)
                     //anomalyLog_Line.KBD = Convert.ToString(ObjWorkSheet2.Cells[i, 17].Text);//КБД
                     anomalyLog_Line.defectAssessment = Convert.ToString(ObjWorkSheet2.Cells[i, 13].Text);//оценка дефекта
-                    //anomalyLog_Line.Latitude = Convert.ToString(ObjWorkSheet2.Cells[i, 17].Text);//Широта
-                    //anomalyLog_Line.Longitude = Convert.ToString(ObjWorkSheet2.Cells[i, 17].Text);//Долгота
+                    anomalyLog_Line.Latitude = Convert.ToString(ObjWorkSheet2.Cells[i, 25].Text); //Широта
+                    anomalyLog_Line.Longitude = Convert.ToString(ObjWorkSheet2.Cells[i, 26].Text);//Долгота
+                    //richTextBox7.Invoke(new Action(() => richTextBox7.AppendText(Environment.NewLine + anomalyLog_Line.Latitude + "_" + anomalyLog_Line.Longitude + "_def")));
                     //anomalyLog_Line.heightAboveSeaLevel = Convert.ToString(ObjWorkSheet2.Cells[i, 17].Text);//H, м
                     anomalyLog_Line.note = Convert.ToString(ObjWorkSheet2.Cells[i, 14].Text);//Примечание
                     anomalyLog_Line.defectRepareDate = Convert.ToString(ObjWorkSheet2.Cells[i, 20].Text);//дата устранения дефекта
@@ -9320,6 +9333,275 @@ namespace VTDinfo
         {
             textBoxGraphStop.Text = String.Concat(mGVTD.MGPipeS[hScrollBar2.Value - 1].pipeNumber, "_", hScrollBar2.Value - 1);
             //DrawDiagrams();
+        }
+        private void button18_Click(object sender, EventArgs e)
+        {
+            gMapControl1.MapProvider = GMapProviders.GoogleHybridMap;
+            gMapControl1.Position = new PointLatLng(53.219527, 50.154535);
+            
+            gMapControl1.MinZoom = 5;
+            gMapControl1.MaxZoom = 50;
+            gMapControl1.Zoom = 10;
+            gMapControl1.DragButton = MouseButtons.Left;
+            markers.Clear();
+        }
+        
+        private void button19_Click(object sender, EventArgs e)
+        {
+            setMarkersOfDefectsCorr(mGVTD);
+        }
+        GMapOverlay markers = new GMapOverlay("markers");
+        private void setMarkersOfDefects(List<InsulationDefects> input)
+        {
+            gMapControl1.MapProvider = GMapProviders.GoogleHybridMap;
+                        gMapControl1.MinZoom = 5;
+            gMapControl1.MaxZoom = 50;
+            gMapControl1.Zoom = 15;
+            gMapControl1.DragButton = MouseButtons.Left;
+            //GMapOverlay markers = new GMapOverlay("markers");
+            
+            for (int i = 0; i < input.Count; i++)
+            {                
+                PointLatLng point = new PointLatLng(ConvertDegreeAngleToDoubleLat(input[i].defectCoordinates), ConvertDegreeAngleToDoubleLon(input[i].defectCoordinates));
+                GMapMarker marker = new GMarkerGoogle(point, GMarkerGoogleType.red_dot);
+                marker.ToolTipText = String.Concat(Convert.ToString(input[i].defectLength)," м");
+                markers.Markers.Add(marker);
+            }
+                        gMapControl1.Overlays.Add(markers);
+            
+            int centrPoint = 0;
+            if (input.Count%2==0)
+            {
+                centrPoint = input.Count / 2;
+            }
+            else
+            {
+                centrPoint = (input.Count-1) / 2;
+            }
+            gMapControl1.Position = new PointLatLng(ConvertDegreeAngleToDoubleLat(input[centrPoint].defectCoordinates), ConvertDegreeAngleToDoubleLon(input[centrPoint].defectCoordinates));
+        }
+        MGVTD setInsulationDefectsNew(MGVTD inputVTD, List<InsulationDefects> insulationDefects)
+        {
+            MGVTD result = new MGVTD();
+            for (int i = 0; i < inputVTD.MGPipeS.Count; i++)
+            {
+                inputVTD.MGPipeS[i].isInsulationDefect = false;
+            }
+            for (int i = 0; i < insulationDefects.Count; i++)
+            {
+                int nearPipe = 0;
+                double minimumDist = 11;
+                for (int j = 0; j < inputVTD.MGPipeS.Count; j++)
+                {
+                    GeoCoordinate defectPoint = new GeoCoordinate(ConvertDegreeAngleToDoubleLat(insulationDefects[i].defectCoordinates), ConvertDegreeAngleToDoubleLon(insulationDefects[i].defectCoordinates));
+                    GeoCoordinate pipePoint = new GeoCoordinate(ConvertDegreeAngleToDouble(inputVTD.MGPipeS[j].Latitude), ConvertDegreeAngleToDouble(inputVTD.MGPipeS[j].Longitude));
+                    double distanceTo = pipePoint.GetDistanceTo(defectPoint);
+
+                        if (distanceTo< minimumDist)
+                        {
+                            minimumDist = distanceTo;
+                            nearPipe = j;
+                        }                    
+                }
+                for (int j = nearPipe; j < inputVTD.MGPipeS.Count; j++)
+                {
+                    int a = j;
+                    double defectLength = insulationDefects[i].defectLength;
+                    while (defectLength > 0)
+                    {
+                        inputVTD.MGPipeS[a].isInsulationDefect = true;
+                        defectLength -= inputVTD.MGPipeS[a].pipeLength;
+
+                        richTextBox9.Invoke(new Action(() => richTextBox9.AppendText(Environment.NewLine + inputVTD.MGPipeS[a].pipeNumber + "_" + insulationDefects[i].defectLength)));
+                        if (a < inputVTD.MGPipeS.Count-1)
+                        {
+                            a++;
+                        }
+                        else
+                        {
+                            defectLength = 0;
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
+
+
+
+        MGVTD setInsulationDefects(MGVTD inputVTD, List<InsulationDefects> insulationDefects)
+        {
+            MGVTD result = new MGVTD();
+            for (int i = 0; i < inputVTD.MGPipeS.Count; i++)
+            {
+                inputVTD.MGPipeS[i].isInsulationDefect = false;
+            }
+            for (int i = 0; i < insulationDefects.Count; i++)
+            {
+                for (int j = 0; j < inputVTD.MGPipeS.Count; j++)
+                {
+                    GeoCoordinate defectPoint = new GeoCoordinate(ConvertDegreeAngleToDoubleLat(insulationDefects[i].defectCoordinates), ConvertDegreeAngleToDoubleLon(insulationDefects[i].defectCoordinates));
+                    GeoCoordinate pipePoint = new GeoCoordinate(ConvertDegreeAngleToDouble(inputVTD.MGPipeS[j].Latitude), ConvertDegreeAngleToDouble(inputVTD.MGPipeS[j].Longitude));
+                    double distanceTo = pipePoint.GetDistanceTo(defectPoint);
+                    List<int> nearPipes = new List<int>();
+                    if (distanceTo < 10)
+                    {
+                        nearPipes.Add(i);
+                    }
+                    
+                    
+                    if (distanceTo<10)
+                    {
+                        int a = j;
+                        double defectLength = insulationDefects[i].defectLength;
+                        while (defectLength>0)
+                        {
+                            inputVTD.MGPipeS[a].isInsulationDefect = true;
+                            defectLength -= inputVTD.MGPipeS[a].pipeLength;
+
+                            richTextBox9.Invoke(new Action(() => richTextBox9.AppendText(Environment.NewLine + inputVTD.MGPipeS[a].pipeNumber + "_" + insulationDefects[i].defectLength)));
+                            if (a< inputVTD.MGPipeS.Count)
+                            {
+                                a++;
+                            }
+                            else
+                            {
+                                defectLength = 0;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        private void setMarkersOfPipes(MGVTD input)
+        {
+            gMapControl1.MapProvider = GMapProviders.GoogleHybridMap;
+            gMapControl1.MinZoom = 5;
+            gMapControl1.MaxZoom = 50;
+            gMapControl1.Zoom = 15;
+            gMapControl1.DragButton = MouseButtons.Left;
+            //GMapOverlay markers = new GMapOverlay("markers");
+
+            for (int i = 0; i < input.MGPipeS.Count; i++)
+            {
+                /*if (input.anomalyLogLineS[i].depthInProcent>0)
+                {*/
+                    PointLatLng point = new PointLatLng(ConvertDegreeAngleToDouble(input.MGPipeS[i].Latitude), ConvertDegreeAngleToDouble(input.MGPipeS[i].Longitude));
+                    GMapMarker marker = new GMarkerGoogle(point, GMarkerGoogleType.green_dot);
+                    markers.Markers.Add(marker);
+               // }
+            }
+            gMapControl1.Overlays.Add(markers);
+            gMapControl1.Position = new PointLatLng(ConvertDegreeAngleToDouble(input.MGPipeS[0].Latitude), ConvertDegreeAngleToDouble(input.MGPipeS[0].Longitude));
+        }
+        private void setMarkersOfDefectsCorr(MGVTD input)
+        {
+            gMapControl1.MapProvider = GMapProviders.GoogleHybridMap;
+            gMapControl1.MinZoom = 5;
+            gMapControl1.MaxZoom = 50;
+            gMapControl1.Zoom = 15;
+            gMapControl1.DragButton = MouseButtons.Left;
+            
+
+            for (int i = 0; i < input.anomalyLogLineS.Count; i++)
+            {
+                if (input.anomalyLogLineS[i].depthInProcent>Convert.ToDouble(textBox449.Text))
+                {
+                PointLatLng point = new PointLatLng(ConvertDegreeAngleToDouble(input.anomalyLogLineS[i].Latitude), ConvertDegreeAngleToDouble(input.anomalyLogLineS[i].Longitude));
+                GMapMarker marker = new GMarkerGoogle(point, GMarkerGoogleType.yellow_dot);
+                    marker.ToolTipText = String.Concat("Труба №", input.anomalyLogLineS[i].pipeNumber,", глубина дефекта:", input.anomalyLogLineS[i].depthInProcent, " %");
+                markers.Markers.Add(marker);
+                }
+            }
+            gMapControl1.Overlays.Add(markers);
+            gMapControl1.Position = new PointLatLng(ConvertDegreeAngleToDouble(input.anomalyLogLineS[0].Latitude), ConvertDegreeAngleToDouble(input.anomalyLogLineS[0].Longitude));
+        }
+        private void button20_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                fileName = openFileDialog1.FileName;
+                insulationDefects = GetInsulationDefectsFromFile(fileName);
+            }
+            setMarkersOfDefects(insulationDefects);
+            
+        }
+        private void addLine()//пример рисования линий на карте
+        {
+            GMapOverlay routes = new GMapOverlay("routes"); //Создаем объект наложения (Overlay)
+            List<PointLatLng> points = new List<PointLatLng>(); //Создаем лист, где будут наши точки пути.
+            points.Add(new PointLatLng(48.866383, 2.323575)); //Добавляем координаты
+            points.Add(new PointLatLng(48.863868, 2.321554));
+            points.Add(new PointLatLng(48.861017, 2.330030));
+            GMapRoute route = new GMapRoute(points, "A walk in the park"); //Создаем из полученных точнек маршрут и даем ей имя.
+            route.Stroke = new Pen(Color.Red, 3); //Задаем цвет и ширину линии
+            routes.Routes.Add(route); //Добавляем на наш Overlay маршрут
+            gMapControl1.Overlays.Add(routes); //Накладываем Overlay на карту.
+
+            GMapOverlay markersOverlay = new GMapOverlay("marker"); //Создаем Overlay
+            GMarkerGoogle markerStart = new GMarkerGoogle(points.FirstOrDefault(), GMarkerGoogleType.blue); //Создаем новую точку и даем ей координаты первого элемента из листа координат и синий цвет
+            GMarkerGoogle markerEnd = new GMarkerGoogle(points.LastOrDefault(), GMarkerGoogleType.red); //Тоже самое, но красный цвет и последний из списка координат.
+            markerStart.ToolTip = new GMapRoundedToolTip(markerStart); //Указываем тип всплывающей подсказки для точки старта
+            markerEnd.ToolTip = new GMapBaloonToolTip(markerEnd); //Другой тип подсказки для точки окончания (для теста)
+            markerStart.ToolTipText = "Точка старта"; //Текст всплывающих подсказок при наведении
+            markerEnd.ToolTipText = "Точка окончания";
+
+            markersOverlay.Markers.Add(markerStart); //Добавляем точки
+            markersOverlay.Markers.Add(markerEnd); //В наш оверлей маркеров
+
+            gMapControl1.Overlays.Add(markersOverlay); //Добавляем оверлей на карту
+            gMapControl1.Position = new PointLatLng(48.861017, 2.330030);
+
+        }
+        private void addLineInsulatoinDefects(MGVTD input) 
+        {
+            GMapOverlay routes = new GMapOverlay("routes"); //Создаем объект наложения (Overlay)
+            GMapOverlay markersOverlay = new GMapOverlay("marker"); //Создаем Overlay
+            for (int i = 0; i < input.MGPipeS.Count-1; i++)
+            {
+                if (input.MGPipeS[i].isInsulationDefect)
+                {
+                    List<PointLatLng> points = new List<PointLatLng>(); //Создаем лист, где будут наши точки пути.
+                    points.Add(new PointLatLng(ConvertDegreeAngleToDouble(input.MGPipeS[i].Latitude), ConvertDegreeAngleToDouble(input.MGPipeS[i].Longitude))); //Добавляем координаты
+                    points.Add(new PointLatLng(ConvertDegreeAngleToDouble(input.MGPipeS[i+1].Latitude), ConvertDegreeAngleToDouble(input.MGPipeS[i+1].Longitude)));
+                    GMapRoute route = new GMapRoute(points, "pipe"); //Создаем из полученных точнек маршрут и даем ей имя.
+                    route.Stroke = new Pen(Color.Red, 3); //Задаем цвет и ширину линии
+                    routes.Routes.Add(route); //Добавляем на наш Overlay маршрут
+
+
+                    PointLatLng point = new PointLatLng(ConvertDegreeAngleToDouble(input.MGPipeS[i].Latitude), ConvertDegreeAngleToDouble(input.MGPipeS[i].Longitude));
+                    GMapMarker markerStart = new GMarkerGoogle(point, GMarkerGoogleType.green_dot);
+
+                    //PointLatLng pipePoint = new PointLatLng(ConvertDegreeAngleToDouble(input.MGPipeS[i].Latitude), ConvertDegreeAngleToDouble(input.MGPipeS[i].Longitude));
+                    //GMarkerGoogle markerStart = new GMarkerGoogle(pipePoint, GMarkerGoogleType.blue); //Создаем новую точку и даем ей координаты первого элемента из листа координат и синий цвет
+                    //GMarkerGoogle markerEnd = new GMarkerGoogle(points.LastOrDefault(), GMarkerGoogleType.red); //Тоже самое, но красный цвет и последний из списка координат.
+                    //markerStart.ToolTip = new GMapRoundedToolTip(markerStart); //Указываем тип всплывающей подсказки для точки старта
+                    //markerEnd.ToolTip = new GMapBaloonToolTip(markerEnd); //Другой тип подсказки для точки окончания (для теста)
+                    markerStart.ToolTipText = input.MGPipeS[i].pipeNumber; //Текст всплывающих подсказок при наведении
+                    //markerEnd.ToolTipText = "Точка окончания";
+
+                    markersOverlay.Markers.Add(markerStart); //Добавляем точки
+                    //markersOverlay.Markers.Add(markerEnd); //В наш оверлей маркеров
+                }
+            }
+            gMapControl1.Overlays.Add(routes); //Накладываем Overlay на карту.
+            gMapControl1.Overlays.Add(markersOverlay); //Добавляем оверлей на карту
+        }
+
+        private void button21_Click(object sender, EventArgs e)
+        {
+            setMarkersOfPipes(mGVTD);
+        }
+
+        private void button22_Click(object sender, EventArgs e)
+        {
+            //addLine();
+            setInsulationDefectsNew(mGVTD, insulationDefects);
+            addLineInsulatoinDefects(mGVTD);
         }
     }
 }

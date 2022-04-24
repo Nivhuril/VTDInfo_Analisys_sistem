@@ -916,6 +916,8 @@ namespace VTDinfo
             this.checkBox16 = new System.Windows.Forms.CheckBox();
             this.IusT = new System.Windows.Forms.TabPage();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.textBox448 = new System.Windows.Forms.TextBox();
+            this.label259 = new System.Windows.Forms.Label();
             this.textBox447 = new System.Windows.Forms.TextBox();
             this.label258 = new System.Windows.Forms.Label();
             this.textBox446 = new System.Windows.Forms.TextBox();
@@ -933,9 +935,20 @@ namespace VTDinfo
             this.textBox437 = new System.Windows.Forms.TextBox();
             this.textBox436 = new System.Windows.Forms.TextBox();
             this.ConvertIusT = new System.Windows.Forms.Button();
+            this.gMapService = new System.Windows.Forms.TabPage();
+            this.button20 = new System.Windows.Forms.Button();
+            this.richTextBox9 = new System.Windows.Forms.RichTextBox();
+            this.textBox450 = new System.Windows.Forms.TextBox();
+            this.textBox449 = new System.Windows.Forms.TextBox();
+            this.button19 = new System.Windows.Forms.Button();
+            this.button18 = new System.Windows.Forms.Button();
+            this.gMapControl1 = new GMap.NET.WindowsForms.GMapControl();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.textBox448 = new System.Windows.Forms.TextBox();
-            this.label259 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel37 = new System.Windows.Forms.TableLayoutPanel();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.button21 = new System.Windows.Forms.Button();
+            this.label260 = new System.Windows.Forms.Label();
+            this.button22 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage13.SuspendLayout();
             this.tableLayoutPanel28.SuspendLayout();
@@ -1021,6 +1034,9 @@ namespace VTDinfo
             this.tableLayoutPanel33.SuspendLayout();
             this.IusT.SuspendLayout();
             this.groupBox11.SuspendLayout();
+            this.gMapService.SuspendLayout();
+            this.tableLayoutPanel37.SuspendLayout();
+            this.groupBox12.SuspendLayout();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -1037,6 +1053,7 @@ namespace VTDinfo
             this.tabControl1.Controls.Add(this.tabPage12);
             this.tabControl1.Controls.Add(this.tabPage7);
             this.tabControl1.Controls.Add(this.IusT);
+            this.tabControl1.Controls.Add(this.gMapService);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -1443,7 +1460,7 @@ namespace VTDinfo
             this.tabPage14.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabPage14.Name = "tabPage14";
             this.tabPage14.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tabPage14.Size = new System.Drawing.Size(634, 302);
+            this.tabPage14.Size = new System.Drawing.Size(636, 302);
             this.tabPage14.TabIndex = 0;
             this.tabPage14.Text = "Участки";
             this.tabPage14.UseVisualStyleBackColor = true;
@@ -1458,7 +1475,7 @@ namespace VTDinfo
             this.groupBox8.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox8.Size = new System.Drawing.Size(626, 292);
+            this.groupBox8.Size = new System.Drawing.Size(628, 292);
             this.groupBox8.TabIndex = 8;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Выбор объекта";
@@ -1490,7 +1507,7 @@ namespace VTDinfo
             this.tableLayoutPanel25.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
             this.tableLayoutPanel25.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel25.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
-            this.tableLayoutPanel25.Size = new System.Drawing.Size(618, 263);
+            this.tableLayoutPanel25.Size = new System.Drawing.Size(620, 263);
             this.tableLayoutPanel25.TabIndex = 4;
             // 
             // button8
@@ -1523,20 +1540,20 @@ namespace VTDinfo
             this.tableLayoutPanel26.Controls.Add(this.label235, 1, 0);
             this.tableLayoutPanel26.Controls.Add(this.label231, 0, 0);
             this.tableLayoutPanel26.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel26.Location = new System.Drawing.Point(313, 5);
+            this.tableLayoutPanel26.Location = new System.Drawing.Point(314, 5);
             this.tableLayoutPanel26.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel26.Name = "tableLayoutPanel26";
             this.tableLayoutPanel26.RowCount = 1;
             this.tableLayoutPanel26.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel26.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.tableLayoutPanel26.Size = new System.Drawing.Size(301, 36);
+            this.tableLayoutPanel26.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.tableLayoutPanel26.Size = new System.Drawing.Size(302, 36);
             this.tableLayoutPanel26.TabIndex = 10;
             // 
             // label235
             // 
             this.label235.AutoSize = true;
             this.label235.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label235.Location = new System.Drawing.Point(154, 16);
+            this.label235.Location = new System.Drawing.Point(155, 16);
             this.label235.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label235.Name = "label235";
             this.label235.Size = new System.Drawing.Size(143, 20);
@@ -1550,7 +1567,7 @@ namespace VTDinfo
             this.label231.Location = new System.Drawing.Point(4, 16);
             this.label231.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label231.Name = "label231";
-            this.label231.Size = new System.Drawing.Size(142, 20);
+            this.label231.Size = new System.Drawing.Size(143, 20);
             this.label231.TabIndex = 5;
             this.label231.Text = "MG_ID";
             // 
@@ -1562,12 +1579,12 @@ namespace VTDinfo
             this.tableLayoutPanel27.Controls.Add(this.MG_ID, 0, 0);
             this.tableLayoutPanel27.Controls.Add(this.DIrectory, 1, 0);
             this.tableLayoutPanel27.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel27.Location = new System.Drawing.Point(313, 51);
+            this.tableLayoutPanel27.Location = new System.Drawing.Point(314, 51);
             this.tableLayoutPanel27.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel27.Name = "tableLayoutPanel27";
             this.tableLayoutPanel27.RowCount = 1;
             this.tableLayoutPanel27.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel27.Size = new System.Drawing.Size(301, 36);
+            this.tableLayoutPanel27.Size = new System.Drawing.Size(302, 36);
             this.tableLayoutPanel27.TabIndex = 11;
             // 
             // MG_ID
@@ -1581,7 +1598,7 @@ namespace VTDinfo
             // DIrectory
             // 
             this.DIrectory.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.DIrectory.Location = new System.Drawing.Point(154, 5);
+            this.DIrectory.Location = new System.Drawing.Point(155, 5);
             this.DIrectory.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.DIrectory.Name = "DIrectory";
             this.DIrectory.Size = new System.Drawing.Size(138, 26);
@@ -1611,7 +1628,7 @@ namespace VTDinfo
             // label233
             // 
             this.label233.AutoSize = true;
-            this.label233.Location = new System.Drawing.Point(313, 92);
+            this.label233.Location = new System.Drawing.Point(314, 92);
             this.label233.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label233.Name = "label233";
             this.label233.Size = new System.Drawing.Size(272, 20);
@@ -1621,7 +1638,7 @@ namespace VTDinfo
             // MG_Check
             // 
             this.MG_Check.FormattingEnabled = true;
-            this.MG_Check.Location = new System.Drawing.Point(313, 120);
+            this.MG_Check.Location = new System.Drawing.Point(314, 120);
             this.MG_Check.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MG_Check.Name = "MG_Check";
             this.MG_Check.Size = new System.Drawing.Size(295, 28);
@@ -1651,7 +1668,7 @@ namespace VTDinfo
             // button10
             // 
             this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button10.Location = new System.Drawing.Point(313, 189);
+            this.button10.Location = new System.Drawing.Point(314, 189);
             this.button10.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(297, 37);
@@ -1667,7 +1684,7 @@ namespace VTDinfo
             this.tabPage15.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabPage15.Name = "tabPage15";
             this.tabPage15.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tabPage15.Size = new System.Drawing.Size(634, 302);
+            this.tabPage15.Size = new System.Drawing.Size(636, 302);
             this.tabPage15.TabIndex = 1;
             this.tabPage15.Text = "Тройники";
             this.tabPage15.UseVisualStyleBackColor = true;
@@ -1689,7 +1706,7 @@ namespace VTDinfo
             this.tableLayoutPanel35.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33F));
             this.tableLayoutPanel35.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33F));
             this.tableLayoutPanel35.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 34F));
-            this.tableLayoutPanel35.Size = new System.Drawing.Size(626, 292);
+            this.tableLayoutPanel35.Size = new System.Drawing.Size(628, 292);
             this.tableLayoutPanel35.TabIndex = 0;
             // 
             // button1
@@ -1698,7 +1715,7 @@ namespace VTDinfo
             this.button1.Location = new System.Drawing.Point(4, 5);
             this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(198, 86);
+            this.button1.Size = new System.Drawing.Size(199, 86);
             this.button1.TabIndex = 0;
             this.button1.Text = "Получить данные о тройниках";
             this.button1.UseVisualStyleBackColor = true;
@@ -1717,7 +1734,7 @@ namespace VTDinfo
             // 
             // button12
             // 
-            this.button12.Location = new System.Drawing.Point(416, 5);
+            this.button12.Location = new System.Drawing.Point(418, 5);
             this.button12.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(112, 35);
@@ -2736,7 +2753,7 @@ namespace VTDinfo
             this.PipeList.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.PipeList.Name = "PipeList";
             this.PipeList.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.PipeList.Size = new System.Drawing.Size(1747, 935);
+            this.PipeList.Size = new System.Drawing.Size(1752, 941);
             this.PipeList.TabIndex = 1;
             this.PipeList.Text = "Трубный журнал";
             this.PipeList.UseVisualStyleBackColor = true;
@@ -3518,7 +3535,7 @@ namespace VTDinfo
             this.DefectList.Location = new System.Drawing.Point(4, 29);
             this.DefectList.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.DefectList.Name = "DefectList";
-            this.DefectList.Size = new System.Drawing.Size(1747, 935);
+            this.DefectList.Size = new System.Drawing.Size(1752, 941);
             this.DefectList.TabIndex = 2;
             this.DefectList.Text = "Журнал аномалий";
             this.DefectList.UseVisualStyleBackColor = true;
@@ -4492,7 +4509,7 @@ namespace VTDinfo
             this.ArrangementElements.Location = new System.Drawing.Point(4, 29);
             this.ArrangementElements.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ArrangementElements.Name = "ArrangementElements";
-            this.ArrangementElements.Size = new System.Drawing.Size(1747, 935);
+            this.ArrangementElements.Size = new System.Drawing.Size(1752, 941);
             this.ArrangementElements.TabIndex = 3;
             this.ArrangementElements.Text = "Журнал элементов обустройства";
             this.ArrangementElements.UseVisualStyleBackColor = true;
@@ -5129,7 +5146,7 @@ namespace VTDinfo
             this.pipeType.Location = new System.Drawing.Point(4, 29);
             this.pipeType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pipeType.Name = "pipeType";
-            this.pipeType.Size = new System.Drawing.Size(1747, 935);
+            this.pipeType.Size = new System.Drawing.Size(1752, 941);
             this.pipeType.TabIndex = 4;
             this.pipeType.Text = "Тип тр. и кат. уч.";
             this.pipeType.UseVisualStyleBackColor = true;
@@ -5750,7 +5767,7 @@ namespace VTDinfo
             this.tabPage4.Controls.Add(this.tableLayoutPanel11);
             this.tabPage4.Location = new System.Drawing.Point(4, 29);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage4.Size = new System.Drawing.Size(1008, 742);
             this.tabPage4.TabIndex = 0;
             this.tabPage4.Text = "Трубный журнал";
@@ -6427,7 +6444,7 @@ namespace VTDinfo
             this.tabPage5.Controls.Add(this.tableLayoutPanel10);
             this.tabPage5.Location = new System.Drawing.Point(4, 29);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage5.Size = new System.Drawing.Size(1008, 742);
             this.tabPage5.TabIndex = 1;
             this.tabPage5.Text = "Журнал дефектов";
@@ -7630,7 +7647,7 @@ namespace VTDinfo
             this.tabPage9.Controls.Add(this.tableLayoutPanel16);
             this.tabPage9.Location = new System.Drawing.Point(4, 29);
             this.tabPage9.Name = "tabPage9";
-            this.tabPage9.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage9.Size = new System.Drawing.Size(1008, 705);
             this.tabPage9.TabIndex = 0;
             this.tabPage9.Text = "Трубный журнал";
@@ -8333,7 +8350,7 @@ namespace VTDinfo
             this.tabPage10.Controls.Add(this.tableLayoutPanel17);
             this.tabPage10.Location = new System.Drawing.Point(4, 29);
             this.tabPage10.Name = "tabPage10";
-            this.tabPage10.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage10.Size = new System.Drawing.Size(1008, 705);
             this.tabPage10.TabIndex = 1;
             this.tabPage10.Text = "Журнал дефектов";
@@ -10905,6 +10922,26 @@ namespace VTDinfo
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "Данные для внесения в отчет";
             // 
+            // textBox448
+            // 
+            this.textBox448.Location = new System.Drawing.Point(489, 215);
+            this.textBox448.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBox448.Name = "textBox448";
+            this.textBox448.Size = new System.Drawing.Size(148, 35);
+            this.textBox448.TabIndex = 9;
+            this.textBox448.Text = "0";
+            // 
+            // label259
+            // 
+            this.label259.AutoSize = true;
+            this.label259.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label259.Location = new System.Drawing.Point(33, 220);
+            this.label259.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label259.Name = "label259";
+            this.label259.Size = new System.Drawing.Size(181, 20);
+            this.label259.TabIndex = 8;
+            this.label259.Text = "Начало участка (км)";
+            // 
             // textBox447
             // 
             this.textBox447.Location = new System.Drawing.Point(489, 175);
@@ -11076,31 +11113,166 @@ namespace VTDinfo
             this.ConvertIusT.UseVisualStyleBackColor = true;
             this.ConvertIusT.Click += new System.EventHandler(this.ConvertIusT_Click);
             // 
+            // gMapService
+            // 
+            this.gMapService.Controls.Add(this.tableLayoutPanel37);
+            this.gMapService.Location = new System.Drawing.Point(4, 29);
+            this.gMapService.Name = "gMapService";
+            this.gMapService.Size = new System.Drawing.Size(1768, 984);
+            this.gMapService.TabIndex = 8;
+            this.gMapService.Text = "Координаты";
+            this.gMapService.UseVisualStyleBackColor = true;
+            // 
+            // button20
+            // 
+            this.button20.Location = new System.Drawing.Point(15, 104);
+            this.button20.Name = "button20";
+            this.button20.Size = new System.Drawing.Size(175, 65);
+            this.button20.TabIndex = 6;
+            this.button20.Text = "Загрузить дефекты изоляции";
+            this.button20.UseVisualStyleBackColor = true;
+            this.button20.Click += new System.EventHandler(this.button20_Click);
+            // 
+            // richTextBox9
+            // 
+            this.richTextBox9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox9.Location = new System.Drawing.Point(1417, 495);
+            this.richTextBox9.Name = "richTextBox9";
+            this.richTextBox9.Size = new System.Drawing.Size(348, 486);
+            this.richTextBox9.TabIndex = 5;
+            this.richTextBox9.Text = "";
+            // 
+            // textBox450
+            // 
+            this.textBox450.Location = new System.Drawing.Point(15, 193);
+            this.textBox450.Name = "textBox450";
+            this.textBox450.Size = new System.Drawing.Size(162, 26);
+            this.textBox450.TabIndex = 4;
+            // 
+            // textBox449
+            // 
+            this.textBox449.Location = new System.Drawing.Point(196, 299);
+            this.textBox449.Name = "textBox449";
+            this.textBox449.Size = new System.Drawing.Size(42, 26);
+            this.textBox449.TabIndex = 3;
+            this.textBox449.Text = "15";
+            // 
+            // button19
+            // 
+            this.button19.Location = new System.Drawing.Point(15, 279);
+            this.button19.Name = "button19";
+            this.button19.Size = new System.Drawing.Size(175, 67);
+            this.button19.TabIndex = 2;
+            this.button19.Text = "Показать дефекты более";
+            this.button19.UseVisualStyleBackColor = true;
+            this.button19.Click += new System.EventHandler(this.button19_Click);
+            // 
+            // button18
+            // 
+            this.button18.Location = new System.Drawing.Point(15, 38);
+            this.button18.Name = "button18";
+            this.button18.Size = new System.Drawing.Size(175, 44);
+            this.button18.TabIndex = 1;
+            this.button18.Text = "Очистить карту";
+            this.button18.UseVisualStyleBackColor = true;
+            this.button18.Click += new System.EventHandler(this.button18_Click);
+            // 
+            // gMapControl1
+            // 
+            this.gMapControl1.Bearing = 0F;
+            this.gMapControl1.CanDragMap = true;
+            this.gMapControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gMapControl1.EmptyTileColor = System.Drawing.Color.Navy;
+            this.gMapControl1.GrayScaleMode = false;
+            this.gMapControl1.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
+            this.gMapControl1.LevelsKeepInMemmory = 5;
+            this.gMapControl1.Location = new System.Drawing.Point(3, 3);
+            this.gMapControl1.MarkersEnabled = true;
+            this.gMapControl1.MaxZoom = 2;
+            this.gMapControl1.MinZoom = 2;
+            this.gMapControl1.MouseWheelZoomEnabled = true;
+            this.gMapControl1.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
+            this.gMapControl1.Name = "gMapControl1";
+            this.gMapControl1.NegativeMode = false;
+            this.gMapControl1.PolygonsEnabled = true;
+            this.gMapControl1.RetryLoadTile = 0;
+            this.gMapControl1.RoutesEnabled = true;
+            this.tableLayoutPanel37.SetRowSpan(this.gMapControl1, 2);
+            this.gMapControl1.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
+            this.gMapControl1.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
+            this.gMapControl1.ShowTileGridLines = false;
+            this.gMapControl1.Size = new System.Drawing.Size(1408, 978);
+            this.gMapControl1.TabIndex = 0;
+            this.gMapControl1.Zoom = 0D;
+            // 
             // saveFileDialog1
             // 
             this.saveFileDialog1.DefaultExt = "C:\\Result";
             this.saveFileDialog1.FileName = "MG";
             this.saveFileDialog1.InitialDirectory = "C:\\Result";
             // 
-            // textBox448
+            // tableLayoutPanel37
             // 
-            this.textBox448.Location = new System.Drawing.Point(489, 215);
-            this.textBox448.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox448.Name = "textBox448";
-            this.textBox448.Size = new System.Drawing.Size(148, 35);
-            this.textBox448.TabIndex = 9;
-            this.textBox448.Text = "0";
+            this.tableLayoutPanel37.ColumnCount = 2;
+            this.tableLayoutPanel37.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
+            this.tableLayoutPanel37.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel37.Controls.Add(this.richTextBox9, 1, 1);
+            this.tableLayoutPanel37.Controls.Add(this.gMapControl1, 0, 0);
+            this.tableLayoutPanel37.Controls.Add(this.groupBox12, 1, 0);
+            this.tableLayoutPanel37.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel37.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel37.Name = "tableLayoutPanel37";
+            this.tableLayoutPanel37.RowCount = 2;
+            this.tableLayoutPanel37.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel37.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel37.Size = new System.Drawing.Size(1768, 984);
+            this.tableLayoutPanel37.TabIndex = 7;
             // 
-            // label259
+            // groupBox12
             // 
-            this.label259.AutoSize = true;
-            this.label259.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label259.Location = new System.Drawing.Point(33, 220);
-            this.label259.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label259.Name = "label259";
-            this.label259.Size = new System.Drawing.Size(181, 20);
-            this.label259.TabIndex = 8;
-            this.label259.Text = "Начало участка (км)";
+            this.groupBox12.Controls.Add(this.button22);
+            this.groupBox12.Controls.Add(this.label260);
+            this.groupBox12.Controls.Add(this.button21);
+            this.groupBox12.Controls.Add(this.button18);
+            this.groupBox12.Controls.Add(this.textBox449);
+            this.groupBox12.Controls.Add(this.textBox450);
+            this.groupBox12.Controls.Add(this.button20);
+            this.groupBox12.Controls.Add(this.button19);
+            this.groupBox12.Location = new System.Drawing.Point(1417, 3);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.Size = new System.Drawing.Size(343, 486);
+            this.groupBox12.TabIndex = 6;
+            this.groupBox12.TabStop = false;
+            this.groupBox12.Text = "groupBox12";
+            // 
+            // button21
+            // 
+            this.button21.Location = new System.Drawing.Point(15, 388);
+            this.button21.Name = "button21";
+            this.button21.Size = new System.Drawing.Size(175, 45);
+            this.button21.TabIndex = 7;
+            this.button21.Text = "Показать трубы";
+            this.button21.UseVisualStyleBackColor = true;
+            this.button21.Click += new System.EventHandler(this.button21_Click);
+            // 
+            // label260
+            // 
+            this.label260.AutoSize = true;
+            this.label260.Location = new System.Drawing.Point(244, 299);
+            this.label260.Name = "label260";
+            this.label260.Size = new System.Drawing.Size(23, 20);
+            this.label260.TabIndex = 8;
+            this.label260.Text = "%";
+            // 
+            // button22
+            // 
+            this.button22.Location = new System.Drawing.Point(208, 38);
+            this.button22.Name = "button22";
+            this.button22.Size = new System.Drawing.Size(115, 44);
+            this.button22.TabIndex = 9;
+            this.button22.Text = "button22";
+            this.button22.UseVisualStyleBackColor = true;
+            this.button22.Click += new System.EventHandler(this.button22_Click);
             // 
             // Form1
             // 
@@ -11230,6 +11402,10 @@ namespace VTDinfo
             this.IusT.PerformLayout();
             this.groupBox11.ResumeLayout(false);
             this.groupBox11.PerformLayout();
+            this.gMapService.ResumeLayout(false);
+            this.tableLayoutPanel37.ResumeLayout(false);
+            this.groupBox12.ResumeLayout(false);
+            this.groupBox12.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -12142,6 +12318,19 @@ namespace VTDinfo
         private System.Windows.Forms.Label label255;
         private System.Windows.Forms.TextBox textBox448;
         private System.Windows.Forms.Label label259;
+        private System.Windows.Forms.TabPage gMapService;
+        private System.Windows.Forms.Button button18;
+        private GMap.NET.WindowsForms.GMapControl gMapControl1;
+        private System.Windows.Forms.TextBox textBox450;
+        private System.Windows.Forms.TextBox textBox449;
+        private System.Windows.Forms.Button button19;
+        private System.Windows.Forms.RichTextBox richTextBox9;
+        private System.Windows.Forms.Button button20;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel37;
+        private System.Windows.Forms.GroupBox groupBox12;
+        private System.Windows.Forms.Button button21;
+        private System.Windows.Forms.Label label260;
+        private System.Windows.Forms.Button button22;
     }
 }
 
